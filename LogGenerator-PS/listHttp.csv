@@ -1,0 +1,8 @@
+name
+"80"",""url"":""az764295.vo.msecnd.net"",""uri_query"":""az764295.vo.msecnd.net:443"",""http_status"":""200"",""http_user_agent"":""Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.71.0 Chrome/102.0.5005.167 Electron/19.0.12 Safari/537.36"",""method"":""CONNECT"
+"80"",""url"":""b.6sc.co"",""uri_query"":""b.6sc.co:443"",""http_status"":""200"",""http_user_agent"":""Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0"",""method"":""CONNECT"
+"80"",""url"":""c.contentsquare.net"",""uri_query"":""c.contentsquare.net:443"",""http_status"":""200"",""http_user_agent"":""Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0"",""method"":""CONNECT"
+"80"",""url"":""classify-client.services.mozilla.com"",""uri_query"":""classify-client.services.mozilla.com:443"",""http_status"":""200"",""http_user_agent"":""Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0"",""method"":""CONNECT"
+"80"",""url"":""connectivity-check.ubuntu.com"",""uri_query"":""/"",""http_status"": ""204"",""http_user_agent"":"""",""method"":""GET"
+"80"",""url"":""connectivitycheck.gstatic.com"",""uri_query"":""/generate_204"",""http_status"":""204"",""http_user_agent"":""Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.32 Safari/537.36"",""method"":""GET"
+"80"",""url"":""content-signature-2.cdn.mozilla.net"",""uri_query"":""content-signature-2.cdn.mozilla.net:443"",""http_status"":""200"",""http_user_agent"":""Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0"",""method"":""CONNECT"

@@ -1,0 +1,7 @@
+Name
+"443"",""app"":""https"",""transport"":""tcp"
+"80"",""app"":""http"",""transport"":""tcp"
+"22"",""app"":""ssh"",""transport"":""tcp"
+"25"",""app"":""smtp"",""transport"":""tcp"
+"53"",""app"":""dns"",""transport"":""tcp"
+"53"",""app"":""dns"",""transport"":""udp"
