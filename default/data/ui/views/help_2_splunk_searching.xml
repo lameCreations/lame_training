@@ -1,0 +1,95 @@
+<dashboard version="1.1">
+<label>2. Help Splunk Searching</label>
+<row>
+    <panel ref="helpBanner" app="search"></panel>
+  </row>
+<row>
+  <panel>
+    <html>
+      <head>
+      <style>
+      #toc_container {
+      background: #f9f9f9 none repeat scroll 0 0;
+      border: 1px solid #aaa;
+      display: table;
+      font-size: 95%;
+      margin: auto;
+      padding: 20px;
+      width: auto;
+      }
+  
+      .toc_title {
+      font-weight: 700;
+      text-align: left;
+      color: #034f84;
+      }
+  
+      #toc_container li, #toc_container ul, #toc_container ul li{
+      list-style: outside none none !important;
+      }
+      
+      .mainDiv {
+      border: 1px solid lightblue;
+      text-align: justify;
+      margin: auto;
+      width: 75%;
+      padding: 20px;
+      }
+      
+      h1 {color: #034f84;}
+      h2 {color: #034f84;}
+      h3 {color: #034f84;}
+      </style>
+      </head>
+      <body>
+        <div class="mainDiv">
+        <a name="top"></a>
+      <table>
+        <tr>
+          <td>
+            <div id="toc_container">
+              <p class="toc_title">Table of Contents</p>
+              <ul class="toc_list">
+                <li><a href="#intro">1 Splunk Search Modes</a></li>
+                <li><a href="#time">1.1 Fast mode</a></li>
+                <li><a href="#index">1.2 Verbose mode</a></li>
+                <li><a href="#host">1.3 Smart mode</a></li>
+              </ul>
+              </div>
+          </td>
+        </tr>
+      </table>
+      
+      <h1 id="intro">1 Splunk Search Modes <a href="https://youtu.be/xVrpE0unGco" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+      <p>The splunk search bar has the three search modes.  Fast, verbose, and smart mode are the three search modes.  Each mode has its own pros and cons that will be discussed below.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="time">1.1 Fast Mode </h1>
+<p>Fast mode speeds up searches by limiting the types of data returned by the search.  Fast mode, by default, only returns the _raw logs.  Any fields that are specifically called out in the SPL Query are also returned.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="index">1.2 Verbose Field </h1>
+<p>Verbose mode returns as much event information as possible, at the expense of slower search performance.  By default the _raw fields and all of the parsed fields come back with the search results.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="host">1.3 Smart Mode</h1>
+<p>Smart mode, the default setting, toggles search behavior based on whether your search contains transforming commands. For transforming searches, it behaves like Fast mode. For searches without transforming commands, it behaves like Verbose mode.</p>
+
+<p>A type of search command that orders the results into a data table. Transforming commands "transform" the specified cell values for each event into numerical values that Splunk Enterprise can use for statistical purposes. Searches that use transforming commands are called transforming searches.
+
+Transforming commands include chart, timechart, stats, top, rare, contingency, and highlight.
+
+Transforming commands are required to transform search result data into the data structures required for visualizations such as column, bar, line, area, and pie charts. </p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+
+    </div>
+    </body>
+    </html>
+  </panel>
+</row>
+</dashboard>

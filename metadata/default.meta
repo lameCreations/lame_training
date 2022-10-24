@@ -1,0 +1,138 @@
+[app/ui]
+version = 9.0.1
+modtime = 1663472851.021039000
+
+[app/launcher]
+version = 9.0.1
+modtime = 1663472851.024434000
+
+[indexes/lame_training]
+owner = admin
+version = 9.0.1
+modtime = 1663473919.692619000
+
+[props/lame_conn]
+owner = admin
+version = 9.0.1
+modtime = 1663475537.417255000
+
+[props/lame_dns]
+owner = admin
+version = 9.0.1
+modtime = 1663475613.935744000
+
+[props/lame_http]
+owner = admin
+version = 9.0.1
+modtime = 1663475679.845439000
+
+[inputs/monitor%3A%2F%2F%2Fvar%2Flog%2FSplunkRead%2Fconn_log.txt]
+owner = admin
+version = 9.0.1
+modtime = 1663476193.575035000
+
+[inputs/monitor%3A%2F%2F%2Fvar%2Flog%2FSplunkRead%2Fdns_log.txt]
+owner = admin
+version = 9.0.1
+modtime = 1663476311.767818000
+
+[inputs/monitor%3A%2F%2F%2Fvar%2Flog%2FSplunkRead%2Fhttp_log.txt]
+owner = admin
+version = 9.0.1
+modtime = 1663476453.315872000
+
+[nav/default]
+version = 9.0.1
+modtime = 1665879214.224361000
+
+[views/urlgenerator]
+owner = admin
+version = 9.0.1
+modtime = 1665978219.869207000
+
+[macros/trainingMacro]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 9.0.1
+modtime = 1663508962.296389000
+
+[views/help_1_metadata_fields]
+owner = admin
+version = 9.0.1
+modtime = 1666479794.166454000
+
+[views/help_2_splunk_searching]
+owner = admin
+version = 9.0.1
+modtime = 1666502525.152107000
+
+[views/help_4_spl_common_commands]
+owner = admin
+version = 9.0.1
+modtime = 1665982255.166294000
+
+[views/help_5_reports_management]
+owner = admin
+version = 9.0.1
+modtime = 1665883742.614018000
+
+[views/help_6_lookup_management]
+owner = admin
+version = 9.0.1
+modtime = 1665883762.927978000
+
+[views/help_7_working_with_fields]
+owner = admin
+version = 9.0.1
+modtime = 1665883783.241870000
+
+[views/help_8_index_management]
+owner = admin
+version = 9.0.1
+modtime = 1665883803.935476000
+
+[views/help_3_syntax_basics]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 9.0.1
+modtime = 1666066674.146972000
+
+[lookups/lame_youtube_channel.csv]
+owner = admin
+version = 9.0.1
+modtime = 1666484125.893077000
+
+[]
+access = read : [ * ], write : [ admin, power ]
+
+### EVENT TYPES
+
+[eventtypes]
+export = system
+
+
+### PROPS
+
+[props]
+export = system
+
+
+### TRANSFORMS
+
+[transforms]
+export = system
+
+
+### LOOKUPS
+
+[lookups]
+export = system
+
+
+### VIEWSTATES: even normal users should be able to create shared viewstates
+
+[viewstates]
+access = read : [ * ], write : [ * ]
+export = system
