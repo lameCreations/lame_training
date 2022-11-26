@@ -67,7 +67,7 @@
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="time">1.1 Time Modifiers <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
+<h1 id="time">1.1 Time Modifiers <a href="https://youtu.be/uB6b_WQYeKA" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
 <p>One can select from various preset values.</p>
 <img src="/static/app/lame_training/searchTime.PNG" width="400" height="500"></img>
 <p>Additionally searches can be performed using a relative time, real-time searches, date time, date and time range, and advanced time searches </p>
@@ -90,7 +90,7 @@
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="index">1.2 Filtering <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
+<h1 id="index">1.2 Filtering <a href="https://youtu.be/MWhDFm1BGXo" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
 <p>When a search command is executed, all of the indexes on all of the indexers will be searched for all time.  This can lead to long running queries, it is not efficient to search all data, but instead only the relevant data should be searched.  One of the first tricks to filtering is choosing an appropriate time period.  Try to restrict the time picker to a relevant time for the events you are looking for.  Additionally, the index and the sourcetype and/or source should be declared. If you are looking for a particular field call our the field as well. </p>
 <ul>
   <li>To filter based off of the index use the following: </li>
@@ -103,14 +103,11 @@
 </ul>
 
 <p>AND OR NOT can also to provide multiple field types</p>
-<ol>
-  <li>On a standalone search head.  Go to Settings -> Indexes <a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
-  <li>| eventcount summarize=false index=* | dedup index | fields index  <a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> </li>
-</ol>
+
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="host">1.3 Pipebased Language <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
+<h1 id="host">1.3 Pipebased Language <a href="https://youtu.be/f3OUfWkD2ro" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
 <p>Splunk is a pipe based language meaning that you can "pipe" data into another SPL command.  You can search data, pipe the results of that search into a pipe that renames the fields, that then is piped into a command to change fields based off conditions, and so forth.  Common piping commands are as follows:</p>
 
 <ul>

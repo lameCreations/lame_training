@@ -1,4 +1,0 @@
-key,type,name,sourcetype,source,logname
-nt,json,network_traffic,network_traffic,TestMachine,conn_log.txt
-nr,json,network_resolution,network_resolution,TestMachine,dns_log.txt
-web,json,web,web,TestMachine,http_log.txt

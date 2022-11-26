@@ -65,8 +65,7 @@
                 <li><a href="#chart">1.11 chart</a></li>
                 <li><a href="#timechart">1.12 timechart</a></li>
                 <li><a href="#dedup">1.13 dedup</a></li>
-                <li><a href="#rex">1.14 rex</a></li>
-            
+                
                 
               </ul>
               </div>
@@ -79,7 +78,7 @@
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="head">1.1 head Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
+<h1 id="head">1.1 head Command <a href="https://youtu.be/TSr1WjFlgYA" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
 <p>The head command will return the first user defined set of results from a search.  If just head is used, the default value is ten, or in other words the first ten results will come back.  Additionally, an analyst can provide a number after the head command and that many results will be returned.  Below is an example of head, with and without the user provided number.</p>
 <ol>
   <li><b>index=lame_training sourcetype=lame_conn | head </b><a href="/app/lame_training/search?q=index%3Dlame_training%20sourcetype%3Dlame_conn%20%7C%20head%0A%60%60%60%20splunk%20query%20for%20viewing%20the%20first%20ten%20events%20from%20the%20query%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
@@ -90,7 +89,7 @@
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="stats">1.2 stats Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
+<h1 id="stats">1.2 stats Command <a href="https://youtu.be/5YXjmQpJEjw" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
 <p>The stats command is the swiss army knife of Splunk commands.  While most often used for grouping fields together by statistical methods, stats is far more powerful.  Stats with a by statement will join multiple sourcetypes and logs into one log.  It will not be attempted to explain in words how to use the stats command, but it is highly recommended that the following videos be watched to gain further insight into how to use the stats command.</p>
 <ul>
   <li>Count the number of logs by a field</li>
@@ -118,7 +117,7 @@
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="eval">1.3 eval Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
+<h1 id="eval">1.3 eval Command <a href="https://youtu.be/IcHApZh9eEg" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
 <p>The eval command, simply put creates new fields.  The basic syntax is to declare a new field name and then state what its value is.  So for example eval foo = "bar".  The new field value's name is foo and the new assigned value is "bar".  The value is put in double quotes because the value is a string.  One could also do something like this eval foo = src_ip where src_ip is an existing field.  When a new field is assigned to the value in an existing field, the value is NOT placed in double quotes.  Below are examplse of using an eval statement.</p>
 <ol>
   <li><b>index=lame_training sourcetype=lame_conn | eval foo = "bar" </b><a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
@@ -129,7 +128,7 @@
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="fields">1.4 fields Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
+<h1 id="fields">1.4 fields Command <a href="https://youtu.be/qpY4Qieqewc" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
 <p>The fields command is used to display the fields that are called out in a table format instead of the default tabular output.  Often fields and table are used interchangeably.  It should be noted that fields is the preferred method because it does not send the data back to the search head.  The more work that can be performed on the indexer, the better so unless using it on the last line of an SPL command use fields instead of table.  Additionally a "-" can be used on table to remove fields from the list of fields that are being passed down the pipe.</p>
 <ul>
   <li>Return only the src_ip, dest_ip, and _time fields</li>
@@ -142,7 +141,7 @@
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="table">1.5 table Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
+<h1 id="table">1.5 table Command <a href="https://youtu.be/qpY4Qieqewc" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
 <p>The table command is used to display the fields that are called out in a table format instead of the default tabular output.  Often fields and table are used interchangeably.  It should be noted that fields is the preferred method because it does not send the data back to the search head.  The more work that can be performed on the indexer, the better so unless using it on the last line of an SPL command use fields instead of table. </p>
 <ul>
   <li>Return only the src_ip, dest_ip, and _time fields</li>
@@ -151,105 +150,107 @@
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="rename">1.6 rename Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
-<p>The head command will return the first user defined set of results from a search.  If just head is used, the default value is ten, or in other words the first ten results will come back.  Additionally, an analyst can provide a number after the head command and that many results will be returned.  Below is an example of head, with and without the user provided number.</p>
-<ol>
-  <li><b>index=lame_training sourcetype=lame_conn | head </b><a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
-  <li><b>index=lame_training sourcetype=lame_conn | head 1 </b><a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> </li>
-</ol>
+<h1 id="rename">1.6 rename Command <a href="https://youtu.be/PrT9l1s9Fv0" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>The rename command is used to change the name of a field to a new name.  The command is invoked by having the following syntax   | rename [original_field1] as [new_field_name1], [original_field2 as new_field_name2]  The following are common use cases for using the rename command:</p>
+<ul>
+  <li>Rename a field to a more intuitive name for reporting purposes.</li>
+  <li><b>| rename src_ip as "Source IP", dest_ip as "Destination IP"</b></li>
+  <li>Remove a period from a field name.</li>
+  <li><b>| rename id.orig_h as src_ip</b> </li>
+  <li>Subsearches and commands like appendcols match on fields that have the same name.  This may require one or more fields to be renamed so they match the fields in the subsearch</li>
+  <li><b>[inputlookup | search ip=192.168.1.1. | rename ip as src_ip ]</b> </li>
+</ul>
+
 
 <p>The head command is most commonly used when trying to explore the data to build a more complex query.  For example, use | head 10 and then manipulate the SPL query until you have your more complicated query.  There is no reason to manipulate manipulate millions of records when you can test your data on a small subset until you are happy with the results.  Head is a key for improving development time and removing stress from the system during development</p>
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="search">1.7 search Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
-<p>The head command will return the first user defined set of results from a search.  If just head is used, the default value is ten, or in other words the first ten results will come back.  Additionally, an analyst can provide a number after the head command and that many results will be returned.  Below is an example of head, with and without the user provided number.</p>
-<ol>
-  <li><b>index=lame_training sourcetype=lame_conn | head </b><a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
-  <li><b>index=lame_training sourcetype=lame_conn | head 1 </b><a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> </li>
-</ol>
+<h1 id="search">1.7 search Command <a href="https://youtu.be/jhE8QFgDW-o" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>Technically all search commands are supposed to start with the search command, but splunk automatically adds the search command as the first thing in your spl code, so you don't have to write it.  There are times where you can't filter out everything you want before the first pipe, but somewhere down the pipe, you need to filter out unwanted fields.  The search command will allow you to do this.  In the example below, the query is looking for all the logs where the src_ip exists in both the sourcetype lame_conn and lame_dns.</p>
+<p><b>index=lame_training (sourcetype=lame_conn OR sourcetype=lame_dns) | stats count by src_ip | search sourcetype=2</b></p>
 
-<p>The head command is most commonly used when trying to explore the data to build a more complex query.  For example, use | head 10 and then manipulate the SPL query until you have your more complicated query.  There is no reason to manipulate manipulate millions of records when you can test your data on a small subset until you are happy with the results.  Head is a key for improving development time and removing stress from the system during development</p>
+<p>You can also use the search command to do a subsearch of fields.  While it not the most efficient query, this could be a use case for the search command using the lame script eventgen information.  The analyst again wants to return only the lame_conn sourcetype logs that exist within the lame_dns sourcetype logs.  *note the | fields - count must be used because without it, the sub search will return src_ip and a count field and lame_conn has a src_ip field, but it does not have a count field.</p>
+<p><b>index=lame_training sourcetype=lame_conn [search index=lame_training sourcetype=corelight_dns | stats count by src_ip | fields - count]</b> </p>
 
-<p><a href="#top">Back to top of page</a></p>
 
-<h1 id="sort">1.8 sort Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
-<p>The head command will return the first user defined set of results from a search.  If just head is used, the default value is ten, or in other words the first ten results will come back.  Additionally, an analyst can provide a number after the head command and that many results will be returned.  Below is an example of head, with and without the user provided number.</p>
-<ol>
-  <li><b>index=lame_training sourcetype=lame_conn | head </b><a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
-  <li><b>index=lame_training sourcetype=lame_conn | head 1 </b><a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> </li>
-</ol>
-
-<p>The head command is most commonly used when trying to explore the data to build a more complex query.  For example, use | head 10 and then manipulate the SPL query until you have your more complicated query.  There is no reason to manipulate manipulate millions of records when you can test your data on a small subset until you are happy with the results.  Head is a key for improving development time and removing stress from the system during development</p>
-
-<p><a href="#top">Back to top of page</a></p>
-
-<h1 id="rare">1.9 top/rare Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
-<p>The head command will return the first user defined set of results from a search.  If just head is used, the default value is ten, or in other words the first ten results will come back.  Additionally, an analyst can provide a number after the head command and that many results will be returned.  Below is an example of head, with and without the user provided number.</p>
-<ol>
-  <li><b>index=lame_training sourcetype=lame_conn | head </b><a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
-  <li><b>index=lame_training sourcetype=lame_conn | head 1 </b><a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> </li>
-</ol>
-
-<p>The head command is most commonly used when trying to explore the data to build a more complex query.  For example, use | head 10 and then manipulate the SPL query until you have your more complicated query.  There is no reason to manipulate manipulate millions of records when you can test your data on a small subset until you are happy with the results.  Head is a key for improving development time and removing stress from the system during development</p>
+<h1 id="sort">1.8 sort Command <a href="https://youtu.be/1ZfhIlU5HzA" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>Splunk by default will return the results back to the screen in chronological order based off the _time field.  The logs will be displayed from newest log to oldest.  The sort command allows the changing of how the logs are sorted.  An analyst uses the | sort command and then declares which field(s) should be sorted by.  a dash / minus (-) can be used to switch from ascending to descending order.</p>
+<ul>
+  <li>To sort by the amount of bytes_in in ascending order</li>
+  <li>index=lame_training sourcetype=lame_conn | sort bytes_in </li>
+  <li>To sort by the amount of bytes_in in descending order</li>
+  <li>index=lame_training sourcetype=lame_conn | sort - bytes_in</li>
+  <li>You can sort by more than one field, below query will sort by ports and then by bytes in.</li>
+  <li>index=lame_training sourcetype=lame_conn | sort dest_port bytes_in</li>
+</ul>
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="where">1.10 where Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
-<p>The head command will return the first user defined set of results from a search.  If just head is used, the default value is ten, or in other words the first ten results will come back.  Additionally, an analyst can provide a number after the head command and that many results will be returned.  Below is an example of head, with and without the user provided number.</p>
-<ol>
-  <li><b>index=lame_training sourcetype=lame_conn | head </b><a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
-  <li><b>index=lame_training sourcetype=lame_conn | head 1 </b><a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> </li>
-</ol>
+<h1 id="rare">1.9 top/rare Command <a href="https://youtu.be/SPYc4AygV4M" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>Many times, we are interested in finding the most common values available in a field. The top command in Splunk helps us achieve this. It further helps in finding the count and percentage of the frequency the values occur in the events.</p>
+<ul>
+  <li>To see the most common 7 occuring src_ip and the percentage of the results use the following</li>
+  <li><b>index=lame_training sourcetype=lame_conn | top limit=7 src_ip</b></li>
+  <li>To see the most common 7 occuring dest_ip grouped by src_ip and the percentage of the results use the following</li>
+  <li><b>index=Lame_training sourcetype=lame_conn | top limit=7 dest_ip by src_ip</b></li>
+  <li>You can toggle the percentage of and off with the showperc=t or showperc=f</li>
+  <li><b>index=lame_training sourcetyep=lame_conn | top limit=7 dest_ip showperc=f</b></li>
+</ul>
 
-<p>The head command is most commonly used when trying to explore the data to build a more complex query.  For example, use | head 10 and then manipulate the SPL query until you have your more complicated query.  There is no reason to manipulate manipulate millions of records when you can test your data on a small subset until you are happy with the results.  Head is a key for improving development time and removing stress from the system during development</p>
-
-<p><a href="#top">Back to top of page</a></p>
-
-<h1 id="chart">1.11 chart Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
-<p>The head command will return the first user defined set of results from a search.  If just head is used, the default value is ten, or in other words the first ten results will come back.  Additionally, an analyst can provide a number after the head command and that many results will be returned.  Below is an example of head, with and without the user provided number.</p>
-<ol>
-  <li><b>index=lame_training sourcetype=lame_conn | head </b><a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
-  <li><b>index=lame_training sourcetype=lame_conn | head 1 </b><a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> </li>
-</ol>
-
-<p>The head command is most commonly used when trying to explore the data to build a more complex query.  For example, use | head 10 and then manipulate the SPL query until you have your more complicated query.  There is no reason to manipulate manipulate millions of records when you can test your data on a small subset until you are happy with the results.  Head is a key for improving development time and removing stress from the system during development</p>
+<p>The rare command is the same syntax as the top command, but instead of showing the most common values it shows the least occuring value.  This is a great tool in an analyst toolbelt because often you will see the anomalies as the "rare" values.  </p>
+<p><b>index=lame_training sourcetype=lame_conn | rare limit=7 src_ip</b></p>
 
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="timechart">1.12 timechart Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
-<p>The head command will return the first user defined set of results from a search.  If just head is used, the default value is ten, or in other words the first ten results will come back.  Additionally, an analyst can provide a number after the head command and that many results will be returned.  Below is an example of head, with and without the user provided number.</p>
-<ol>
-  <li><b>index=lame_training sourcetype=lame_conn | head </b><a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
-  <li><b>index=lame_training sourcetype=lame_conn | head 1 </b><a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> </li>
-</ol>
+<h1 id="where">1.10 where Command <a href="https://youtu.be/jhE8QFgDW-o" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>We have chosen to add the Where command as something that can be "almost" used interchangeably with the search command.  If using a inputlookup, use a search command.  If using less than and greater than symbols, use where.  For almost all other use cases you should probably use search, but where will probably work.</p>
+<p><b>index=lame_training (sourcetype=lame_conn OR sourcetype=lame_dns) | stats count by src_ip | where sourcetype>1</b></p>
+<p><b>|inputlookup network_topology_lookup | search location="internal"</b></p>
 
-<p>The head command is most commonly used when trying to explore the data to build a more complex query.  For example, use | head 10 and then manipulate the SPL query until you have your more complicated query.  There is no reason to manipulate manipulate millions of records when you can test your data on a small subset until you are happy with the results.  Head is a key for improving development time and removing stress from the system during development</p>
+<p><a href="top">Back to top of page</a></p>
 
-<p><a href="#top">Back to top of page</a></p>
-
-<h1 id="dedup">1.13 dedup Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
-<p>The head command will return the first user defined set of results from a search.  If just head is used, the default value is ten, or in other words the first ten results will come back.  Additionally, an analyst can provide a number after the head command and that many results will be returned.  Below is an example of head, with and without the user provided number.</p>
-<ol>
-  <li><b>index=lame_training sourcetype=lame_conn | head </b><a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
-  <li><b>index=lame_training sourcetype=lame_conn | head 1 </b><a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> </li>
-</ol>
-
-<p>The head command is most commonly used when trying to explore the data to build a more complex query.  For example, use | head 10 and then manipulate the SPL query until you have your more complicated query.  There is no reason to manipulate manipulate millions of records when you can test your data on a small subset until you are happy with the results.  Head is a key for improving development time and removing stress from the system during development</p>
+<h1 id="chart">1.11 chart Command <a href="https://youtu.be/Q2dG9vwqgoI" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>The chart command and the stats command are nearly identical in syntax.  The chart command is a transforming command that returns your results in a table format. The results can then be used to display the data as a chart, such as a column, line, area, or pie chart.</p>
+<ul>
+  <li>A simple use of the chart command</li>
+  <li><b>index=lame_training sourcetype=lame_conn | chart count by src_ip </b></li>
+</ul>
 
 <p><a href="#top">Back to top of page</a></p>
 
-
-<h1 id="rex">1.14 rex Command <img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></h1>
-<p>The head command will return the first user defined set of results from a search.  If just head is used, the default value is ten, or in other words the first ten results will come back.  Additionally, an analyst can provide a number after the head command and that many results will be returned.  Below is an example of head, with and without the user provided number.</p>
-<ol>
-  <li><b>index=lame_training sourcetype=lame_conn | head </b><a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
-  <li><b>index=lame_training sourcetype=lame_conn | head 1 </b><a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> </li>
-</ol>
-
-<p>The head command is most commonly used when trying to explore the data to build a more complex query.  For example, use | head 10 and then manipulate the SPL query until you have your more complicated query.  There is no reason to manipulate manipulate millions of records when you can test your data on a small subset until you are happy with the results.  Head is a key for improving development time and removing stress from the system during development</p>
+<h1 id="timechart">1.12 timechart Command <a href="https://youtu.be/Rx7d47ilkIw" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>The time chart is a specialized form of the chart command, it will be by default use _time as a by field, you do not have to say by _time.</p>
+<ul>
+  <li>Often you will want to choose how splunk will divide up the time and one of the easiest ways to do this is to your the bin command.  The following command will show the lame_conn events that occurred each minute by the transport method</li>
+  <li><b>index=lame_training sourcetype=lame_conn | bin span=1m _time | timechart count by transport</b></li>
+  <li>use the timewrap command to compare like time frames so set your search to look at the last month and use timewrap 1week or look at 7 days of material and use timewrap 1day </li>
+  <li><b>index=lame_training sourcetype=lame_conn | bin span=1m _time | timechart count by transport | timewrap 1week</b></li>
+</ul>
 
 <p><a href="#top">Back to top of page</a></p>
+
+<h1 id="dedup">1.13 dedup Command <a href="https://youtu.be/WouGxslDN2s" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>The dedup command is used in many languages and it doesn't take people long to realized Splunk has a dedup command as well.  It is L.A.M.E.'s recommendation that you NOT use it.  There are limited use cases for the dedup command, but almost every time that an analyst wants to use a dedup command they will find that using stats command will do the same job and faster.  Stats command does not require the raw logs to be sent to the Search Head and therefore the work is being done on the Indexer and will perform faster than the dedup command.</p>
+
+<ul>
+  <li>Dedup on the the src_ip</li>
+  <li><b>index=lame_training sourcetype=lame_conn | dedup src_ip </b></li>
+  <li>Using stats on the src_ip</li>
+  <li><b>index=lame_training sourcetype=lame_conn | dedup src_ip</b></li>
+  <li>Dedup using multiple fields</li>
+  <li><b>index=lame_training sourcetype=lame_conn | dedup src_ip, dest_ip </b></li>
+  <li>Stats using multiple fields</li>
+  <li><b>index=lame_training sourcetype=lame_conn | stats count by src_ip, dest_ip </b></li>
+  <li>BONUS - What if you are using the dedup to get the last time occurence of a src_ip</li>
+  <li><b>index=lame_training sourcetype=lame_conn | stats last(_time) as _time by src_ip  </b></li>
+  <li>If you need all the fields to come back with the results use the follwoing</li>
+   <li><b>index=lame_training sourcetype=lame_conn | stats values(*) as * count by src_ip | fields - count </b></li>
+</ul>
+
+<p><a href="#top">Back to top of page</a></p>
+
+
 
     </div>
     </body>

@@ -43,7 +43,7 @@ modtime = 1663476453.315872000
 
 [nav/default]
 version = 9.0.1
-modtime = 1665879214.224361000
+modtime = 1668570339.591544000
 
 [views/urlgenerator]
 owner = admin
@@ -70,7 +70,7 @@ modtime = 1666502525.152107000
 [views/help_4_spl_common_commands]
 owner = admin
 version = 9.0.1
-modtime = 1665982255.166294000
+modtime = 1668569842.363664000
 
 [views/help_5_reports_management]
 owner = admin
@@ -97,12 +97,71 @@ access = read : [ * ], write : [ * ]
 export = none
 owner = admin
 version = 9.0.1
-modtime = 1666066674.146972000
+modtime = 1667865513.471834000
 
 [lookups/lame_youtube_channel.csv]
 owner = admin
 version = 9.0.1
-modtime = 1666484125.893077000
+modtime = 1668494452.037876000
+
+[lookups/splunk_commands.csv]
+owner = admin
+version = 9.0.1
+modtime = 1668024057.247921000
+
+[views/search_for_video_help]
+owner = admin
+version = 9.0.1
+modtime = 1668036259.024148000
+
+[tags/eventtype%3DDataModel_LameTraining_ConnLongs_NetworkTraffic]
+access = read : [ * ], write : [ * ]
+export = system
+owner = admin
+version = 9.0.1
+modtime = 1669137828.457202000
+
+[tags/eventtype%3Doutbound_traffic]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 9.0.1
+modtime = 1669138480.938936000
+
+[eventtypes/network_communicate_data]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 9.0.1
+modtime = 1669138828.403244000
+
+[tags/eventtype%3Dnetwork_communicate_data]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 9.0.1
+modtime = 1669138828.461225000
+
+[eventtypes/SystemOfInterest_talkingOutbound]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 9.0.1
+modtime = 1669139412.420012000
+
+[tags/eventtype%3DSystemOfInterest_talkingOutbound]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 9.0.1
+modtime = 1669139412.473868000
+
+[props/source%3A%3Araw_json.json/FIELDALIAS-DM_networkTraffic_rename]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 9.0.1
+modtime = 1669142063.406686000
 
 []
 access = read : [ * ], write : [ admin, power ]

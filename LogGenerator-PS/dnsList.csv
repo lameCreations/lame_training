@@ -1,8 +1,0 @@
-name
-"53"",""query"":""1.0.17.172.in-addr.arpa"",""answer"":"""",""query_type"": ""PTR"",""record_type"":""PTR"",""reply_code"": ""NXDOMAIN"",""transport"":""udp"
-"53"",""query"":""119.1.168.192.in-addr.arpa"",""answer"":"""",""query_type"":""PTR"",""record_type"":""PTR"",""reply_code"":""NXDOMAIN"",""transport"":""udp"
-"53"",""query"":""abm2.listenloop.com"",""answer"":""18.211.187.253 54.145.255.244 abm3.c66.me c66-c9a87aaa113-rails-qslbi-1659024628.us-east-1.elb.amazonaws.com"",""query_type"":""A"",""record_type"":""A"",""reply_code"":""NOERROR"",""transport"":""udp"
-"53"",""query"":""20.1.168.192.in-addr.arpa"",""answer"":"""",""query_type"":""PTR"",""record_type"":""PTR"",""reply_code"":""NXDOMAIN"",""transport"":""udp"
-"53"",""query"":""amplify.outbrain.com"",""answer"":""23.35.188.82 e10883.g.akamaiedge.net wildcard.outbrain.com.edgekey.net"",""query_type"":""A"",""record_type"":""A"",""reply_code"":""NOERROR"",""transport"":""udp"
-"53"",""query"":""analytics.google.com"",""answer"":""216.239.32.181 216.239.34.181 216.239.36.181 216.239.38.181 analytics-alv.google.com"",""query_type"":""A"",""record_type"":""A"",""reply_code"":""NOERROR"",""transport"":""udp"
-"53"",""query"":""api.company-target.com"",""answer"":""18.65.229.21 18.65.229.42 18.65.229.91 18.65.229.98"",""query_type"":""A"",""record_type"":""A"",""reply_code"":""NOERROR"",""transport"":""udp"
