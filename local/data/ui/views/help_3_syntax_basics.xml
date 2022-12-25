@@ -1,0 +1,130 @@
+<dashboard version="1.1">
+<label>3. Help Splunk Syntax Basics</label>
+<description>Help understanding the basics of setting up a splunk search</description>
+<row>
+    <panel ref="helpBanner" app="search"></panel>
+  </row>
+<row>
+  <panel>
+    <html>
+      <head>
+      <style>
+      #toc_container {
+      background: #f9f9f9 none repeat scroll 0 0;
+      border: 1px solid #aaa;
+      display: table;
+      font-size: 95%;
+      margin: auto;
+      padding: 20px;
+      width: auto;
+      }
+  
+      .toc_title {
+      font-weight: 700;
+      text-align: left;
+      color: #034f84;
+      }
+  
+      #toc_container li, #toc_container ul, #toc_container ul li{
+      list-style: outside none none !important;
+      }
+      
+      .mainDiv {
+      border: 1px solid lightblue;
+      text-align: justify;
+      margin: auto;
+      width: 75%;
+      padding: 20px;
+      }
+      
+      h1 {color: #034f84;}
+      h2 {color: #034f84;}
+      h3 {color: #034f84;}
+      </style>
+      </head>
+      <body>
+        <div class="mainDiv">
+        <a name="top"></a>
+      <table>
+        <tr>
+          <td>
+            <div id="toc_container">
+              <p class="toc_title">Table of Contents</p>
+              <ul class="toc_list">
+                <li><a href="#intro">1 Splunk SPL Syntax Basics</a></li>
+                <li><a href="#time">1.1 Time Modifiers</a></li>
+                <li><a href="#index">1.2 Filtering</a></li>
+                <li><a href="#host">1.3 Pipebased Language</a></li>
+                
+              </ul>
+              </div>
+          </td>
+        </tr>
+      </table>
+      
+      <h1 id="intro">1 Splunk SPL Syntax Basics</h1>
+      <p>The Splunk Programming Language (SPL) is a powerful tool for searching through logs.  This tutorial will briefly cover the basics of setting up a search in a search bar.  Splunk is a powerful system and the SPL language provides great flexibility in searching, but poorly written or inefficent queries can have negative impact on the Splunk system.  It is important when writing SPL that resources are not wasted searching through data that is not relevant to the search.   This can be accomplished by searching the appropriate time ranges and through the use of filtering out irrelevant data by declaring indexes, sourcetypes, and fields that are pertinent to the search </p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="time">1.1 Time Modifiers <a href="https://youtu.be/uB6b_WQYeKA" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>One can select from various preset values.</p>
+<img src="/static/app/lame_training/searchTime.PNG" width="400" height="500"></img>
+<p>Additionally searches can be performed using a relative time, real-time searches, date time, date and time range, and advanced time searches </p>
+
+<p>Splunk can also use time modifiers in actual SPL commands using earliest and latest.  Time modifiers are as follows</p>
+<ul>
+  <li>seconds (s)</li>
+  <li>minutes (m)</li>
+  <li>hours (h)</li>
+  <li>days (d)</li>
+  <li>weeks (w)</li>
+  <li>months (mon)</li>
+  <li>quarters (q)</li>
+  <li>years (y)</li>
+</ul>
+
+<p>An example of calling earliest and latest for the last 24 hours use the following</p>
+<a href="/app/lame_training/search?q=index%3Dlame_training%20sourcetype%3D%22lame_conn%22%20earliest%3D-24d%20latest%3Dnow()%0A%60%60%60%20splunk%20query%20for%20viewing%20data%20from%20the%20lame_training%20index%20and%20the%20lame_conn%20sourcetype%20over%20the%20last%2024%20hours%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank">index=lame_training sourcetype="lame_conn" earliest=-24d latest=now() <img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a>
+
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="index">1.2 Filtering <a href="https://youtu.be/MWhDFm1BGXo" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>When a search command is executed, all of the indexes on all of the indexers will be searched for all time.  This can lead to long running queries, it is not efficient to search all data, but instead only the relevant data should be searched.  One of the first tricks to filtering is choosing an appropriate time period.  Try to restrict the time picker to a relevant time for the events you are looking for.  Additionally, the index and the sourcetype and/or source should be declared. If you are looking for a particular field call our the field as well. </p>
+<ul>
+  <li>To filter based off of the index use the following: </li>
+  <li>index=lame_training | stats count <a href="/app/lame_training/ssearch?q=index%3Dlame_training%20%7C%20stats%20count%0A%60%60%60%20splunk%20query%20for%20viewing%20data%20from%20the%20lame_training%20index&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
+  <li>To filter based off of the sourcetype and/or source use the following: </li>
+  <li>index=lame_training sourcetype=lame_conn source=/var/log/SplunkRead/conn_log.txt | stats count <a href="/app/lame_training/search?q=index%3Dlame_training%20sourcetype%3Dlame_conn%20source%3D%2Fvar%2Flog%2FSplunkRead%2Fconn_log.txt%20%7C%20stats%20count%0A%60%60%60%20splunk%20query%20for%20viewing%20data%20from%20the%20lame_training%20index%2C%20the%20sourcetype%20is%20lame_conn%20and%20the%20source%20is%20%2Fvar%2Flog%2FSplunkRead%2Fconn_log.txt&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
+  <li>Compare the time it takes to run the two different queries</li>
+  <li>index=lame_training sourcetype=lame_conn source=/var/log/SplunkRead/conn_log.txt src_ip="10.0.0.20" <a href="/app/lame_training/search?q=index%3Dlame_training%20sourcetype%3Dlame_conn%20source%3D%2Fvar%2Flog%2FSplunkRead%2Fconn_log.txt%20src_ip%3D%2210.0.0.20%22%0A%60%60%60%20splunk%20query%20for%20viewing%20data%20from%20the%20lame_training%20index%2C%20the%20sourcetype%20is%20lame_conn%20and%20the%20source%20is%20%2Fvar%2Flog%2FSplunkRead%2Fconn_log.txt%20where%20the%20src_ip%20is%2010.0.0.20&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
+  <li>index=* src_ip="10.0.0.20" <a href="/app/lame_training/search?q=index%3D*%20src_ip%3D%2210.0.0.20%0A%60%60%60%20splunk%20query%20for%20viewing%20data%20from%20literally%20every%20index%20on%20the%20indexer%2C%20every%20sourcetype%20on%20the%20indexer%20and%20every%20source%20on%20the%20indexer.%20%20The%20search%20will%20look%20everywhere%20for%20a%20field%20that%20is%20called%20src_ip%20and%20that%20is%20equal%2010.0.0.20%20even%20if%20the%20logs%20don't%20have%20src_ips.&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
+</ul>
+
+<p>AND OR NOT can also to provide multiple field types</p>
+
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="host">1.3 Pipebased Language <a href="https://youtu.be/f3OUfWkD2ro" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>Splunk is a pipe based language meaning that you can "pipe" data into another SPL command.  You can search data, pipe the results of that search into a pipe that renames the fields, that then is piped into a command to change fields based off conditions, and so forth.  Common piping commands are as follows:</p>
+
+<ul>
+  <li>stats</li>
+  <li>eval</li>
+  <li>lookup</li>
+  <li>outputlookup</li>
+  <li>collect</li>
+</ul>
+
+<p><a href="#top">Back to top of page</a></p>
+
+
+
+    </div>
+    </body>
+    </html>
+  </panel>
+</row>
+</dashboard>

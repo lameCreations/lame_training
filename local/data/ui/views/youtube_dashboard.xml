@@ -1,0 +1,89 @@
+<form version="1.1">
+  <label>YouTube Dashboard</label>
+  <description>Drill down into the Source IPs found in our data set</description>
+  <search id="myBaseID">
+    <query>index=lame_training sourcetype=lame_conn src_ip="$mySrcIP$" direction=$myDirection$ dest_ip IN ($dest_ip$)
+          | table _time, src_ip, dest_ip, direction, bytes_in, bytes_out</query>
+    <earliest>$field1.earliest$</earliest>
+    <latest>$field1.latest$</latest>
+  </search>
+  <search id="myDropdownID">
+    <query>index=lame_training sourcetype=lame_conn | table direction, dest_ip</query>
+    <earliest>$field1.earliest$</earliest>
+    <latest>$field1.latest$</latest>
+  </search>
+  <fieldset submitButton="true">
+    <input type="time" token="field1">
+      <label></label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="text" token="mySrcIP">
+      <label>Source IP</label>
+      <default>Please Enter An IP</default>
+    </input>
+    <input type="dropdown" token="myDirection">
+      <label>Direction</label>
+      <choice value="*">Both Directions</choice>
+      <search base="myDropdownID">
+        <query>
+| stats count by direction</query>
+      
+      </search>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <fieldForLabel>direction</fieldForLabel>
+      <fieldForValue>direction</fieldForValue>
+    </input>
+    <input type="multiselect" token="dest_ip">
+      <label>Destination IP</label>
+      <choice value="*">*</choice>
+      <delimiter>, </delimiter>
+      <fieldForLabel>dest_ip</fieldForLabel>
+      <fieldForValue>dest_ip</fieldForValue>
+      <search base="myDropdownID">
+        <query>| stats count by dest_ip</query>
+       
+      </search>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <title>Conn Logs</title>
+        <search base="myBaseID">
+          <query>| table _time, src_ip, dest_ip, direction, bytes_in, bytes_out</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Direction Percentages</title>
+        <search base="myBaseID">
+          <query>| stats count by direction</query>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Count of Bytes In</title>
+        <search base="myBaseID">
+          <query>| stats count by bytes_in</query>
+          
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+</form>

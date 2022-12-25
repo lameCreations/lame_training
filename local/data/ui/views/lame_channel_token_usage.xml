@@ -1,0 +1,45 @@
+<form version="1.1">
+  <label>LAME_Channel_Token_Usage</label>
+  <search>
+    <query>
+    index=lame_training sourcetype=lame_conn src_ip=$ip$ | lookup ip_inventory.csv ip as src_ip output hostname, os | head 1
+| table src_ip, hostname, os
+  </query>
+  <done>
+    <set token="tok_src_ip">$result.src_ip$</set>
+    <set token="tok_os">$result.os$</set>
+    <set token="tok_hostname">$result.hostname$</set>
+  </done>
+    <earliest>$field1.earliest$</earliest>
+    <latest>$field1.latest$</latest>
+  </search>
+  <description>Explain how to leverage tokens to fill out html displays</description>
+  <fieldset submitButton="true">
+    <input type="time" token="field1">
+      <label></label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="text" token="ip">
+      <label>Insert An IP</label>
+    </input>
+  </fieldset>
+  
+  <row>
+    <panel>
+      <html>
+        <table width="100%">
+          <tr>
+            <td><h1>Source IP: $tok_src_ip$</h1></td>
+            <td><h1>OS: $tok_os$</h1></td>
+            <td><h1>Hostname: $tok_hostname$</h1></td>
+          </tr>
+        </table>
+      </html>
+    </panel>
+  </row>
+  
+  
+</form>

@@ -1,0 +1,62 @@
+<form version="1.1">
+  <label>LAME_Channel_TimeBaseTokens</label>
+  <description>Use time and tokens to determine which query should be run</description>
+  <search>
+    <query>
+      | makeresults | eval foo="bar"
+      | table foo
+    </query>
+    <done>
+      <set token="my_result">$result.foo$</set>
+      <eval token="start_time">relative_time(now(), $field1.earliest$)</eval>
+      <eval token="seconds_from_now">now() - $start_time$</eval>
+      <eval token="hourly_value">round($seconds_from_now$ / 3600, 0)</eval>
+      <eval token="data_source">if($hourly_value$&lt;"5", "index=lame_training sourcetype=lame_conn", "index=lame_training sourcetype=lame_dns")</eval>
+    </done>
+    <earliest>$field1.earliest$</earliest>
+    <latest>$field1.latest$</latest>
+  </search>
+  <fieldset submitButton="true">
+    <input type="time" token="field1">
+      <label></label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <html>
+        <table width="100%">
+          <tr>
+            <td>Query Results: $my_result$</td>
+            <td>Earliest Time: $start_time$</td>
+            <td>TimePicker In Seconds: $seconds_from_now$</td>
+            <td>Rounded Hour: $hourly_value$</td>
+            
+          </tr>
+          <tr>
+            <td>Query: $data_source$</td>
+          </tr>
+        </table>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>$data_source$ 
+| eval src_ip = coalesce(src_ip, src)
+| eval dest_ip = coalesce(dest_ip, dest)
+| table sourcetype, src_ip, dest_ip</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</form>

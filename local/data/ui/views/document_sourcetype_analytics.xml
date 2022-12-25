@@ -1,0 +1,55 @@
+<form version="1.1">
+  <label>Document Sourcetype Analytics</label>
+  <description>Create a list of analytics for sourcetypes</description>
+  <fieldset submitButton="true">
+    <input type="dropdown" token="idx">
+      <label>Choose Index</label>
+      <fieldForLabel>index</fieldForLabel>
+      <fieldForValue>index</fieldForValue>
+      <search>
+        <query>| eventcount summarize=false index=* | dedup index | fields index</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="dropdown" token="src_type">
+      <label>Choose Sourcetype</label>
+      <fieldForLabel>sourcetype</fieldForLabel>
+      <fieldForValue>sourcetype</fieldForValue>
+      <search>
+        <query>| metadata index=$idx$ type=sourcetypes | fields sourcetype</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="text" token="q_description">
+      <label>Query Description</label>
+      <default>Change Me</default>
+      <initialValue>Change Me</initialValue>
+    </input>
+    <input type="text" token="query">
+      <label>Query</label>
+      <default>tbd</default>
+      <initialValue>tbd</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>| makeresults
+| eval sourcetype = "$src_type$"
+| eval metric_description = "$q_description$"
+| eval metric_query = "$query$"
+| table sourcetype, metric_description, metric_query
+| where metric_description != "Change Me" 
+| outputlookup Sourcetype_Analytics append=true</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</form>

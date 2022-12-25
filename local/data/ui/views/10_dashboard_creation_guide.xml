@@ -1,0 +1,105 @@
+<dashboard version="1.1">
+<label>10. Dashboard Creation Guide</label>
+<description>How and why to use data models</description>
+<row>
+    <panel ref="helpBanner" app="search"></panel>
+  </row>
+<row>
+  <panel>
+    <html>
+      <head>
+      <style>
+      #toc_container {
+      background: #f9f9f9 none repeat scroll 0 0;
+      border: 1px solid #aaa;
+      display: table;
+      font-size: 95%;
+      margin: auto;
+      padding: 20px;
+      width: auto;
+      }
+  
+      .toc_title {
+      font-weight: 700;
+      text-align: left;
+      color: #034f84;
+      }
+  
+      #toc_container li, #toc_container ul, #toc_container ul li{
+      list-style: outside none none !important;
+      }
+      
+      .mainDiv {
+      border: 1px solid lightblue;
+      text-align: justify;
+      margin: auto;
+      width: 75%;
+      padding: 20px;
+      }
+      
+      h1 {color: #034f84;}
+      h2 {color: #034f84;}
+      h3 {color: #034f84;}
+      </style>
+      </head>
+      <body>
+        <div class="mainDiv">
+        <a name="top"></a>
+      <table>
+        <tr>
+          <td>
+            <div id="toc_container">
+              <p class="toc_title">Table of Contents</p>
+              <ul class="toc_list">
+                <li><a href="#intro">1 Classic Dashboards Tips and Tricks</a></li>
+                <li><a href="#userInput">1.1 Accepting User Input</a></li>
+                <li><a href="#token">1.2 Tokens - Passing Data From A Panel to Another Location</a></li>
+                <li><a href="#htmlfields">1.2.1 Using Tokens to Create Custom HTML Fields and Tables</a></li>
+                <li><a href="#searches">1.2.2 Using Tokens To Completely Change Your Searches</a></li>
+                <li><a href="#basesearch">1.3 Using Base Searches to Improve Performance</a></li>
+                
+              </ul>
+              </div>
+          </td>
+        </tr>
+      </table>
+      
+      <h1 id="intro">1 Classic Dashboards Tips and Tricks </h1>
+      <p>In this section we will discuss how to create panels, take user input, create tokens, and optimize your dashboards.  Dashboards are a great way of allowing analysts to perform the same SPL queries with minor user input over and over again.  It applies the concept of code resuage and helps avoid fat fingering queries or having slightly different queries from analyst to analyst.</p>
+
+<p><a href="#userInput">Back to top of page</a></p>
+
+<h1 id="time">1.1 Accepting User Input <a href="https://youtu.be/DCxKWee4H48" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"> </img></a>  </h1>
+<p>Dashboards allow users to provide input through the use of textboxes, dropdowns, multiselct boxes, checkboxes, radio boxes.  Additionally, splunk dashboards can be set up to run the query as soon as a user input value is changed, or a submit button can be added and then the query will only run when the user clicks the submit button. </p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="token">1.2 Tokens - Passing Data From A Panel to Another Location <a href="https://youtu.be/DCxKWee4H48" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>Splunk allows the usage of tokens to pass value from one area to another.  A token is identified in dashboard code because the field name is enclosed with a dollar sign ($) on the beginning and end.  For example the token ip would be written $ip$.  Tokens can come from user input and from search results.  </p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="htmlfields">1.2.1 Using Tokens to Create Custom HTML Fields and Tables <a href="https://youtu.be/VOVx9qPg8a0" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>Sometimes the splunk visualizations are too rigid for what you want to display back on the dashboard.  If you want to control how many rows and how many columns are used to display a single query result, sending the results to tokens and then using the tokens in an HTML table may be a better solution.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="searches">1.2.2 Using Tokens To Completely Change Your Searches <a href="https://youtu.be/dNTaw2VmpJ4" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>Sometimes based off conditions, you may want to change the query you are running.  For example, if you summarize data every 12 hours to increase search speed, you will want the analysts to search through the summarized data instead of the non summarized data, but what if the analyst needs to search the last 4 hours of data and that data has not been summarized yet.  This video will show the principle of how to use tokens to run two completely different queries based off the time picker range that is chosen.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="basesearch">1.3 Using Base Searches to Improve Performance <a href="https://youtu.be/mCUEcSlAE9Y" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>Each search on a dashboard that is used counts against the number of concurrent searches a user can perform.  Additionally each search, occupies a minimum of one cpu core and 1 gb of ram on the search head and on the indexer.  If each panel on your dashboard contains a search, the dashboard can become a taxing process on the Splunk instance.  Base searches are a tool for dashboards that will allow you to run a query once, and then each panel can use the results from that query to populate different dashboards, which drasticially improves splunk system performance.</p>
+
+
+
+<p><a href="#top">Back to top of page</a></p>
+
+
+    </div>
+    </body>
+    </html>
+  </panel>
+</row>
+</dashboard>

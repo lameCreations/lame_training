@@ -1,0 +1,67 @@
+<form version="1.1">
+  <label>YouTube Document Sourcetype Data Library Input</label>
+  <description>Help document the data types for Splunk Sourcetypes</description>
+  <fieldset submitButton="true">
+    <input type="dropdown" token="idx">
+      <label>Choose Index</label>
+      <fieldForLabel>index</fieldForLabel>
+      <fieldForValue>index</fieldForValue>
+      <search>
+        <query>| eventcount summarize=false index=* | stats count by index | fields index</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="dropdown" token="src_type">
+      <label>Choose Sourcetype</label>
+      <fieldForLabel>sourcetype</fieldForLabel>
+      <fieldForValue>sourcetype</fieldForValue>
+      <search>
+        <query>| metadata index=$idx$ type=sourcetypes | fields sourcetype</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="dropdown" token="fld">
+      <label>Choose Field</label>
+      <fieldForLabel>field</fieldForLabel>
+      <fieldForValue>field</fieldForValue>
+      <search>
+        <query>index=$idx$ sourcetype=$src_type$ | head 100 | fieldsummary | fields field</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="dropdown" token="fld_useful">
+      <label>Field Usefullness</label>
+      <choice value="10">Useful</choice>
+      <choice value="5">Not Very Useful</choice>
+      <choice value="1">Useless</choice>
+    </input>
+    <input type="text" token="descriptionOfField">
+      <label>Description of Field</label>
+      <default>Change Me</default>
+      <initialValue>Change Me</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>| makeresults 
+| eval fieldname = "$fld$"
+| eval fieldvalue = "$fld_useful$"
+| eval rationale = "$descriptionOfField$"
+| eval sourcetype = "$src_type$"
+| table fieldname, fieldvalue, rationale, sourcetype
+| where rationale != "Change Me"
+| outputlookup SourcetypeInfo append=true</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</form>

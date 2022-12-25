@@ -1,0 +1,126 @@
+<form theme="dark">
+  <label>collapsibleDemo</label>
+  <init>
+    <set token="showExpandLink1">true</set>
+    <set token="showExpandLink2">true</set>
+  </init>
+  <fieldset submitButton="false">
+    <input type="time" token="tokTime" searchWhenChanged="true">
+      <label></label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row depends="$alwaysHideCSSStyleOverride$">
+    <panel>
+      <html>
+      <html>
+        <style>
+          div[id^="linkCollapse"],
+          div[id^="linkExpand"]{
+            width: 32px !important;
+            float: right;
+          }
+          div[id^="linkCollapse"] button,
+          div[id^="linkExpand"] button{
+            flex-grow: 0;
+            border-radius: 25px;
+            border-width: thin;
+            border-color: lightgrey;
+            border-style: inset;
+            width: 32px;
+            padding: 0px;
+          }
+          div[id^="linkCollapse"] label,
+          div[id^="linkExpand"] label{
+            display:none;
+          }
+          div[id^="panel"].fieldset{
+            padding: 0px;
+          }
+        </style>
+      </html>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel id="panel1">
+      <title>Splunkd Errors by Component - Trending</title>
+      <input id="linkCollapse1" type="link" token="tokLinkCollapse1" searchWhenChanged="true" depends="$showCollapseLink1$">
+        <label></label>
+        <choice value="collapse">-</choice>
+        <change>
+          <condition value="collapse">
+            <unset token="showCollapseLink1"></unset>
+            <set token="showExpandLink1">true</set>
+            <unset token="form.tokLinkCollapse1"></unset>
+          </condition>
+        </change>
+      </input>
+      <input id="linkExpand1" type="link" token="tokLinkExpand1" searchWhenChanged="true" depends="$showExpandLink1$">
+        <label></label>
+        <choice value="expand">+</choice>
+        <change>
+          <condition value="expand">
+            <set token="showCollapseLink1">true</set>
+            <unset token="showExpandLink1"></unset>
+            <unset token="form.tokLinkExpand1"></unset>
+          </condition>
+        </change>
+      </input>
+      <chart rejects="$showExpandLink1$">
+        <search>
+          <query>index=_internal sourcetype=splunkd log_level!=INFO
+| timechart count by component useother=f usenull=f limit=5</query>
+          <earliest>$tokTime.earliest$</earliest>
+          <latest>$tokTime.latest$</latest>
+        </search>
+        <option name="charting.axisY.abbreviation">auto</option>
+        <option name="charting.axisY.scale">log</option>
+        <option name="charting.chart">area</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel id="panel2">
+      <title>Splunkd Errors by Log Level - Trending</title>
+      <input id="linkCollapse2" type="link" token="tokLinkCollapse2" searchWhenChanged="true" depends="$showCollapseLink2$">
+        <label></label>
+        <choice value="collapse">-</choice>
+        <change>
+          <condition value="collapse">
+            <unset token="showCollapseLink2"></unset>
+            <set token="showExpandLink2">true</set>
+            <unset token="form.tokLinkCollapse2"></unset>
+          </condition>
+        </change>
+      </input>
+      <input id="linkExpand2" type="link" token="tokLinkExpand2" searchWhenChanged="true" depends="$showExpandLink2$">
+        <label></label>
+        <choice value="expand">+</choice>
+        <change>
+          <condition value="expand">
+            <set token="showCollapseLink2">true</set>
+            <unset token="showExpandLink2"></unset>
+            <unset token="form.tokLinkExpand2"></unset>
+          </condition>
+        </change>
+      </input>
+      <chart rejects="$showExpandLink2$">
+        <search>
+          <query>index=_internal sourcetype=splunkd log_level!=INFO
+| timechart count by log_level useother=f usenull=f limit=5</query>
+          <earliest>$tokTime.earliest$</earliest>
+          <latest>$tokTime.latest$</latest>
+        </search>
+        <option name="charting.axisY.abbreviation">auto</option>
+        <option name="charting.axisY.scale">log</option>
+        <option name="charting.chart">area</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+</form>

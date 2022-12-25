@@ -1,0 +1,60 @@
+<form version="1.1">
+  <label>Sourcetype Documentation</label>
+  <description>sourcetype documentation</description>
+  <fieldset submitButton="false">
+    <input type="dropdown" token="idx">
+      <label>Index</label>
+      <fieldForLabel>index</fieldForLabel>
+      <fieldForValue>index</fieldForValue>
+      <search>
+        <query>| eventcount summarize=false index=* | dedup index | fields index</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="dropdown" token="src_type">
+      <label>Sourcetype</label>
+      <fieldForLabel>sourcetype</fieldForLabel>
+      <fieldForValue>sourcetype</fieldForValue>
+      <search>
+        <query>| metadata index=$idx$ type=sourcetypes | fields sourcetype</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Field Breakdown</title>
+      <table>
+        <search>
+          <query>| inputlookup SourcetypeInfo 
+| search sourcetype=$src_type$
+| eval fieldvalue = case(fieldvalue=1, "Useless", fieldvalue=5, "Mostly Useless", fieldvalue=10, "Useful")
+| table sourcetype, fieldname, fieldvalue, rationale, fieldvalue</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+    <row>
+    <panel>
+      <title>Analytics Breakdown</title>
+      <table>
+        <search>
+          <query>| inputlookup Sourcetype_Analytics 
+| search sourcetype=$src_type$
+| table sourcetype, metric_description, metric_query</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  
+</form>

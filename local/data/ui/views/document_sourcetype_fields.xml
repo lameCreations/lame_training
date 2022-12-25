@@ -1,0 +1,72 @@
+<form version="1.1">
+  <label>Document Sourcetype Fields</label>
+  <description>Create a GUI to document sourcetype fields and their worth.</description>
+  <fieldset submitButton="true" autoRun="false">
+    <input type="dropdown" token="idx">
+      <label>Index</label>
+      <default>lame_training</default>
+      <initialValue>lame_training</initialValue>
+      <fieldForLabel>index</fieldForLabel>
+      <fieldForValue>index</fieldForValue>
+      <search>
+        <query>| eventcount summarize=false index=* | dedup index | fields index</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="dropdown" token="src_type">
+      <label>Sourcetype</label>
+      <fieldForLabel>sourcetype</fieldForLabel>
+      <fieldForValue>sourcetype</fieldForValue>
+      <search>
+        <query>| metadata index=$idx$ type=sourcetypes | fields sourcetype</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="dropdown" token="fld">
+      <label>Fields</label>
+      <fieldForLabel>field</fieldForLabel>
+      <fieldForValue>field</fieldForValue>
+      <search>
+        <query>index=$idx$ sourcetype=$src_type$ | head 100
+| fieldsummary | fields field</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="dropdown" token="fldvalue">
+      <label>Field Usefulness</label>
+      <choice value="10">Useful</choice>
+      <choice value="5">Rarely Useful</choice>
+      <choice value="1">Useless</choice>
+    </input>
+    <input type="text" token="rationale">
+      <label>Rationale</label>
+      <default>Change Me</default>
+      <initialValue>Change Me</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>| makeresults
+| eval foo = "bar"
+| eval sourcetype = "$src_type$"
+| eval rationale = "$rationale$"
+| eval fieldname = "$fld$"
+| eval fieldvalue = "$fldvalue$"
+| table foo  sourcetype, rationale, fieldname, fieldvalue
+| where rationale != "Change Me"
+
+| outputlookup SourcetypeInfo append=true</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</form>
