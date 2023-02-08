@@ -8,3 +8,5 @@ https://github.com/lameCreations/LAME_EventGenerator
 to have the ability to create lame_training logs.  
  
 The eventgenerator is not essential for the app to work, but it allows you to have nearly identical data as the tutorials in this app which should simplify the process of learning the overall concept.   
+
+This app has a KV store for sourcetype details and potential analtyics.  Instead of entering this data in yourself, feel free to download the two csv files and import them into L.A.M.E. EDU associated KV Lookup.
