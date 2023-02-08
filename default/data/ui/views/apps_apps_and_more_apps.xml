@@ -1,0 +1,165 @@
+<dashboard version="1.1">
+<label>Apps, apps, and more apps</label>
+<description>A breakdown of the different apps within Splunk</description>
+<row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+<row>
+  <panel>
+    <html>
+      <head>
+      <style>
+      #toc_container {
+      background: #f9f9f9 none repeat scroll 0 0;
+      border: 1px solid #aaa;
+      display: table;
+      font-size: 95%;
+      margin: auto;
+      padding: 20px;
+      width: auto;
+      }
+  
+      .toc_title {
+      font-weight: 700;
+      text-align: left;
+      color: #034f84;
+      }
+  
+      #toc_container li, #toc_container ul, #toc_container ul li{
+      list-style: outside none none !important;
+      }
+      
+      .mainDiv {
+      border: 1px solid lightblue;
+      text-align: justify;
+      margin: auto;
+      width: 75%;
+      padding: 20px;
+      }
+      
+      h1 {color: #034f84;}
+      h2 {color: #034f84;}
+      h3 {color: #034f84;}
+      </style>
+      </head>
+      <body>
+        <div class="mainDiv">
+        <a name="top"></a>
+      <table>
+        <tr>
+          <td>
+            <div id="toc_container">
+              <p class="toc_title">Table of Contents</p>
+              <ul class="toc_list">
+                <li><a href="#intro">1. Splunk Apps</a></li>
+                 <li><a href="#splunkbase">1.1 Splunkbase </a></li>
+                 <li><a href="#splunkbase">1.1.1 Splunkbase Apps Found In Splunk Enterprise </a></li>
+                  <li><a href="#thirdPary">1.2 3rd Party non-Splunkbase</a></li>
+                <li><a href="#typesOfApps">2. Types of Splunk Apps</a></li>
+                <li><a href="#searchHead">2.1 Search Head Apps</a></li>
+                <li><a href="#indexerApps">2.2 Indexer Apps</a></li>
+                <li><a href="#deploymentApps">2.3 Deployment Server Apps</a></li>
+                <li><a href="#shcApps">2.4 Search Head Cluster Apps</a></li>
+                <li><a href="#tips">3. Tips and Tricks</a></li>
+                <li><a href="#helpBanner">3.1 Custom Banner</a></li>
+                <li><a href="#dashboardDocumentation">3.2 Dashboard Documentation</a></li>
+              </ul>
+              </div>
+          </td>
+        </tr>
+      </table>
+      
+      <h1 id="intro">1. Splunk Apps</h1>
+      <p>A Splunk app is a packaged collection of knowledge objects and extensions, most of which are represented as files in the Splunk platform installation in your app's directory, $SPLUNK_HOME/etc/apps/appname/</p>
+      <p>To install apps, you need do have a zipped up Splunk app (often they will end with an .spl extenstion)</p>
+      <ul>
+        <li>Click Apps in the upper left side of the screen</li>
+        <li>Manage Apps</li>
+        <li>Install App From File (in the upper right now)</li>
+        <li>Browse to your Splunk File</li>
+        <li>If app already exists on your system and you are performing an upgrade - click the upgrade checkbox</li>
+        
+      </ul>
+
+<p><a href="#top">Back to top of page</a></p>
+
+   <h1 id="splunkbase">1.1 Splunkbase
+ <a href="https://splunkbase.splunk.com/" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a>
+   </h1>
+   
+      <p>Splunk has a web site that stores all of the apps that they have created and apps that have been submitted by 3rd Party groups.  3rd Party apps are reviewed by the Splunk team before being made available to the public.  </p>
+    
+  <p><a href="#top">Back to top of page</a></p>
+
+   <h1 id="splunkbase">1.1.1 Splunkbase Apps Found In Splunk Enterprise
+ <a href="/manager/lame_training/appsremote" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a>
+   </h1>
+   
+      <p>Splunkbase apps can be searched within Splunk Enterprise.  To view these apps in the upper left hand corner click on Apps - Find More Apps and browse for apps</p>
+      <p>We have found that documentation and ease of search is easier on splunkbase, but do what works for you.</p>
+    
+  <p><a href="#top">Back to top of page</a></p>
+
+
+   <h1 id="thirdPary">1.2 3rd Party non-Splunkbase (hyperlink is to L.A.M.E. Creations git site)
+   <a href="https://github.com/lameCreations" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a>
+  
+   </h1>
+      <p>Any app that you create on your Splunk instance can be zipped up or tarred and than installed. It should be noted that an .spl file is nothing more than a zip file that has had its extension changed. </p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+
+<h1 id="typesOfApps">2. Types of Splunk Apps </h1>
+<p>The title of this section is the types of Splunk apps, to be fair, this section is not really about different types of apps, but instead where the apps are located within the Splunk filesystem.  These apps are apps that are available in your Splunk Enterprise instance (Search Head apps), apps that are available to be pushed out to your indexer cluster, apps that are available to be deployed out through the deployment server, apps that are available to be deployed out to your search head cluster</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="searchHead">2.1 Search Head Apps </h1>
+<p>We are calling these search head apps, but to be more specific, these are apps that are available to Splunk Enterprise or the universal forwarder.  If you go to Apps - > Manage Apps, all apps that are listed are apps that fit in this category.</p>
+<p>If we go to the file directory $SPLUNKHOME/etc/apps - All apps in this directory are categorized as this type of app.</p>
+
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="indexerApps">2.2 Indexer Apps  </h1>
+<p>If you have an indexer cluster, you are going to use an indexer master node to push out apps to your indexers. </p> 
+
+<p>The indexer master manages app deployment to the "slave" indexers.  This is where the naming convention comes for where these apps are located on the file directory.  Apps that the master indexer node are going to push out to the indexers are stored in the $SPLUNKHOME/etc/masterapps directory.  When the app is pushed to the indexer, it is not stored in the app directory, but instead they can be found in the $SPLUNKHOME/etc/slaveapps directory.  Apps that are going to be on the indexer cluster are NOT stored in the apps directory.  If you have a stand alone instance of an indexer, than the apps are stored in the $SPLUNKHOME/etc/apps directory.</p>
+
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="deploymentApps">2.3 Deployment Server Apps  </h1>
+<p>Apps that are going to be pushed out through a deployment server are also not located in the $SPLUNKHOME/etc/apps directory.  The apps that are available to be pushed out through the deployment server are located in the $SPLUNKHOME/etc/deploymentapps directory.   A common mistake that happens, is developers will build an app in Splunk Enterprise (located in the apps diretory), make their changes, but not understand why they can't push that app out from the deployment server - or worse, the app that was pushed out doesn't have the config changes that they made on it at Splunk Enterprise.  Developers must remember to move the latest app from /app to /deploymentapps directory before pushing out to the remote systems.  </p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+   <h1 id="shcApps">2.4 Search Head Cluster Apps</h1>
+      <p>A Search Head Deployer is responsible for pushing out apps to all of the Search Heads in the Search Head Cluster.  The apps that the Deployer will push out to the Search Head Cluster are not located  in the $SPLUNKHOME/etc/apps directory, they are located in the $SPLUNHOME/etc/shcluster/apps directory.  </p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+      <h1 id="shcApps">3. Tips and Tricks</h1>
+      <p>Below will be a list of lessons learned on how to add value to your dashboards and improve your documentation</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+  <h1 id="shcApps">3.1 Custom Banner <a href="https://youtu.be/xVrpE0unGco" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+      <p>You can leverage the use of prebuilt panels to create a unified dashboard appearance including getting Help Pages and leverage other links</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+  <h1 id="shcApps">3.2 Dashboard Documentation  <a href="https://youtu.be/xVrpE0unGco" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+      <p>Using the metadata that are created when dashboards are made and leveraging a lookup, Splunk can document and allow for easy searching for dashboards.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+
+    </div>
+    </body>
+    </html>
+  </panel>
+</row>
+
+</dashboard>

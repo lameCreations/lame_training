@@ -1,0 +1,280 @@
+{
+    "modelName": "Software",
+    "displayName": "Software",
+    "description": "handles, software, services, and processes found on a system",
+    "objectSummary": {
+        "Event-Based": 1,
+        "Transaction-Based": 0,
+        "Search-Based": 0
+    },
+    "objects": [
+        {
+            "objectName": "All",
+            "displayName": "All",
+            "parentName": "BaseEvent",
+            "comment": "",
+            "fields": [
+                {
+                    "fieldName": "app",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "app",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "host_ip",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "host_ip",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "port",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "port",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "protocol",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "protocol",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "service",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "service",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "software_type",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "software_type",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "unparsed_version",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "unparsed_version",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "version.major",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "version.major",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "version.minor",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "version.minor",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "software",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "software",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "version.addl",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "version.addl",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "version.minor2",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "version.minor2",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "version.minor3",
+                    "owner": "All",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "version.minor3",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "_time",
+                    "owner": "BaseEvent",
+                    "type": "timestamp",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "_time",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "host",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "host",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "source",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "source",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "sourcetype",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "sourcetype",
+                    "comment": ""
+                }
+            ],
+            "calculations": [
+                {
+                    "outputFields": [
+                        {
+                            "fieldName": "software_name",
+                            "owner": "All",
+                            "type": "string",
+                            "fieldSearch": "",
+                            "required": false,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "software_name",
+                            "comment": ""
+                        }
+                    ],
+                    "calculationID": "50fobhsk5xf",
+                    "owner": "All",
+                    "editable": true,
+                    "comment": "",
+                    "calculationType": "Eval",
+                    "expression": "coalesce(name, app)"
+                },
+                {
+                    "outputFields": [
+                        {
+                            "fieldName": "software_src",
+                            "owner": "All",
+                            "type": "string",
+                            "fieldSearch": "",
+                            "required": false,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "software_src",
+                            "comment": ""
+                        }
+                    ],
+                    "calculationID": "iw93p41pcpn",
+                    "owner": "All",
+                    "editable": true,
+                    "comment": "",
+                    "calculationType": "Eval",
+                    "expression": "coalesce(host_ip, host)"
+                }
+            ],
+            "constraints": [
+                {
+                    "search": "(index=lame_training OR index=corelight) tag=software",
+                    "owner": "All"
+                }
+            ],
+            "lineage": "All"
+        }
+    ],
+    "objectNameList": [
+        "All"
+    ]
+}

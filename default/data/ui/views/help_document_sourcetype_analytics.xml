@@ -1,0 +1,48 @@
+<form version="1.1">
+  <label>Help Sourcetype Analytics</label>
+  <fieldset submitButton="false">
+    <input type="dropdown" token="st">
+      <label>Sourcetype</label>
+      <fieldForLabel>sourcetype</fieldForLabel>
+      <fieldForValue>sourcetype</fieldForValue>
+      <search>
+        <query>| inputlookup SourcetypeInfo
+| stats count by sourcetype</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+  </fieldset>
+  <row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+  <row>
+    <panel>
+      <title>Sourcetype Field Info</title>
+      <table>
+        <search>
+          <query>| inputlookup SourcetypeInfo
+| search sourcetype=$st$
+| table fieldname, rationale</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Sourcetype Potential Analytics</title>
+      <table>
+        <search>
+          <query>| inputlookup Sourcetype_Analytics
+| search sourcetype=$st$
+| table metric_description, metric_query</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+</form>

@@ -1,0 +1,34 @@
+<form version="1.1">
+  <label>Help Datamodel Analytics</label>
+  <fieldset submitButton="false">
+    <input type="dropdown" token="dm">
+      <label>Datamodel</label>
+      <fieldForLabel>title</fieldForLabel>
+      <fieldForValue>title</fieldForValue>
+      <search>
+        <query>| rest services/data/models
+| stats count by title</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+  </fieldset>
+  <row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>| inputlookup Datamodel_Analytics.csv
+| search datamodel="$dm$"
+| table metric_description, metric_query</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</form>

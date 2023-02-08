@@ -1,0 +1,2 @@
+metric_description,metric_query,datamodel
+Validate for Non-Whitelisted Software,"| tstats count from Datamodel=Software Groupby All.software | rename All.software as software | lookup software_whitelist.csv software as software Output type | fillnull value=""N/A"" | search type=""N/A""",Software

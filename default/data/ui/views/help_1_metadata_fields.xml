@@ -1,12 +1,12 @@
 <dashboard version="1.1">
-<label>1. Help Metadata Fields</label>
-<description>Help about the required fields within Splunk</description>
-<row>
-    <panel ref="helpBanner" app="search"></panel>
+  <label>1. Help Metadata Fields</label>
+  <description>Help about the required fields within Splunk</description>
+  <row>
+    <panel ref="helpBanner" app="lame_training"></panel>
   </row>
-<row>
-  <panel>
-    <html>
+  <row>
+    <panel>
+      <html>
       <head>
       <style>
       #toc_container {
@@ -44,20 +44,34 @@
       </head>
       <body>
         <div class="mainDiv">
-        <a name="top"></a>
+        <a name="top"/>
       <table>
         <tr>
           <td>
             <div id="toc_container">
               <p class="toc_title">Table of Contents</p>
               <ul class="toc_list">
-                <li><a href="#intro">1 Splunk Required Fields For All Logs      </a></li>
-                <li><a href="#time">1.1 _time</a></li>
-                <li><a href="#index">1.2 index</a></li>
-                <li><a href="#host">1.3 host</a></li>
-                <li><a href="#sourcetype">1.4 sourcetype</a></li>
-                <li><a href="#source">1.5 source</a></li>
-                <li><a href="#raw">1.6 _raw</a></li>
+                <li>
+                        <a href="#intro">1 Splunk Required Fields For All Logs      </a>
+                      </li>
+                <li>
+                        <a href="#time">1.1 _time</a>
+                      </li>
+                <li>
+                        <a href="#index">1.2 index</a>
+                      </li>
+                <li>
+                        <a href="#host">1.3 host</a>
+                      </li>
+                <li>
+                        <a href="#sourcetype">1.4 sourcetype</a>
+                      </li>
+                <li>
+                        <a href="#source">1.5 source</a>
+                      </li>
+                <li>
+                        <a href="#raw">1.6 _raw</a>
+                      </li>
               </ul>
               </div>
           </td>
@@ -74,56 +88,96 @@
   <li>source</li>
   <li>_raw</li>
 </ul>
-<p><a href="#top">Back to top of page</a></p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
 
-<h1 id="time">1.1 _time Field <a href="https://youtu.be/UVqFTMQwUqA" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"> </img></a>  </h1>
+<h1 id="time">1.1 _time Field <a href="https://youtu.be/UVqFTMQwUqA" target="_blank">
+                <img src="/static/app/lame_training/youtube.png" width="30" height="30"> </img>
+              </a>  </h1>
 <p>Splunk is a time based system and therefore the _time field is the most important field.  While it can be customized, _time is usually the time that the log event occurred.  Another common instance of _time, is the time that the log was ingested into Splunk.  It is important that a Splunk analyst understand what the _time field represents so they can know if the _time represents the time the log was created or if the _time represents the time the log was ingested because often the occurence of those times can be significantly different.</p>
 
-<p><a href="#top">Back to top of page</a></p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
 
-<h1 id="index">1.2 index Field <a href="https://youtu.be/RQVQP-7PNtg" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<h1 id="index">1.2 index Field <a href="https://youtu.be/RQVQP-7PNtg" target="_blank">
+                <img src="/static/app/lame_training/youtube.png" width="30" height="30"/>
+              </a> </h1>
 <p>Splunk stores data in logical buckets called indexes.  Data is stored in indexes based off time retention and access control. For example system admin data should not be stored in the same index as some of the cyber security logs.  The retention of the data is another consideration for data being stored in an index.  If some data should be stored for 6 months and other data only needs to be stored for one week, the data should be stored in two different indexes.</p>
 
 <p>To see the indexes available on a search head, use one of the following:</p>
 <ol>
-  <li>On a standalone search head.  Go to Settings -> Indexes <a href="/manager/lame_training/data/indexes" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
-  <li>| eventcount summarize=false index=* | dedup index | fields index  <a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> </li>
+  <li>On a standalone search head.  Go to Settings -&gt; Indexes <a href="/manager/lame_training/data/indexes" target="_blank">
+                  <img src="/static/app/lame_training/splunk.PNG" width="30" height="30"/>
+                </a>
+              </li>
+  <li>| eventcount summarize=false index=* | dedup index | fields index  <a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank">
+                  <img src="/static/app/lame_training/splunk.PNG" width="30" height="30"/>
+                </a> </li>
 </ol>
 
-<p><a href="#top">Back to top of page</a></p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
 
-<h1 id="host">1.3 host Field <a href="https://youtu.be/FVorWMJ-EX4" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<h1 id="host">1.3 host Field <a href="https://youtu.be/FVorWMJ-EX4" target="_blank">
+                <img src="/static/app/lame_training/youtube.png" width="30" height="30"/>
+              </a> </h1>
 <p>Splunk can receive logs from multiple sources.  The host field represents where the logs came from.  This could be the local system, a remote forwarder, log server, or remote system.</p>
 
 <p>To see the hosts that are sending logs to the the search head, use the following query:</p>
-<p>| metadata index=* type=hosts <a href="/app/lame_training/search?q=%7C%20metadata%20index%3D*%20type%3Dhosts%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20hosts%20sending%20data%20to%20the%20indexers%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></p>
+<p>| metadata index=* type=hosts <a href="/app/lame_training/search?q=%7C%20metadata%20index%3D*%20type%3Dhosts%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20hosts%20sending%20data%20to%20the%20indexers%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank">
+                <img src="/static/app/lame_training/splunk.PNG" width="30" height="30"/>
+              </a>
+            </p>
 
-<p><a href="#top">Back to top of page</a></p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
 
-<h1 id="sourcetype">1.4 sourcetype Field <a href="https://youtu.be/fAt-HqPir0Y" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<h1 id="sourcetype">1.4 sourcetype Field <a href="https://youtu.be/fAt-HqPir0Y" target="_blank">
+                <img src="/static/app/lame_training/youtube.png" width="30" height="30"/>
+              </a> </h1>
 <p>Splunk can ingest almost any text into its system.  Sourcetype is a Splunk term that is meant to define the rules for how the log that was ingested will be displayed to the users.  Extraction of fields from a log are controlled by the sourcetype.  Sourcetypes allow for field extraction, field aliasing, and transformation of fields with masking of values.</p>
 
 <p>To see the sourcetypes that are being utilized by the search head, use the following query:</p>
-<p>| metadata index=* type=sourcetypes <a href="/app/lame_training/search?q=%7C%20metadata%20index%3D*%20type%3Dsourcetypes%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20sourcetypes%20on%20the%20search%20head%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></p>
+<p>| metadata index=* type=sourcetypes <a href="/app/lame_training/search?q=%7C%20metadata%20index%3D*%20type%3Dsourcetypes%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20sourcetypes%20on%20the%20search%20head%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank">
+                <img src="/static/app/lame_training/splunk.PNG" width="30" height="30"/>
+              </a>
+            </p>
 
-<p><a href="#top">Back to top of page</a></p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
 
-<h1 id="source">1.5 source Field <a href="https://youtu.be/KIpfjRvdWL0" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<h1 id="source">1.5 source Field <a href="https://youtu.be/KIpfjRvdWL0" target="_blank">
+                <img src="/static/app/lame_training/youtube.png" width="30" height="30"/>
+              </a> </h1>
 <p>Splunk can receive logs from multiple sources.  The source field represents where the source came from.  If logs are ingested from a fileshare, the location of the log file path will be the source.  If the log comes from a security appliance, the source would be the name of the appliance.  If the log comes from a web api, the source would be the api.</p>
 
 <p>To see the sources that are sending logs to the the search head, use the following query:</p>
-<p>| metadata index=* type=sources <a href="/app/lame_training/search?q=%7C%20metadata%20index%3D*%20type%3Dsources%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20sources%20sending%20data%20to%20the%20indexers%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></p>
+<p>| metadata index=* type=sources <a href="/app/lame_training/search?q=%7C%20metadata%20index%3D*%20type%3Dsources%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20sources%20sending%20data%20to%20the%20indexers%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank">
+                <img src="/static/app/lame_training/splunk.PNG" width="30" height="30"/>
+              </a>
+            </p>
 
-<p><a href="#top">Back to top of page</a></p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
 
-<h1 id="raw">1.6 _raw Field <a href="https://youtu.be/zDcmPGbl7gw" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<h1 id="raw">1.6 _raw Field <a href="https://youtu.be/zDcmPGbl7gw" target="_blank">
+                <img src="/static/app/lame_training/youtube.png" width="30" height="30"/>
+              </a> </h1>
 <p>Splunk stores the log that is ingested in a field called _raw.  The _raw value is always returned as a search result. Extracted fields from a search do not come back unless the search mode is turned to verbose.  Fast searches alway return just the _raw log and the above metafields.</p>
 
-<p><a href="#top">Back to top of page</a></p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
 
     </div>
     </body>
     </html>
-  </panel>
-</row>
+    </panel>
+  </row>
 </dashboard>

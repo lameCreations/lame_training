@@ -1,0 +1,6 @@
+<dashboard version="1.1">
+  <label>lame_demo_with_banner</label>
+  <row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+</dashboard>

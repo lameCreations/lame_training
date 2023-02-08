@@ -1,0 +1,58 @@
+<form version="1.1">
+  <label>Search For Dashboard</label>
+  <description>Dashboard to Search For Specific Dashboards</description>
+  <fieldset submitButton="false">
+    <input type="text" token="c-input">
+      <label>Enter Search Terms</label>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>| rest splunk_server=local /servicesNS/-/-/data/ui/views
+| search eai:acl.app=* AND author!="nobody" 
+| lookup dashboard_details.csv id as id output details, mitre, usecase
+| fillnull value="TBD" usecase, mitre
+| rex field="id" "(?&lt;urlField&gt;[^\/]+)$"
+| rex field=eai:data "(?i)(?&lt;sourcetypes&gt;\bsourcetype\s*=\s*\x22?.*?)\x22?\s" max_match=0
+| rex field=eai:data "(?i)(?&lt;sources&gt;\bsource\s*=\s*\x22?.*?)\x22?\s" max_match=0
+| rex field=eai:data "(?i)(?&lt;eventtypes&gt;\beventtype\s*=\s*\x22?.*?)\x22?\s" max_match=0
+| rex field=eai:data "(?i)(?&lt;lookups&gt;\blookup\s+\x22?[-.\w]+)\x22?" max_match=0
+| rex field=eai:data "(?i)(?&lt;inputlookups&gt;\binputlookup\s+\x22?[-.\w]+)\x22?" max_match=0
+| rex field=eai:data "(?i)(?&lt;outputlookups&gt;\boutputlookup\s+\x22?[-.\w]+)\x22?" max_match=0
+
+
+
+| eval datasources=mvdedup(mvappend(sourcetypes, sources, eventtypes, lookups, inputlookups, outputlookups))
+
+| table sources, sourcetypes, eventtypes, datasources, app.owner, urlField eai:acl.app author, eai:acl.sharing details, mitre, usecase
+| rename eai:acl.app as myapp
+| appendcols
+[search index=summary source="dashboard_views"
+| table myapp, file, method, status,  user
+| stats dc(user) as dc_user count by myapp, file
+| rename file as urlField
+| table myapp, urlField, count, dc_user
+]
+| search urlField="*$c-input$*"  OR datasources="*$c-input$*" OR eai.data="*$c-input$*"
+| fillnull value="N/A" datasources
+| table urlField, datasources, myapp  author, eai:acl.sharing, count, dc_user</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
+        <drilldown>
+          <condition field="urlField">
+            <eval token="u">$row.urlField$</eval>
+            <eval token="w">$row.myapp$</eval>
+            <link target="_blank">
+              <![CDATA[/app/$w$/$u$]]>
+            </link>
+          </condition>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+</form>

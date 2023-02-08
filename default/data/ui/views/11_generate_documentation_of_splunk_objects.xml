@@ -1,0 +1,114 @@
+<dashboard version="1.1">
+<label>11. Generate Documentation of Splunk Objects</label>
+<description>How and why to use data models</description>
+<row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+<row>
+  <panel>
+    <html>
+      <head>
+      <style>
+      #toc_container {
+      background: #f9f9f9 none repeat scroll 0 0;
+      border: 1px solid #aaa;
+      display: table;
+      font-size: 95%;
+      margin: auto;
+      padding: 20px;
+      width: auto;
+      }
+  
+      .toc_title {
+      font-weight: 700;
+      text-align: left;
+      color: #034f84;
+      }
+  
+      #toc_container li, #toc_container ul, #toc_container ul li{
+      list-style: outside none none !important;
+      }
+      
+      .mainDiv {
+      border: 1px solid lightblue;
+      text-align: justify;
+      margin: auto;
+      width: 75%;
+      padding: 20px;
+      }
+      
+      h1 {color: #034f84;}
+      h2 {color: #034f84;}
+      h3 {color: #034f84;}
+      </style>
+      </head>
+      <body>
+        <div class="mainDiv">
+        <a name="top"></a>
+      <table>
+        <tr>
+          <td>
+            <div id="toc_container">
+              <p class="toc_title">Table of Contents</p>
+              <ul class="toc_list">
+                <li><a href="#dashboards">1 Creating Documentation on Dashboards</a></li>
+                <li><a href="#savedsearches">2 Creating Documentation on Saved Searches</a></li>
+                <li><a href="#datamodels">3 Creating Documentation on Data Models</a></li>
+                <li><a href="#datamodelsAnalytics">3.1 Document Data Model Analtyics</a></li>
+                <li><a href="#sourcetype">4. Creating Sourcetype Metadata</a></li>
+                <li><a href="#sourcetypeInput">4.1 Document Sourcetype Fields</a></li>
+                <li><a href="#sourcetypeAnalytics">4.2 Document Sourcetype Analytics</a></li>
+                
+              </ul>
+              </div>
+          </td>
+        </tr>
+      </table>
+      
+      <h1 id="dashboards">1 Creating Documentation on Dashboards <a href="/app/lookup_editor/lookup_edit?owner=nobody&amp;namespace=lame_training&amp;lookup=dashboard_details.csv&amp;type=csv&amp;transform=" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> <a href="https://youtu.be/TSr1WjFlgYA" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+      <p>Click on the above Splunk Link to be taken to a dashboard to input Documentation on Dashboards</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="savedsearches">2 Creating Documentation on Saved Searches <a href="/app/lookup_editor/lookup_edit?lookup=saved_search_details.csv&amp;namespace=lame_training&amp;type=csv&amp;owner=nobody" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> <a href="https://youtu.be/TSr1WjFlgYA" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a>  </h1>
+<p>Click on the above Splunk Link to be taken to a dashboard to input Documentation on Dashboards </p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="datamodels">3  Creating Documentation on Data Models <a href="/app/lame_training/document_sourcetype_analytics" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> <a href="https://youtu.be/TSr1WjFlgYA" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>Click on the above Splunk Link to be taken to a dashboard to input Documentation on Dashboards  </p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="sourcetype">4. Creating Sourcetype Metadata <a href="/app/lame_training/document_sourcetype_analytics" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> <a href="https://youtu.be/HVNMgCqSGnI" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>Click on the above Splunk Link to be taken to a dashboard to input Documentation on Sourcetypes  </p>
+<ul>
+  <li>Access the Lookup for sourcetype fields <a href="/app/lame_training/document_sourcetype_analytics" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
+  <li>Access the lookup for sourcetype analtyics <a href="/app/lookup_editor/lookup_edit?owner=nobody&amp;namespace=lame_training&amp;lookup=Sourcetype_Analytics&amp;type=kv&amp;transform=Sourcetype_Analytics" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a></li>
+</ul>
+
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="sourcetype">4.1 Document Sourcetype Fields <a href="/app/lame_training/document_sourcetype_fields" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> <a href="https://youtu.be/HVNMgCqSGnI" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>Click on the above Splunk Link to be taken to a dashboard to input Documentation on Sourcetype fields <a href="/lookup_editor/lookup_edit?owner=nobody&amp;namespace=lame_training&amp;lookup=SourcetypeInfo&amp;type=kv&amp;transform=SourcetypeInfo" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> <a href="https://youtu.be/HVNMgCqSGnI" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></p>
+
+
+
+
+
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="sourcetype">4.2 Document Sourcetype Analytics <a href="/app/lame_training/document_sourcetype_analytics" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a> <a href="https://youtu.be/HVNMgCqSGnI" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>Click on the above Splunk Link to be taken to a dashboard to input Documentation on Sourcetype Analtyics </p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+
+    </div>
+    </body>
+    </html>
+  </panel>
+</row>
+</dashboard>

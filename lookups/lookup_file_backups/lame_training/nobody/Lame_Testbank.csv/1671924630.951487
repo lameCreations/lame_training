@@ -1,5 +1,0 @@
-testType,id,question,optionA,optionB,optionC,optionD,answer,reference,video
-PowerUser,1,Information needed to create a GET workflow includes which of the following?  (Choose all that apply),A name for the workflow action,A URI where the users will be directed at search time,A label taht will apear in the Event Action Menu at search time,A name for teh URi where the user will be directed at search time.,"a,b,c",,
-PowerUser,2,Which of the following can be used with the eval command tostring function? (Choose all that apply),"""hex""","""commas""","""decimal""","""duration'","a,b,d",,
-PowerUser,3,Which of the following searches show a valid use of a macro? (Choose all that apply),A,B,C,D,"a,b",,
-PowerUser,4,"A user wants to convert numeric field values to strings and also to sort on those values.  Which command should be used first, the eval or the sort?",It doesn't matter whether eval or sort is used first,"Convert the numeric to a string with eval first, then sort.","Use sort first, the convert the numeric to a string with eval.",You cannot use the sort command and the eval command on the same field,b,,

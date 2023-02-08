@@ -1,0 +1,226 @@
+<dashboard version="1.1">
+<label>Ingesting New Logs on Remote System</label>
+<description>Description of how to ingest json, csv, and non-formatted logs.</description>
+<row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+<row>
+  <panel>
+    <html>
+      <head>
+      <style>
+      #toc_container {
+      background: #f9f9f9 none repeat scroll 0 0;
+      border: 1px solid #aaa;
+      display: table;
+      font-size: 95%;
+      margin: auto;
+      padding: 20px;
+      width: auto;
+      }
+  
+      .toc_title {
+      font-weight: 700;
+      text-align: left;
+      color: #034f84;
+      }
+  
+      #toc_container li, #toc_container ul, #toc_container ul li{
+      list-style: outside none none !important;
+      }
+      
+      .mainDiv {
+      border: 1px solid lightblue;
+      text-align: justify;
+      margin: auto;
+      width: 75%;
+      padding: 20px;
+      }
+      
+      h1 {color: #034f84;}
+      h2 {color: #034f84;}
+      h3 {color: #034f84;}
+      </style>
+      </head>
+      <body>
+        <div class="mainDiv">
+        <a name="top"></a>
+      <table>
+        <tr>
+          <td>
+            <div id="toc_container">
+              <p class="toc_title">Table of Contents</p>
+              <ul class="toc_list">
+                <li><a href="#intro">1. Data Ingestion</a></li>
+                 <li><a href="#uploadFile">1.1 Upload Files From Computer</a></li>
+                  <li><a href="#monitorFile">1.2 Monitoring a File</a></li>
+                <li><a href="#standardLog">2. Ingesting Standard Logs</a></li>
+                <li><a href="#jsonLog">2.1 Ingesting JSON Logs</a></li>
+                <li><a href="#csvLog">2.2 Ingesting CSV Logs</a></li>
+                <li><a href="#nonStandardLog">3. Ingesting Non-Standard Logs</a></li>
+                <li><a href="#formatFields">3.1 Using Splunk to Format Fields</a></li>
+                <li><a href="#deploymentServer">4. Using a Deployment Server to Push Out App</a></li>
+              </ul>
+              </div>
+          </td>
+        </tr>
+      </table>
+      
+      <h1 id="intro">1. Data Ingestion</h1>
+      <p>It should go without saying that Splunk's a powerful tool, but it is only as powerful as the data that it ingests.  This tutorial is going to focus on how to get data into Splunk.  The ideal situation for ingesting logs is to create a custom application and set up the data ingestion within that custom app. Data can be ingested through a data upload and through file monitoring.  Both of these are great tools to set up data ingestion on new logs.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+   <h1 id="uploadFile">1.1 Upload Files From Computer 
+   <a href="/manager/lame_training/adddatamethods/selectsource?input_mode=0" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a>
+   <a href="https://youtu.be/-8G8yXU-n0I" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a>
+   </h1>
+   
+      <p>Uploading a File is a one time ingestion, so it usually is not the final step for data ingestion, but it can be a valuable tool to setting up your sourcetype (i.e., props.conf) file.</p>
+      <ul>
+        <li>To access Upload Files</li>
+        <li>In upper right hand corner of Splunk, click Settings</li>
+        <li>Click on the Add Data button on the right hand side of Settings Pop up screen </li>
+        <li>In the panel labeld "Or get data in with the following methods" - Upload</li>
+        <li>Browse for your file or drag and drop the file onto the web page</li>
+        <li>Click Next</li>
+      </ul>
+
+      <p>Splunk will attempt to assign a source type to the data you upload.  If your uploaded file is json or csv, Splunk will automatically assign the sourcetype to json or csv.  If you have a 3rd Party TA app you can select that sourcetype if it applies to your log file.  Uploading a test file to see if you can get Splunk to properly ingest it and parse it correctly, will save you time trying to troubleshoot ingesting a file on a remote system.</p>
+<p><a href="#top">Back to top of page</a></p>
+
+   <h1 id="monitorFile">1.2 Monitoring a File 
+   <a href="/manager/lame_training/adddatamethods/selectsource?input_mode=1" target="_blank"><img src="/static/app/lame_training/splunk.PNG" width="30" height="30"></img></a>
+   <a href="https://youtu.be/-8G8yXU-n0I" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a>
+   </h1>
+      <p>Splunk uses the term monitoring for the act of watching and ingesting a log file, script, or other data source.  Under settings - data inputs there are countless types of log monitoring methods.  Monitoring for a data source will create a stanza inside of an Splunk inputs.conf file.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+
+<h1 id="standardLog">2. Ingesting Standard Logs </h1>
+<p>Splunk has built in handling of common log types such as JSON, CSV and TSV files.  If you are wanting to ingest these types of logs, the process is pretty straight forward.  You will assign a sourcetype to the data source (prop.conf) and a monitoring stanza (inputs.conf).  We will cover below how to ingest a json and csv file.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="jsonLog">2.1 Ingesting JSON Logs <a href="https://youtu.be/-8G8yXU-n0I" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>To create the appropriate props and inputs stanzas, it is recommended to follow these steps.</p>
+<ul>
+  <li>Get a sample of the json logs</li>
+  <li>Upload File (refer to section 1.1 Upload Files from Computer)</li>
+  <li>Splunk should automatically detect that the log is json if the sample file is properly formatted json</li>
+  <li>Save as - rename the sourcetype to something other than _json</li>
+  <li>Set up an index</li>
+  <li>Ingest the sample json files</li>
+</ul>
+
+<p>After uploading a file - set up file monitoring.  You can skip uploading a file if you feel that the log is properly formatted that you will be monitioring</p>
+<ul>
+  <li>Make sure the sample log file is located on the hard drive of your Splunk Instance</li>
+  <li>Set up Monitoring a File (refere to section 1.2 Monitoring a File)</li>
+  <li>Splunk should automatically detect that the log is json if the sample file is properly formatted json</li>
+  <li>Save as - rename the sourcetype to something other than _json</li>
+  <li>Set up an index</li>
+  <li>Finalize the setup</li>
+</ul>
+
+<p>After validating that the logs are being ingested, you can change the inputs.conf monitoring stanza location to the location that the log file resides on the remote system.  You are now ready to push the app to the remote system.</p>
+
+<p>To see the indexes available on a search head, use one of the following:</p>
+
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="host">2.2 Ingesting CSV Logs <a href="https://youtu.be/-8G8yXU-n0I" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>To create the appropriate props and inputs stanzas, it is recommended to follow these steps.</p>
+<ul>
+  <li>Get a sample of the csv logs</li>
+  <li>Upload File (refer to section 1.1 Upload Files from Computer)</li>
+  <li>Splunk should automatically detect that the log is csv if the sample file is properly formatted csv</li>
+  <li>Save as - rename the sourcetype to something other than csv</li>
+  <li>Set up an index</li>
+  <li>Ingest the sample csv files</li>
+</ul>
+
+<p>After uploading a file - set up file monitoring.  You can skip uploading a file if you feel that the log is properly formatted that you will be monitioring</p>
+<ul>
+  <li>Make sure the sample log file is located on the hard drive of your Splunk Instance</li>
+  <li>Set up Monitoring a File (refere to section 1.2 Monitoring a File)</li>
+  <li>Splunk should automatically detect that the log is json if the sample file is properly formatted csv</li>
+  <li>Save as - rename the sourcetype to something other than csv</li>
+  <li>Set up an index</li>
+  <li>Finalize the setup</li>
+</ul>
+
+<p>After validating that the logs are being ingested, you can change the inputs.conf monitoring stanza location to the location that the log file resides on the remote system.  You are now ready to push the app to the remote system.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="sourcetype">3. Ingesting Non-Standard Logs <a href="https://youtu.be/edumE5gCwko" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a> </h1>
+<p>To create the appropriate props and inputs stanzas, it is recommended to follow these steps.  This step will require Section 4. Using Splunk to Format Fields after you have data ingestion complete.  If you don't follow that step, none of the fields will be broken out in your logs.</p>
+<ul>
+  <li>Get a sample of the log</li>
+  <li>Try to find documentation for what the fields look like (neccessary for Section 4)</li>
+  <li>Upload File (refer to section 1.1 Upload Files from Computer)</li>
+  <li>Splunk will not be able to find a Splunk data source so you will need to move onto the next step</li>
+  <li>Save as - rename the sourcetype to something that describe the new data</li>
+  <li>Set up an index</li>
+  <li>Ingest the sample log file</li>
+</ul>
+<p>Go to Section 4 and set up field extraction first than come back to file monitoring</p>
+<p>After uploading a file - set up file monitoring.  You can skip uploading a file if you feel that the log is properly formatted that you will be monitioring</p>
+<ul>
+  <li>Make sure the sample log file is located on the hard drive of your Splunk Instance</li>
+  <li>Set up Monitoring a File (refere to section 1.2 Monitoring a File)</li>
+  <li>Splunk probably will not detect the sourcetype that you set up earlier.  Type in the name of the sourcetype in the dropdown</li>
+  <li>Validate that the logs are parsing out the fields as you set up in Section 4.  If they are not, go back and work on section 4 again.</li>
+  <li>Set up an index</li>
+  <li>Finalize the setup</li>
+</ul>
+
+<p>After validating that the logs are being ingested, you can change the inputs.conf monitoring stanza location to the location that the log file resides on the remote system.  You are now ready to push the app to the remote system.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+   <h1 id="intro">3.1 Using Splunk to Format Fields <a href="https://youtu.be/edumE5gCwko" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+      <p>In order to create custom field extractions you will need to get a log and manually extract the fields using the following steps.  It is highly recommended to follow the youtube video link to understand the process easier.  It has a lot of clicking / highlighting / and other descriptions that are hard to describe in just words.</p>
+      <ul>
+        <li>Run a splunk query to return one or more logs from your newly ingested log from section 1,2, or 3</li>
+        <li>In the column <b>i</b> you should see a carets > next to your logs.  Click the caret and the log will expand</li>
+        <li>Click on the button that says Event Actions - this will provide a drop down list - choose extract fields</li>
+        <li>In the bottom center of the Extract Fields page you will see the option for Regular Expression.  Click on the words Regular Expression and a box will appear showing you have selected regular expressions.</li>
+        <li>Click Next on the top progress panel of the web page</li>
+        <li>Highlight the fields that you want extracted </li>
+        <li>Give the extracted section a name</li>
+        <li>Click next to validate the extraction worked as intended.  If it extracts more fields than intended - click the x next to the extracted field</li>
+        <li>If it doesn't select all of the fields - highlight the ones missed and it will attempt to rewrite the regex to be more inclusive.</li>
+        <li>When you are happy with the extractions - click next and save the extraction.</li>
+        <li>To view your extractions at a later time or to see the regex - click on Settings - Fields - Field Extractions and look for your extraction (remember the name that you saved it as) </li>
+      </ul>
+     
+
+<p><a href="#top">Back to top of page</a></p>
+
+   <h1 id="intro">4. Using a Deployment Server to Push Out App <a href="https://youtu.be/rXywsH_D4Sw" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+      <p>You can manually package up your custom app and install it on the remote server, but it is recommended for configuration management control that a deployment server be utilized.  </p>
+      <ul>
+        <li>Go to Settings - Forwarder Manager </li>
+        <li>Make sure your app can be found under apps</li>
+        <li>Enable Splunk restart</li>
+        <li>Make sure your remote system exitst</li>
+        <li>Set up a server class with your custom app and your remote system</li>
+        <li>(optional) log into universal forward and validate the app is in $SPLUNKHOME/etc/apps/ </li>
+        <li>Search for your new logs being ingested</li>
+      </ul>
+      
+
+<p><a href="#top">Back to top of page</a></p>
+
+
+
+    </div>
+    </body>
+    </html>
+  </panel>
+</row>
+</dashboard>

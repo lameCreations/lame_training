@@ -1,0 +1,119 @@
+<dashboard version="1.1">
+<label>Conf Files Order Of Precedence</label>
+<description>Explanation of the Order of Precedence for .conf Stanzas</description>
+<row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+
+<row>
+  <panel>
+    <html>
+      <head>
+      <style>
+      #toc_container {
+      background: #f9f9f9 none repeat scroll 0 0;
+      border: 1px solid #aaa;
+      display: table;
+      font-size: 95%;
+      margin: auto;
+      padding: 20px;
+      width: auto;
+      }
+  
+      .toc_title {
+      font-weight: 700;
+      text-align: left;
+      color: #034f84;
+      }
+  
+      #toc_container li, #toc_container ul, #toc_container ul li{
+      list-style: outside none none !important;
+      }
+      
+      .mainDiv {
+      border: 1px solid lightblue;
+      text-align: justify;
+      margin: auto;
+      width: 75%;
+      padding: 20px;
+      }
+      
+      h1 {color: #034f84;}
+      h2 {color: #034f84;}
+      h3 {color: #034f84;}
+      </style>
+      </head>
+      <body>
+        <div class="mainDiv">
+        <a name="top"></a>
+      <table>
+        <tr>
+          <td>
+            <div id="toc_container">
+              <p class="toc_title">Table of Contents</p>
+              <ul class="toc_list">
+                <li><a href="#intro">1. Splunk Apps Order of Precedence</a></li>
+                 <li><a href="#user">1.1 User Settings </a></li>
+                 <li><a href="#system">1.2 System Settings </a></li>
+                  <li><a href="#app">1.3 App Settings</a></li>
+                <li><a href="#local">2. Default and Local Settings</a></li>
+  
+              </ul>
+              </div>
+          </td>
+        </tr>
+      </table>
+      
+      <h1 id="intro">1. Splunk Apps Order of Precedence</h1>
+      <p>In the Splunk directory a conf file can exist in multiple location and have multiple different stanzas.  When Splunk starts up, Splunk will load all of the same conf files into memory and give precedence when there is a conflicting item or stanza, to the item or stanza based off of a tiered approach.</p>
+      <p>Stanzas and items will be given priority in the following order</p>
+      <ul>
+        <li>User Settings (local then default)</li>
+        <li>System Settings (local then default)</li>
+        <li>App Settings (local and then default</li>
+       
+      </ul>
+
+<p><a href="#top">Back to top of page</a></p>
+
+   <h1 id="user">1.1 User Settings
+ <a href="https://youtu.be/jPF-RQw965M" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"> </img></a>
+   </h1>
+   
+      <p>Inside the $SPLUNKHOME/etc/user/ file directory the conf files will be given priority if two stanzas conflict.  The caveat is that the user settings will only apply the user that owns that directory.  For example $SPLUNKHOME/etc/user/jdoe conf settings will only apply to the user jdoe.  They will not apply to the user jsmith</p>
+    
+  <p><a href="#top">Back to top of page</a></p>
+
+   <h1 id="system">1.2 System Settings 
+ <a href="https://youtu.be/jPF-RQw965M" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"> </img></a>
+   </h1>
+   
+      <p>Inside the $SPLUNKHOME/etc/system/ file directory the conf files will be given priority if two stanzas over any other settings except those that are in the $SPLUNKHOME/etc/user/ folder of the logged on user.</p>
+      
+    
+  <p><a href="#top">Back to top of page</a></p>
+
+
+   <h1 id="app">1.3 App Settings <a href="https://youtu.be/jPF-RQw965M" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"> </img></a>
+  
+   </h1>
+      <p>Inside the $SPLUNKHOME/etc/apps/ file directorythe conf files will be applied as long as a System or User setting does not conflict with the stanza in the app directory</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+
+<h1 id="local">2. Default and Local Settings <a href="https://youtu.be/jPF-RQw965M" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"> </img></a> </h1>
+
+<p>The User, System, and App folders each contain two folder, a default and a local setting.  The settings in the local folder will supercede the setting of the default folder.  Splunk best practice states that as apps are developed, the developer should make all of there conf files reside within the default directory.  If developers will follow this practice, when a user makes a change to an app, a developer can still push out new features with their app it won't overwrite the changes that were set by the user.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+
+    </div>
+    </body>
+    </html>
+  </panel>
+</row>
+
+
+</dashboard>

@@ -2,7 +2,7 @@
 <label>6. Help Lookup Management</label>
 <description>Help with lookups</description>
 <row>
-    <panel ref="helpBanner" app="search"></panel>
+    <panel ref="helpBanner" app="lame_training"></panel>
   </row>
 <row>
   <panel>
@@ -51,165 +51,151 @@
             <div id="toc_container">
               <p class="toc_title">Table of Contents</p>
               <ul class="toc_list">
-                <li><a href="#intro">1 Introduction</a></li>
-                <li><a href="#indicator_hunting">2 Indicator Hunting</a>
-                  <ul>
-                    <li><a href="#search_CSIHA">2.1 Search Using the CS Indicator Hunting App</a>
-                      <ul>
-                        <li><a href="#search_CSIHA_lookup">2.1.1 To Search for multiple indicators using a Lookup</a></li>
-                        <li><a href="#search_CSIHA_adhoc">2.1.2 To Search for Ad Hoc Indicators</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#search_custom">2.2 Search Using A Custom Query</a></li>
-                  </ul>
-                </li>
-              <li><a href="#information_protection">3 Information Protection</a></li>
-              <li><a href="#references">4 Appendix A - References</a></li>
+                <li><a href="#intro">1 Splunk Lookups</a></li>
+                <li><a href="#types">2 Types of Lookups</a></li>
+                <li><a href="#csv">2.1 CSV Lookups</a></li>
+                <li><a href="#kv">2.2 KV Lookups</a></li>
+                <li><a href="#geospatial">2.3 GeoSpatial Lookups</a></li>
+                <li><a href="#definition">3. Lookup Definition</a></li>
+                <li><a href="#automatic">4. Automatic Lookup Definition</a></li>
+                <li><a href="#subsearches">5 Using Lookups in SubSearches</a></li>
               </ul>
               </div>
           </td>
         </tr>
       </table>
       
-      <h1 id="intro">1 Introduction</h1>
-      <p>The CyberSentry (CS) Splunk Architecture allows for real-time and historical indicator searching. Analysts
-can use various techniques to search for historical indicators of compromise. Real-time searches are part
-of the automated indicator detection process. See the CS Indicator Processing work instruction (Ref C)
-for further details. CyberSentry Splunk is configured to summarize key Corelight log data making
-searching for indicators simple and efficient. Historical indicator searches can be performed from three
-locations:</p>
+      <h1 id="intro">1 Splunk Lookups</h1>
+      <p>Lookups enrich your event data by adding field-value combinations from lookup tables. Splunk software uses lookups to match field-value combinations in your event data with field-value combinations in external lookup tables. If Splunk software finds those field-value combinations in your lookup table, Splunk software will append the corresponding field-value combinations from the table to the events in your search.</p>
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="types">2 Types of Lookups </h1>
+<p>There are multiple methods for using lookups: </p>
 <ul>
-  <li>the Central Summary Data – primarily used for reduced impact to mission partner sites</li>
-  <li>the Central Search Head – searches all customer sites concurrently – can impact mission partner site bandwidth</li>
-  <li>directly on each mission partner site – minimal impact to customer but must be done on each mission partner site search head at https://splunk.site[x].cs.dhs:8000.</li>
+  <li>CSV lookups</li>
+  <li>KV Lookups</li>
+  <li>GeoSpatial Lookups</li>
 </ul>
-<p>Note: (Replace [x] with the mission partner site number)</p>
+
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="indicator_hunting">2 Indicator Hunting</h1>
-<p>Although an indicator can be any literal string within the data, the CS Splunk environment has been
-optimized to search for many well-known indicator types. The Science of Searching for indicators in
-Splunk Data (Ref B) provides more details on this optimization. There are many indicators within CS data
-made available, including the following:</p>
-<table>
-  <tr>
-    <td>
-      <ul>
-        <li>x509 Certificate Details</li>
-        <li>Media Access Control Address</li>
-        <li>HTTP Headers</li>
-        <li>Email From: Addresses</li>
-        <li>Email Subject: Line</li>
-        <li>File Name</li>
-        <li>File Hash md5</li>
-        <li>File Hash sha1</li>
-        <li>File Hash sha256</li>
-      </ul>
-    </td>
-    <td>
-      <ul>
-        <li>SSH Host Key</li>
-        <li><a href="https://github.com/salesforce/hassh" target="_blank">HASSH md5 Fingerprints (Ref E)</a></li>
-        <li>Domain Name</li>
-        <li>IPv4 Address</li>
-        <li>IPv6 Address</li>
-        <li><a href="https://github.com/salesforce/ja3" target="_blank">JA3 md5 Fingerprints (Ref D)</a></li>
-        <li>File Mime Type</li>
-        <li>URL</li>
-        <li>Account User Names</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-<p>Below are the three options for indicator searching ordered by efficiency:</p>
-  <ol>
-    <li>Search for several indicators using a lookup in the <a href="/app/CS_Indicator_Hunting" target="_blank">CS Indicator Hunting App</a></li>
-    <li>Search for ad-hoc indicators using the <a href="/app/CS_Indicator_Hunting" target="_blank">CS Indicator Hunting App</a></li>
-    <li>Search for ad-hoc indicators using the <a href="/app/search" target="_blank">Search and Reporting App</a></li>
-  </ol>
-<p>The CS Indicator Hunting App (IOCH App) streamlines the most common IOC Search use cases to reduce time to effective detection, analysis, and reporting. 
-The IOCH App is available on the Central Search Head only.  The CS Splunk environment tracks all indicators that have been searched during the automated process. 
-This record of previous searches is checked when an analyst uses the IOCH App to search for indicators. If the indicators have already been searched for, 
-the results will return based on what was already found. This validation minimizes Splunk processing overhead and redundant analysis efforts.</p>
+<h1 id="intro">2.1 CSV Lookups <a href="https://youtu.be/SfEDJj7Jgpg" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>Populates your events with fields pulled from CSV files. Also referred to as a static lookup because CSV files represent static tables of data. Each column in a CSV table is interpreted as the potential values of a field. Use CSV lookups when you have small sets of data that is relatively static.</p>
+
+<p><b>Upload Lookup</b></p>
+  <p>Steps</p>
+<ul>
+
+  <li>  Select Settings > Lookups to go to the Lookups manager page.</li>
+  <li>  Click Add new next to Lookup table files.</li>
+  <li>  Select a Destination app from the drop-down list.</li>
+  <li>  Click Choose File to look for the CSV file to upload.</li>
+  <li>  Enter the destination filename. This is the name the lookup table file will have on the Splunk server. If you are uploading a gzipped CSV file, enter a filename ending in ".gz". If you are uploading a plaintext CSV file, use a filename ending in ".csv".</li>
+  <li>  Click Save.</li>
+</ul>
+  <p>By default, the Splunk software saves your CSV file in your user directory for the Destination app: $SPLUNK_HOME/etc/users/username/app_name/lookups/. </p>
+    
+    
+    
+    
+
+
+
+<p><b>Output Lookup</b></p>
+<ul>
+  <li>Export the unique list to a lookup called MyInventory.csv - This CSV does not have to exist.</li>
+  <li>index=lame_training sourcetype=lame_conn | stats count by src_ip, dest_ip | outputlookup MyInventory.csv </li>
+  <li>Export the unique list and append it to a lookup called MyInventory.csv </li>
+  <li>index=lame_training sourcetype=lame_conn | stats count by src_ip, dest_ip | outputlookup MyInventory.csv append=true </li>
+</ul>
+
 <p><a href="#top">Back to top of page</a></p>
 
-<h2 id="search_CSIHA">2.1 Search Using the CS Indicator Hunting App</h2>
-<p>The CS Indicator Hunting App (IOCH App) removes the need for an analyst to craft complex Splunk queries. An analyst can upload a csv file containing 
-indicators or search for a small set of ad hoc indicators using the IOCH App search interface.</p>
-<img src="/static/app/CyberSentry_Training/ioch_dashboard.png" alt="graphic of IOCH App search interface" width="75%" style="border:1px solid lightblue"></img>
+<h1 id="host">2.2 KV Lookups <a href="https://youtu.be/-UP4xzdzwXI" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>Matches fields in your events to fields in a KV Store collection and outputs corresponding fields in that collection to your events. Use a KV Store lookup when you have a large lookup table or a table that is updated often. </p>
+
+<p><b>Upload Lookup</b></p>
+<p><b>Output Lookup</b></p>
+<ul>
+  <li>Export the unique list to a pre-existing KV store called MyInventory </li>
+  <li>index=lame_training sourcetype=lame_conn | stats count by src_ip, dest_ip | outputlookup MyInventory </li>
+  <li>Export the unique list and append it to a lookup called MyInventory </li>
+  <li>index=lame_training sourcetype=lame_conn | stats count by src_ip, dest_ip | outputlookup MyInventory append=true </li>
+</ul>
+
 <p><a href="#top">Back to top of page</a></p>
 
-<h3 id="search_CSIHA_lookup">2.1.1 To Search for multiple indicators using a Lookup</h3>
+<h1 id="host">2.3 GeoSpatial Lookups</h1>
+<p>A geospatial lookup matches location coordinates in your events to geographic feature collections in a KMZ or KML file and outputs fields to your events that provide corresponding geographic feature information encoded in the KMZ or KML, like country, state, or county names. Use a geospatial lookup to create a query that Splunk software uses to configure a choropleth map. </p>
+
+
+
+<p><a href="#top">Back to top of page</a></p>
+
+<h1 id="definition">3 Lookup Definitions <a href="https://youtu.be/1BdnU51wPfs" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>A lookup definition provides a lookup name and a path to find the lookup table. Lookup definitions can include extra settings such as matching rules, or restrictions on the fields that the lookup is allowed to match. One lookup table can have multiple lookup definitions.</p>
+
+<p>All lookup types require a lookup definition. After you create a lookup definition you can invoke the lookup in a search with the lookup command. </p>
+
 <ol>
-  <li>To upload a new set of indicators to search for open the IOCH App and  click on the appropriate create a lookup.</li>
-  <li>Splunk will open a new tab that will allow you to copy and paste the list of indicators into one column and provide a name for the report.  
-  The report field is optional. You can also manually enter your indicators or upload an existing csv file (the csv must be in the specified format). This process creates the lookup table. </li>
-  <li>Select the target data set. The target can be one or more mission partners or by industry sector. </li>
-  <li>Once the lookup is created and a target selected, a search processing language (SPL) query will be dynamically generated that the analyst can run. 
-  Return to the previous tab and follow the instructions.</li>
-  <li>When the link is clicked, Splunk will redirect to a search page with a prepopulated SPL query. Select a timeframe and click Search. Splunk will start 
-  the search using the data you provided in the lookup, the target and the timeframe. </li>
+  <li>Select Settings > Lookups.</li>
+  <li>Click Add new next to Lookup definitions.</li>
+  <li>Select a Destination app from the drop-down list.</li>
+  <li>Your lookup table file is saved in the directory where the application resides. For example: $SPLUNK_HOME/etc/users/username/app_name/lookups/.</li>
+  <li>Give your lookup definition a unique Name.</li>
+  <li>Select File-based as the lookup Type.</li>
+  <li>Select the Lookup file from the drop-down list. For a CSV lookup, the file extension must be .csv.</li>
+  <li>(Optional) If the CSV file contains time fields, make the CSV lookup time-bounded by selecting the Configure time-based lookup check box</li>
 </ol>
-<p>Often it doesn’t make sense to use a lookup because an Analyst is only looking for one or two indicators.  There is an option in the IOCH App for Ad Hoc Search.</p>
-<p><a href="#top">Back to top of page</a></p>
-
-<h3 id="search_CSIHA_adhoc">2.1.2 To Search for Ad Hoc Indicators</h3>
+  <img src="/static/app/lame_training/TimeBasedInfo.png" width="800" height="400"></img>
 <ol>
-  <li>To best use this page, choose the time frame that you want to search within.</li>
-  <li>Then choose the indicator type from the dropdown. </li>
-  <li>Enter the indicator into the indicator text box.</li>
-  <li>Select a timeframe.</li>
-  <li>Click Search. The IOCH App will search targeted fields based on the indicator type selected.</li>
+  <li>(Optional) To define advanced options for your lookup, select the Advanced options check box.</li>
 </ol>
-<img src="/static/app/CyberSentry_Training/adhocDashboard.png" alt="graphic of IOCH App ad hoc search interface" width="75%" style="border:1px solid lightblue"></img>
-<p>Note: Wildcard searches can be used on the indicators with the use of an asterisk *</p>
+<img src="/static/app/lame_training/AdvancedOptions.png" width="800" height="400"></img>
+
+
+
+
+
+
+
+
 <p><a href="#top">Back to top of page</a></p>
 
-<h2 id="search_custom">2.2 Search Using A Custom Query</h2>
-<p>The least efficient method for searching for indicators is using a custom SPL query. This should only be performed by experienced analysts because it can 
-generate an excessive burden on the CS Splunk environment and impact the work of other analysts. Analysts should check the bro_intel index for the indicator 
-they are searching for prior to searching the CS data. The bro_intel index exists on the Central Search Head only. If the indicator(s) are in the bro_intel index, 
-the automated indicator search processes is already looking for the indicator(s) and the analyst should not search for them again.</p>
+<h1 id="automatic">4 Automatic Lookups <a href="https://youtu.be/1BdnU51wPfs" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>Use automatic lookups to apply a lookup to all searches at search time. After you define an automatic lookup for a lookup definition, you do not need to manually invoke it in searches with the lookup command.</p>
+
+
 <ol>
-  <li>Use the Search and Reporting App within Splunk Central or a specific site Search Head.</li>
-  <li>Craft the query using the <a href="https://djangocas.dev/blog/splunk/splunk-search-best-practices-for-better-performance-response-time/" target="_blank">Splunk best practices (Ref A)</a>:
-    <ul>
-      <li>Time is the most efficient filter</li>
-      <li>Limit the number of events retrieved, e.g. head command or event sampling</li>
-      <li>Specify one or more index values at the beginning of your search string
-        <ul>
-          <li>specify multiple index values in a search</li>
-          <li>use a wildcard (*) in index values</li>
-        </ul>
-      </li>
-      <li>Include as many search terms as possible</li>
-      <li>Make your search terms as specific as possible</li>
-      <li>Inclusion is generally better than exclusion (NOT)</li>
-      <li>Filter as early as possible</li>
-      <li>Avoid using wildcards at the beginning or middle of a string</li>
-      <li>When possible, use OR instead of wildcards</li>
-    </ul>
-  </li>
-  <li>Set the time window to a discrete timeframe. “All Time” should not be used.</li>
-  <li>Click Search</li>
+  <li>In Splunk Web, select Settings > Lookups.</li>
+  <li>Under Actions for Automatic Lookups, click Add new.</li>
+   <li>Select the Destination app.</li>
+    <li>Give your automatic lookup a unique Name.</li>
+     <li>Select the Lookup table that you want to use in your fields lookup.</li> 
+     <li>This is the name of the lookup definition that you defined on the Lookup Definition page.</li>
+     <li>In the Apply to menu, select a host, source, or source type value to apply the lookup and give it a name in the named field.</li>
+       <li>Under Lookup input fields provide one or more pairs of input fields.</li>
+         <li>The first field is the field in the lookup table that you want to match. The second field is a field from your events that matches the lookup table field. For example, you can have an ip_address field in your events that matches an ip field in the lookup table. So you would enter ip = ip_address in the automatic lookup definition.</li>
+           <li>Under Lookup output fields provide one or more pairs of output fields.</li>
+           <li>The first field is the corresponding field that you want to output to events. The second field is the name that the output field should have in your events. For example, the lookup table may have a field named country that you may want to output to your events as ip_city. So you would enter country=ip_city in the automatic lookup definition.</li>
+           <li>To avoid creating automatic lookup reference cycles, do not leave the Lookup output fields blank.</li>
+           <li>Select Overwrite field values to overwrite existing field values in events when the lookup runs. If you do not select this checkbox, the Splunk software does not apply the lookup to events where the output fields already exist.</li>
+           <li>Note: This is equivalent to configuring your fields lookup in props.conf.</li>
+           <li>Click Save.</li>
 </ol>
+
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="information_protection">3 Information Protection</h1>
-<p>Indicator hunting is a fundamental component of the Analyst’s workflow; therefore, the CS Splunk is architected for maximum indicator search capability. 
-This flexibility presents a risk that an analyst will upload sensitive indicators into the Splunk environment. In some cases, Splunk search artifacts may be 
-accessible by mission partners. Analysts can mitigate this risk by seeking Lead approval prior to searching for <a href="https://www.cisa.gov/tlp" target="_blank">TLP AMBER or TLP RED (Ref F)</a> indicators.</p>
+
+<h1 id="subsearches">5 Using Lookups in Subsearches </h1>
+<p>Lookups can be used as a subsearch to restrict a search down to a list of values.</p>
+
+
 <p><a href="#top">Back to top of page</a></p>
-<h1 id="references">4 Appendix A – References</h1>
-<ol type="A">
-  <li>Splunk Search Best Practices - <a href="https://djangocas.dev/blog/splunk/splunk-search-best-practices-for-better-performance-response-time/" target="_blank">https://djangocas.dev/blog/splunk/splunk-search-best-practices-for-better-performance-response-time/</a></li>
-  <li>The Science of Searching for Indicators in Splunk Data - INL CyberSentry Sharepoint</li>
-  <li>CS Indicator Processing Work Instruction - INL CyberSentry Sharepoint</li>
-  <li>JA3 Fingerprinting - <a href="https://github.com/salesforce/ja3" target="_blank">https://github.com/salesforce/ja3</a></li>
-  <li>HASSH Fingerprinting - <a href="https://github.com/salesforce/hassh" target="_blank">https://github.com/salesforce/hassh</a></li>
-  <li>CISA Traffic Light Protocol - <a href="https://www.cisa.gov/tlp" target="_blank">https://www.cisa.gov/tlp</a></li>
-</ol>
-<p><a href="#top">Back to top of page</a></p>
+
+
+
     </div>
     </body>
     </html>

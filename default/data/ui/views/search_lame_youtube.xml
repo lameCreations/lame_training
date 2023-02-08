@@ -1,0 +1,49 @@
+<form version="1.1">
+  <label>Search L.A.M.E. Youtube</label>
+  <fieldset submitButton="false">
+    <input type="dropdown" token="command_name">
+      <label>Dropdown Input Title</label>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <fieldForLabel>command</fieldForLabel>
+      <fieldForValue>command</fieldForValue>
+      <search>
+        <query>| inputlookup splunk_commands.csv | fields command</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
+    <input type="text" token="key_phrase">
+      <label>Key Phrase Search</label>
+      <default>*</default>
+    </input>
+  </fieldset>
+  <row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>| inputlookup lame_youtube_channel.csv 
+|  search (title="$command_name$" 
+AND about="*$key_phrase$*") 
+OR (title=$command_name$ 
+AND title="*$key_phrase$*")
+|  table title, about, url</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">cell</option>
+        
+         <drilldown target="_blank">
+          <condition field="url">
+            <link>$row.url|n$</link>
+          </condition>
+        
+        </drilldown>
+        
+      </table>
+    </panel>
+  </row>
+</form>

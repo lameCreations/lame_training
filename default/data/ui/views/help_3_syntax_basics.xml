@@ -2,7 +2,7 @@
 <label>3. Help Splunk Syntax Basics</label>
 <description>Help understanding the basics of setting up a splunk search</description>
 <row>
-    <panel ref="helpBanner" app="search"></panel>
+    <panel ref="helpBanner" app="lame_training"></panel>
   </row>
 <row>
   <panel>

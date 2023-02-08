@@ -2,7 +2,7 @@
 <label>5. Help Reports Management</label>
 <description>Help on managing reports</description>
 <row>
-    <panel ref="helpBanner" app="search"></panel>
+    <panel ref="helpBanner" app="lame_training"></panel>
   </row>
 <row>
   <panel>
@@ -52,164 +52,53 @@
               <p class="toc_title">Table of Contents</p>
               <ul class="toc_list">
                 <li><a href="#intro">1 Introduction</a></li>
-                <li><a href="#indicator_hunting">2 Indicator Hunting</a>
-                  <ul>
-                    <li><a href="#search_CSIHA">2.1 Search Using the CS Indicator Hunting App</a>
-                      <ul>
-                        <li><a href="#search_CSIHA_lookup">2.1.1 To Search for multiple indicators using a Lookup</a></li>
-                        <li><a href="#search_CSIHA_adhoc">2.1.2 To Search for Ad Hoc Indicators</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#search_custom">2.2 Search Using A Custom Query</a></li>
-                  </ul>
-                </li>
-              <li><a href="#information_protection">3 Information Protection</a></li>
-              <li><a href="#references">4 Appendix A - References</a></li>
+                <li><a href="#report">2 Creating a Report</a></li>
+                <li><a href="#scheduleReport">2.1 Scheduling Reports</a></li>
+                <li><a href="#accelerateReport">2.2 Accelerated Reports</a></li>
+                <li><a href="#createAlert">3 Creating an Alert</a></li>
+                <li><a href="#dashboardPanel">4 Saving as Dashboard Panel</a></li>
+                
               </ul>
               </div>
           </td>
         </tr>
       </table>
       
-      <h1 id="intro">1 Introduction</h1>
-      <p>The CyberSentry (CS) Splunk Architecture allows for real-time and historical indicator searching. Analysts
-can use various techniques to search for historical indicators of compromise. Real-time searches are part
-of the automated indicator detection process. See the CS Indicator Processing work instruction (Ref C)
-for further details. CyberSentry Splunk is configured to summarize key Corelight log data making
-searching for indicators simple and efficient. Historical indicator searches can be performed from three
-locations:</p>
-<ul>
-  <li>the Central Summary Data – primarily used for reduced impact to mission partner sites</li>
-  <li>the Central Search Head – searches all customer sites concurrently – can impact mission partner site bandwidth</li>
-  <li>directly on each mission partner site – minimal impact to customer but must be done on each mission partner site search head at https://splunk.site[x].cs.dhs:8000.</li>
-</ul>
-<p>Note: (Replace [x] with the mission partner site number)</p>
+      <h1 id="intro">1 Introduction<a href="https://youtu.be/5sFRdgUP3Fk%26t=10s" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+      <p>Reports are saved searches. You can run reports on an ad hoc basis, schedule reports to run on a regular interval, or set a scheduled report to generate alerts when the results meet
+particular conditions. Reports can be added to dashboards as dashboard panels</p>
+
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="indicator_hunting">2 Indicator Hunting</h1>
-<p>Although an indicator can be any literal string within the data, the CS Splunk environment has been
-optimized to search for many well-known indicator types. The Science of Searching for indicators in
-Splunk Data (Ref B) provides more details on this optimization. There are many indicators within CS data
-made available, including the following:</p>
-<table>
-  <tr>
-    <td>
-      <ul>
-        <li>x509 Certificate Details</li>
-        <li>Media Access Control Address</li>
-        <li>HTTP Headers</li>
-        <li>Email From: Addresses</li>
-        <li>Email Subject: Line</li>
-        <li>File Name</li>
-        <li>File Hash md5</li>
-        <li>File Hash sha1</li>
-        <li>File Hash sha256</li>
-      </ul>
-    </td>
-    <td>
-      <ul>
-        <li>SSH Host Key</li>
-        <li><a href="https://github.com/salesforce/hassh" target="_blank">HASSH md5 Fingerprints (Ref E)</a></li>
-        <li>Domain Name</li>
-        <li>IPv4 Address</li>
-        <li>IPv6 Address</li>
-        <li><a href="https://github.com/salesforce/ja3" target="_blank">JA3 md5 Fingerprints (Ref D)</a></li>
-        <li>File Mime Type</li>
-        <li>URL</li>
-        <li>Account User Names</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-<p>Below are the three options for indicator searching ordered by efficiency:</p>
-  <ol>
-    <li>Search for several indicators using a lookup in the <a href="/app/CS_Indicator_Hunting" target="_blank">CS Indicator Hunting App</a></li>
-    <li>Search for ad-hoc indicators using the <a href="/app/CS_Indicator_Hunting" target="_blank">CS Indicator Hunting App</a></li>
-    <li>Search for ad-hoc indicators using the <a href="/app/search" target="_blank">Search and Reporting App</a></li>
-  </ol>
-<p>The CS Indicator Hunting App (IOCH App) streamlines the most common IOC Search use cases to reduce time to effective detection, analysis, and reporting. 
-The IOCH App is available on the Central Search Head only.  The CS Splunk environment tracks all indicators that have been searched during the automated process. 
-This record of previous searches is checked when an analyst uses the IOCH App to search for indicators. If the indicators have already been searched for, 
-the results will return based on what was already found. This validation minimizes Splunk processing overhead and redundant analysis efforts.</p>
+<h1 id="report">2 Creating Reports<a href="https://youtu.be/IcHApZh9eEg%26t=48s" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>Reports are saved searches. You can run reports on an ad hoc basis, schedule reports to run on a regular interval, or set a scheduled report to generate alerts when the results meet
+particular conditions. Reports can be added to dashboards as dashboard panels</p>
+
 <p><a href="#top">Back to top of page</a></p>
 
-<h2 id="search_CSIHA">2.1 Search Using the CS Indicator Hunting App</h2>
-<p>The CS Indicator Hunting App (IOCH App) removes the need for an analyst to craft complex Splunk queries. An analyst can upload a csv file containing 
-indicators or search for a small set of ad hoc indicators using the IOCH App search interface.</p>
-<img src="/static/app/CyberSentry_Training/ioch_dashboard.png" alt="graphic of IOCH App search interface" width="75%" style="border:1px solid lightblue"></img>
+ <h1 id="intro">2.1 Scheduling Reports<a href="https://youtu.be/5sFRdgUP3Fk%26t=6m38s" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+      <p>Reports are saved searches. You can run reports on an ad hoc basis, schedule reports to run on a regular interval, or set a scheduled report to generate alerts when the results meet
+particular conditions. Reports can be added to dashboards as dashboard panels</p>
+
 <p><a href="#top">Back to top of page</a></p>
 
-<h3 id="search_CSIHA_lookup">2.1.1 To Search for multiple indicators using a Lookup</h3>
-<ol>
-  <li>To upload a new set of indicators to search for open the IOCH App and  click on the appropriate create a lookup.</li>
-  <li>Splunk will open a new tab that will allow you to copy and paste the list of indicators into one column and provide a name for the report.  
-  The report field is optional. You can also manually enter your indicators or upload an existing csv file (the csv must be in the specified format). This process creates the lookup table. </li>
-  <li>Select the target data set. The target can be one or more mission partners or by industry sector. </li>
-  <li>Once the lookup is created and a target selected, a search processing language (SPL) query will be dynamically generated that the analyst can run. 
-  Return to the previous tab and follow the instructions.</li>
-  <li>When the link is clicked, Splunk will redirect to a search page with a prepopulated SPL query. Select a timeframe and click Search. Splunk will start 
-  the search using the data you provided in the lookup, the target and the timeframe. </li>
-</ol>
-<p>Often it doesn’t make sense to use a lookup because an Analyst is only looking for one or two indicators.  There is an option in the IOCH App for Ad Hoc Search.</p>
+ <h1 id="intro">2.2 Accelerated Reports<a href="https://youtu.be/5sFRdgUP3Fk%26t=4m10s" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+      <p>If your report has a large number of events and is slow to complete when you run it, you may be able to accelerate it so it completes faster when you run it in the future. When you accelerate a report, Splunk software runs a background process that builds a data summary based on the results returned by the report. When you next run the search, it runs against this summary rather than the full index. Because this summary is smaller than the full index and contains precomputed summary data relevant to the search, the search should complete much quicker than it did when you first ran it. </p>
+
 <p><a href="#top">Back to top of page</a></p>
 
-<h3 id="search_CSIHA_adhoc">2.1.2 To Search for Ad Hoc Indicators</h3>
-<ol>
-  <li>To best use this page, choose the time frame that you want to search within.</li>
-  <li>Then choose the indicator type from the dropdown. </li>
-  <li>Enter the indicator into the indicator text box.</li>
-  <li>Select a timeframe.</li>
-  <li>Click Search. The IOCH App will search targeted fields based on the indicator type selected.</li>
-</ol>
-<img src="/static/app/CyberSentry_Training/adhocDashboard.png" alt="graphic of IOCH App ad hoc search interface" width="75%" style="border:1px solid lightblue"></img>
-<p>Note: Wildcard searches can be used on the indicators with the use of an asterisk *</p>
+<h1 id="createAlert">3 Creating an Alert<a href="https://youtu.be/5sFRdgUP3Fk%26t=9m31s" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+<p>Alerts are triggered when search results meet specific conditions. You can use alerts on historical and real-time searches. Alerts can be configured to trigger actions such as sending
+alert information to designated email addresses or posting alert information to a web resource</p>
+
 <p><a href="#top">Back to top of page</a></p>
 
-<h2 id="search_custom">2.2 Search Using A Custom Query</h2>
-<p>The least efficient method for searching for indicators is using a custom SPL query. This should only be performed by experienced analysts because it can 
-generate an excessive burden on the CS Splunk environment and impact the work of other analysts. Analysts should check the bro_intel index for the indicator 
-they are searching for prior to searching the CS data. The bro_intel index exists on the Central Search Head only. If the indicator(s) are in the bro_intel index, 
-the automated indicator search processes is already looking for the indicator(s) and the analyst should not search for them again.</p>
-<ol>
-  <li>Use the Search and Reporting App within Splunk Central or a specific site Search Head.</li>
-  <li>Craft the query using the <a href="https://djangocas.dev/blog/splunk/splunk-search-best-practices-for-better-performance-response-time/" target="_blank">Splunk best practices (Ref A)</a>:
-    <ul>
-      <li>Time is the most efficient filter</li>
-      <li>Limit the number of events retrieved, e.g. head command or event sampling</li>
-      <li>Specify one or more index values at the beginning of your search string
-        <ul>
-          <li>specify multiple index values in a search</li>
-          <li>use a wildcard (*) in index values</li>
-        </ul>
-      </li>
-      <li>Include as many search terms as possible</li>
-      <li>Make your search terms as specific as possible</li>
-      <li>Inclusion is generally better than exclusion (NOT)</li>
-      <li>Filter as early as possible</li>
-      <li>Avoid using wildcards at the beginning or middle of a string</li>
-      <li>When possible, use OR instead of wildcards</li>
-    </ul>
-  </li>
-  <li>Set the time window to a discrete timeframe. “All Time” should not be used.</li>
-  <li>Click Search</li>
-</ol>
+ <h1 id="dashboardPanel">4 Saving as a Dashboard Panel<a href="https://youtu.be/5sFRdgUP3Fk%26t=10m53s" target="_blank"><img src="/static/app/lame_training/youtube.png" width="30" height="30"></img></a></h1>
+      <p>Reports are saved searches. You can run reports on an ad hoc basis, schedule reports to run on a regular interval, or set a scheduled report to generate alerts when the results meet
+particular conditions. Reports can be added to dashboards as dashboard panels</p>
+
 <p><a href="#top">Back to top of page</a></p>
 
-<h1 id="information_protection">3 Information Protection</h1>
-<p>Indicator hunting is a fundamental component of the Analyst’s workflow; therefore, the CS Splunk is architected for maximum indicator search capability. 
-This flexibility presents a risk that an analyst will upload sensitive indicators into the Splunk environment. In some cases, Splunk search artifacts may be 
-accessible by mission partners. Analysts can mitigate this risk by seeking Lead approval prior to searching for <a href="https://www.cisa.gov/tlp" target="_blank">TLP AMBER or TLP RED (Ref F)</a> indicators.</p>
-<p><a href="#top">Back to top of page</a></p>
-<h1 id="references">4 Appendix A – References</h1>
-<ol type="A">
-  <li>Splunk Search Best Practices - <a href="https://djangocas.dev/blog/splunk/splunk-search-best-practices-for-better-performance-response-time/" target="_blank">https://djangocas.dev/blog/splunk/splunk-search-best-practices-for-better-performance-response-time/</a></li>
-  <li>The Science of Searching for Indicators in Splunk Data - INL CyberSentry Sharepoint</li>
-  <li>CS Indicator Processing Work Instruction - INL CyberSentry Sharepoint</li>
-  <li>JA3 Fingerprinting - <a href="https://github.com/salesforce/ja3" target="_blank">https://github.com/salesforce/ja3</a></li>
-  <li>HASSH Fingerprinting - <a href="https://github.com/salesforce/hassh" target="_blank">https://github.com/salesforce/hassh</a></li>
-  <li>CISA Traffic Light Protocol - <a href="https://www.cisa.gov/tlp" target="_blank">https://www.cisa.gov/tlp</a></li>
-</ol>
-<p><a href="#top">Back to top of page</a></p>
     </div>
     </body>
     </html>

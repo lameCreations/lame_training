@@ -1,0 +1,21 @@
+name,type,addtlInfo,required,url
+L.A.M.E. Analysis,app,,yes,
+Lookup Editor,app,,yes,
+L.A.M.E Administration,app,,yes,
+L.A.M.E. Scripts,app,,yes,
+L.A.M.E. EDU,app,,yes,https://splunkbase.splunk.com/app/6687
+L.A.M.E. TA,app,,yes,
+SA-Eventgen,app,,yes,https://splunkbase.splunk.com/app/1924
+Lookup Editor,app,,yes,https://splunkbase.splunk.com/app/1724
+dashboard_details.csv,lookup,,yes,
+LAME_StudyQuestion_Answers.csv,lookup,,yes,
+Lame_Testbank.csv,lookup,,yes,
+lame_training_requirements.csv,lookup,,yes,
+lame_youtube_channel.csv,lookup,,yes,
+splunk_commands.csv,lookup,,yes,
+cim_authentication,eventtype,,yes,
+cim_software,eventtype,,yes,
+network_communicate_data,eventtype,,yes,
+network_traffic_dns,eventtype,,yes,
+networktraffic_index,eventtype,,yes,
+Software,datamodel,,yes,

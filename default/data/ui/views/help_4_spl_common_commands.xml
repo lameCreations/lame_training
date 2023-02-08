@@ -2,7 +2,7 @@
 <label>4. Help SPL Common Commands</label>
 <description>Help using common SPL commands to perform searches</description>
 <row>
-    <panel ref="helpBanner" app="search"></panel>
+    <panel ref="helpBanner" app="lame_training"></panel>
   </row>
 <row>
   <panel>
