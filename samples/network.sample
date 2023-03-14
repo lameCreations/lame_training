@@ -1,0 +1,7 @@
+{"ts":"2022-11-30T03:12:39","dest_port":"53","app":"dns","transport":"tcp","src_ip":0,"dest_ip":0,"src_port":"32009","bytes_in":0,"bytes_out":0,"direction":"internal","duration":"37014","flow_id":"hash","packets_in":"33833","packets_out":"7031"}
+{"ts":"2022-11-30T03:12:38","dest_port":"443","app":"https","transport":"tcp","src_ip":0,"dest_ip":0,"src_port":"54848","bytes_in":0,"bytes_out":0,"direction":"outbound","duration":"17465","flow_id":"hash","packets_in":"33202","packets_out":"46992"}
+{"ts":"2022-11-30T03:12:37","dest_port":"80","app":"http","transport":"tcp","src_ip":0,"dest_ip":0,"src_port":"46003","bytes_in":0,"bytes_out":0,"direction":"internal","duration":"5182","flow_id":"hash","packets_in":"22587","packets_out":"27172"}
+{"ts":"2022-11-30T03:12:37","dest_port":"53","app":"dns","transport":"tcp","src_ip":0,"dest_ip":0,"src_port":"48370","bytes_in":0,"bytes_out":0,"direction":"","duration":"37958","flow_id":"hash","packets_in":"5347","packets_out":"1396"}
+{"ts":"2022-11-30T03:12:36","dest_port":"80","app":"http","transport":"tcp","src_ip":0,"dest_ip":0,"src_port":"10393","bytes_in":0,"bytes_out":0,"direction":"internal","duration":"10181","flow_id":"hash","packets_in":"39458","packets_out":"30877"}
+{"ts":"2022-11-30T03:12:36","dest_port":"22","app":"ssh","transport":"tcp","src_ip":0,"dest_ip":0,"src_port":"7248","bytes_in":0,"bytes_out":0,"direction":"outbound","duration":"2120","flow_id":"hash","packets_in":"45364","packets_out":"39282"}
+
