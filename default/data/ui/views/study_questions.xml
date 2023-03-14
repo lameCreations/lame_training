@@ -1,36 +1,47 @@
 <form version="1.1">
   <label>Study Questions</label>
   <description>Study Questions</description>
-  
-   <search id="SomeQuery">
-          <query>|  inputlookup Lame_Testbank.csv | search id = $qID$
+  <search id="SomeQuery">
+    <query>|  inputlookup Lame_Testbank.csv | search id = $qID$
 | table question optionA, optionB, optionC,optionD, reference, video, answer, id</query>
-          <done>
-            <set token="Question">$result.question$</set>
-            <set token="optionA">$result.optionA$</set>
-            <set token="optionB">$result.optionB$</set>
-            <set token="optionC">$result.optionC$</set>
-            <set token="optionD">$result.optionD$</set>
-            <set token="reference">$result.reference$</set>
-            <set token="video">$result.video$</set>
-            <set token="answer">$result.answer$</set>
-          </done>
-        </search>
-  
+    <done>
+      <set token="Question">$result.question$</set>
+      <set token="optionA">$result.optionA$</set>
+      <set token="optionB">$result.optionB$</set>
+      <set token="optionC">$result.optionC$</set>
+      <set token="optionD">$result.optionD$</set>
+      <set token="reference">$result.reference$</set>
+      <set token="video">$result.video$</set>
+      <set token="answer">$result.answer$</set>
+    </done>
+  </search>
   <fieldset submitButton="true" autoRun="false">
+    <input type="dropdown" token="s_cert">
+      <label>Splunk Certification</label>
+      <default>User</default>
+      <fieldForLabel>testType</fieldForLabel>
+      <fieldForValue>testType</fieldForValue>
+      <search>
+        <query>|  inputlookup Lame_Testbank.csv 
+| stats count by testType</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
     <input type="dropdown" token="qID" searchWhenChanged="true">
       <label>Question</label>
       <fieldForLabel>id</fieldForLabel>
       <fieldForValue>id</fieldForValue>
       <search>
-        <query>|  inputlookup Lame_Testbank.csv 
+        <query>|  inputlookup Lame_Testbank.csv
+| search testType="$s_cert$"
 | table question optionA, optionB, optionC,optionD, reference, video, answer, id</query>
         <earliest>-24h@h</earliest>
         <latest>now</latest>
       </search>
     </input>
   </fieldset>
-<row>
+  <row>
     <panel ref="helpBanner" app="lame_training"></panel>
   </row>
   <row>
@@ -75,8 +86,6 @@
       <table>
         <search base="SomeQuery">
           <query>| table id, answer </query>
-         
-         
         </search>
         <option name="drilldown">none</option>
         <option name="refresh.display">progressbar</option>

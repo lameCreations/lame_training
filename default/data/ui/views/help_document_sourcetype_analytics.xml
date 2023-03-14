@@ -1,12 +1,26 @@
 <form version="1.1">
   <label>Help Sourcetype Analytics</label>
   <fieldset submitButton="false">
+    <input type="dropdown" token="idx">
+      <label>Index</label>
+      <choice value="bro">bro</choice>
+      <fieldForLabel>index</fieldForLabel>
+      <fieldForValue>index</fieldForValue>
+      <search>
+        <query>| eventcount summarize=false index=* | stats count by index | fields index | sort index</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+    </input>
     <input type="dropdown" token="st">
       <label>Sourcetype</label>
       <fieldForLabel>sourcetype</fieldForLabel>
       <fieldForValue>sourcetype</fieldForValue>
       <search>
-        <query>| inputlookup SourcetypeInfo
+        <query>| inputlookup base_analytics
+| makemv delim="," index
+| makemv delim="," sourcetype
+| search index=*
 | stats count by sourcetype</query>
         <earliest>-24h@h</earliest>
         <latest>now</latest>
@@ -38,6 +52,25 @@
           <query>| inputlookup Sourcetype_Analytics
 | search sourcetype=$st$
 | table metric_description, metric_query</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Current Analytics in Use on Dashboards</title>
+        <search>
+          <query>| inputlookup autonumberAnalytics.csv
+| makemv delim="," index
+| makemv delim="," sourcetype
+| search index=$idx$ sourcetype=$st$
+| lookup analyticsV2.csv BaseAnalytic as BaseAnalytic Output queries, myapp
+| stats values(myapp) as app, values(BaseAnalytic) as BaseAnalytic count by queries
+| fields - count</query>
           <earliest>-24h@h</earliest>
           <latest>now</latest>
         </search>

@@ -1,9 +1,0 @@
-{"action":"failure","authentication_method":"kerberos","src_user":"jdoe","ts":"0","src":0,"src_port":58528,"dest":0,"dest_port":445}
-{"action":"success","authentication_method":"kerberos","src_user":"jdoe","ts":"0","src":0,"src_port":58136,"dest":0,"dest_port":445}
-{"action":"success","authentication_method":"kerberos","src_user":"jdoe","ts":"0","src":0,"src_port":58475,"dest":0,"dest_port":445}
-{"action":"failure","authentication_method":"kerberos","src_user":"jdoe","ts":"0","src":0,"src_port":52342,"dest":0,"dest_port":445}
-{"action":"success","authentication_method":"kerberos","src_user":"jdoe","ts":"0","src":0,"src_port":55413,"dest":0,"dest_port":445}
-{"action":"failure","authentication_method":"kerberos","src_user":"jdoe","ts":"0","src":0,"src_port":57810,"dest":0,"dest_port":445}
-{"action":"success","authentication_method":"kerberos","ts":"0","src":0,"src_port":63370,"dest":0,"dest_port":88,"request_type":"TGS","src_user":"8K03733$/lab.acme.COM","authentication_service":"cifs/SRVMAIN512","till":"2037-09-13T02:48:05.000000Z","cipher":"aes256-cts-hmac-sha1-96","forwardable":true,"renewable":true}
-{"action":"failure","authentication_method":"kerberos","ts":"0","src":0,"src_port":49677,"dest":0,"dest_port":88,"request_type":"TGS","src_user":"363HYF2$/lab.acme.COM","authentication_service":"cifs/srvmain575","till":"2037-09-13T02:48:05.000000Z","cipher":"aes256-cts-hmac-sha1-96","forwardable":true,"renewable":true}
-{"action":"failure","authentication_method":"kerberos",""ts":"0","src":0,"src_port":55818,"dest":0,"dest_port":88,"request_type":"TGS","src_user":"8abag1$/lab.acme.com","authentication_service":"HTTP/mail.acme.com","error_msg":"KDC_ERR_S_PRINCIPAL_UNKNOWN","till":"2037-09-13T02:48:05.000000Z","forwardable":true,"renewable":true}

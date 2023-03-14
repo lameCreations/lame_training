@@ -1,0 +1,45 @@
+<dashboard version="1.1">
+<label>Community ID Generator</label>
+  <fieldset submitButton="false">
+    <input type="text" token="ip1">
+      <label>1st IP</label>
+    </input>
+    <input type="text" token="ip1_port">
+      <label>IP 1 Port</label>
+    </input>
+    <input type="text" token="ip2">
+      <label>2nd IP</label>
+    </input>
+    <input type="text" token="ip2_port">
+      <label>IP 2 Port</label>
+    </input>
+    <input type="text" token="proto">
+      <label>Protocol</label>
+    </input>
+  </fieldset>
+  <row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>| makeresults 
+| eval a="$ip1$"
+| eval b="$ip2$"
+| eval a_port=$ip1_port$
+| eval b_port=$ip2_port$
+| eval proto="$proto$"
+| cid proto b, a, b_port, a_port
+| table a, b, a_port, b_port proto cid</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">cell</option>
+        <drilldown>
+          <link target="_blank">/app/CyberSentry_Analysis/conn_logs_for_community_id?form.cid=$click.value2$</link>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+</dashboard>

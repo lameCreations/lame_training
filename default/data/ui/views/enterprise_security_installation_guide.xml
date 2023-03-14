@@ -1,0 +1,118 @@
+<dashboard version="1.1">
+ <label>Enterprise Security Installation Guide</label>
+  <description>Help about the required fields within Splunk</description>
+  <row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+      <head>
+      <style>
+      #toc_container {
+      background: #f9f9f9 none repeat scroll 0 0;
+      border: 1px solid #aaa;
+      display: table;
+      font-size: 95%;
+      margin: auto;
+      padding: 20px;
+      width: auto;
+      }
+  
+      .toc_title {
+      font-weight: 700;
+      text-align: left;
+      color: #034f84;
+      }
+  
+      #toc_container li, #toc_container ul, #toc_container ul li{
+      list-style: outside none none !important;
+      }
+      
+      .mainDiv {
+      border: 1px solid lightblue;
+      text-align: justify;
+      margin: auto;
+      width: 75%;
+      padding: 20px;
+      }
+      
+      h1 {color: #034f84;}
+      h2 {color: #034f84;}
+      h3 {color: #034f84;}
+      </style>
+      </head>
+      <body>
+        <div class="mainDiv">
+        <a name="top"/>
+      <table>
+        <tr>
+          <td>
+            <div id="toc_container">
+              <p class="toc_title">Table of Contents</p>
+              <ul class="toc_list">
+                <li>
+                        <a href="#intro">1 Setup Ubuntu Server VM on ESXI      </a>
+                      </li>
+                <li>
+                        <a href="#time">2 Configuring the Enterprise Security App </a>
+                      </li>
+                <li>
+                        <a href="#index">3  Reviewing the DataModels on Enterprise Security</a>
+                      </li>
+          
+              </ul>
+              </div>
+          </td>
+        </tr>
+      </table>
+      
+      <h1 id="intro">1 Setup Ubuntu Server VM on ESXI</h1>
+      <p>Splunk is able to ingest almost any data into its system to allow users to be able to search at a later time.  Log data is ingested in an unstructured format, meaning that as a general rule, Splunk does not parse out the data for field names or other types of key value pairs that it would require if the data was structured.  Splunk does create certain mandatory fields that are stored for each log that is read into Splunk.  Below is a list of those fields that are often referred to as meta field types.</p>
+
+      <p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="time">2 Configuring the Enterprise Security App <a href="https://youtu.be/UVqFTMQwUqA" target="_blank">
+                <img src="/static/app/lame_training/youtube.png" width="30" height="30"> </img>
+              </a>  </h1>
+<p>Splunk is a time based system and therefore the _time field is the most important field.  While it can be customized, _time is usually the time that the log event occurred.  Another common instance of _time, is the time that the log was ingested into Splunk.  It is important that a Splunk analyst understand what the _time field represents so they can know if the _time represents the time the log was created or if the _time represents the time the log was ingested because often the occurence of those times can be significantly different.</p>
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="index">3  Reviewing the DataModels on Enterprise Security <a href="https://youtu.be/RQVQP-7PNtg" target="_blank">
+                <img src="/static/app/lame_training/youtube.png" width="30" height="30"/>
+              </a> </h1>
+<p>Splunk stores data in logical buckets called indexes.  Data is stored in indexes based off time retention and access control. For example system admin data should not be stored in the same index as some of the cyber security logs.  The retention of the data is another consideration for data being stored in an index.  If some data should be stored for 6 months and other data only needs to be stored for one week, the data should be stored in two different indexes.</p>
+
+<p>To see the indexes available on a search head, use one of the following:</p>
+<ol>
+  <li>On a standalone search head.  Go to Settings -&gt; Indexes <a href="/manager/lame_training/data/indexes" target="_blank">
+                  <img src="/static/app/lame_training/splunk.PNG" width="30" height="30"/>
+                </a>
+              </li>
+  <li>| eventcount summarize=false index=* | dedup index | fields index  <a href="/app/lame_training/search?q=%7C%20eventcount%20summarize%3Dfalse%20index%3D*%20%7C%20dedup%20index%20%7C%20fields%20index%0A%60%60%60%20splunk%20query%20for%20viewing%20all%20of%20the%20indexes%20%60%60%60&amp;earliest=-24h@h&amp;latest=now" target="_blank">
+                  <img src="/static/app/lame_training/splunk.PNG" width="30" height="30"/>
+                </a> </li>
+</ol>
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+
+
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+    </div>
+    </body>
+    </html>
+    </panel>
+  </row>
+</dashboard>

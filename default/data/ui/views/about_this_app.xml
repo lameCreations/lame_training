@@ -116,4 +116,8 @@
       </table>
     </panel>
   </row>
+  <row>
+    <panel ref="welcome_popular_views" app="welcome"></panel>
+    <panel ref="welcome_leaderboard-active-searchers" app="welcome"></panel>
+  </row>
 </dashboard>

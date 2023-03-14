@@ -1,5 +1,6 @@
 <nav search_view="search">
-  <collection label="Splunk Roles">
+
+    <collection label="Splunk Roles">
     <collection label="Data Admin">
       <view name="ingesting_new_logs_on_remote_system"/>
       <view name="apps_apps_and_more_apps"/>
@@ -8,8 +9,12 @@
     <collection label="System Admin">
       <view name="installation_updating_and_migrating_splunk"/>
     </collection>
+	<collection label="Splunk User">
+      <view name="search_for_queries"/>
+    </collection>
+      
   </collection>
-  
+
   <collection label="L.A.M.E. EDU Help Topics">
    <view name="help_1_metadata_fields"/>
     <view name="help_2_splunk_searching"/>
@@ -24,35 +29,40 @@
     <view name="11_generate_documentation_of_splunk_objects"/>
  </collection>
 
-  
   <view name="search_lame_youtube" />
 
   <collection label="Splunk Training Tutorials">
     <view name="eventgen_setup" />
   <view name="study_questions"/>
-  	<collection label="SPL Display Tutorials">
+        <collection label="SPL Display Tutorials">
       <a href="search?q=%60%60%60%20ctrl%20shift%20f%20%60%60%60index%3Dlame_training%20sourcetype%3Dlame_http%20%7C%20head%20100%20%7C%20stats%20sum(bytes_in)%20as%20bytes_in%20count%20by%20url%2C%20src%20%7C%20sort%20bytes_in&amp;earliest=-24h@h&amp;latest=now">Line Formatting</a>
-      <a href="search?q=%60%60%60%20ctrl%20shift%20e%20OR%20cmd%20shift%20e%60%60%60index%3Dlame_training%20sourcetype%3Dlame_http%20%60trainingMacro%60%20%7C%20stats%20sum(bytes_in)%20as%20bytes_in%20count%20by%20url%2C%20src%20%7C%20sort%20bytes_in&amp;earliest=-24h@h&amp;latest=now">Expand Macros</a>     
-  	</collection>
+      <a href="search?q=%60%60%60%20ctrl%20shift%20e%20OR%20cmd%20shift%20e%60%60%60index%3Dlame_training%20sourcetype%3Dlame_http%20%60trainingMacro%60%20%7C%20stats%20sum(bytes_in)%20as%20bytes_in%20count%20by%20url%2C%20src%20%7C%20sort%20bytes_in&amp;earliest=-24h@h&amp;latest=now">Expand Macros</a>
+        </collection>
   </collection>
   
-  <view name="log_analysis_made_easy_soc"/> 
-     
+   <view name="log_analysis_made_easy_soc"/>
+
   <collection label="Help">
     <view name="about_this_app"/>
     <view name="help_document_sourcetype_analytics"/>
     <view name="help_document_datamodel_analytics" />
+    <view name="analytics_and_knowledge_object_overview" />
+    <view name="community_id_generator" />
   </collection>
-  
+
   <collection label="Splunk">
-  	 <view name="search" default='true' />
- 	 <view name="analytics_workspace" />
- 	 <view name="datasets" />
-  	 <view name="reports" />
-  	 <view name="alerts" />
-  	 <view name="dashboards" />
+         <view name="search"  />
+         <view name="analytics_workspace" />
+         <view name="datasets" />
+         <view name="reports" />
+         <view name="alerts" />
+         <view name="dashboards" />
   </collection>
+
+
+
+
   
-  
-  
+
+
 </nav>

@@ -1,0 +1,17 @@
+<dashboard version="1.1">
+<label>Useful CLI Commands</label>
+<row>
+  <panel>
+    <html>
+      <h1>Set up deployment server</h1>
+      <h1>/bin/splunk set deploy-poll 192.168.1.119:8089</h1>
+      <br></br>
+       <h1>Restart Splunk Command Line </h1>
+      <h1>/bin/splunk restart</h1>
+      <br></br>
+       <h1>Refresh Splunk Configs (Web Interface) </h1>
+      <h1>http(s)://yoursplunkhost:8000/debug/refresh</h1>
+    </html>
+  </panel>
+</row>
+</dashboard>

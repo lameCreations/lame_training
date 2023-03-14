@@ -1,0 +1,2 @@
+communityid==1.4.0
+splunk-sdk==1.6.19

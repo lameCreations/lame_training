@@ -1,0 +1,216 @@
+<dashboard version="1.1">
+  <label>Analytics and Knowledge Object Overview</label>
+          <search id="viewBase">
+          <query>| rest splunk_server=local /servicesNS/-/-/data/ui/views
+| search eai:acl.app=* AND author!="nobody"
+| table eai:data, app.owner, id, eai:acl.app author, eai:acl.sharing | lookup dashboard_details id as id output details, mitre, usecase
+
+
+</query>
+        <earliest>-24h@h</earliest>
+          <latest>now</latest> 
+        </search>
+        
+          <search id="saveBase">
+          <query>| rest /servicesNS/-/-/saved/searches splunk_server=local
+| search eai:acl.app=* AND author!="nobody" 
+| table eai:acl.app, author, cron_schedule is_scheduled, disabled</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+  
+  <row>
+    <panel>
+      <title>Total Dashboards</title>
+      <single>
+        <search base="viewBase">
+          <query>| stats count</query>
+        
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Dashboards by Author</title>
+      <chart>
+        <search base="viewBase">
+          <query> 
+| stats count by author</query>
+        
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Total Saved Searches</title>
+      <single>
+        <search base="saveBase">
+          <query> 
+| stats count</query>
+      
+        </search>
+        <option name="drilldown">none</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Total Saved Searches by Author</title>
+      <chart>
+        <search  base="saveBase">
+          <query> 
+| stats count by author</query>
+          
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Scheduled Saved Searches by Author</title>
+      <chart>
+        <search  base="saveBase">
+          <query>
+| eval cron_schedule = case(cron_schedule="", "n/a", 1=1, cron_schedule)
+| search eai:acl.app=* AND author!="nobody" cron_schedule!="n/a"  is_scheduled=1 disabled=0
+| stats count by author</query>
+    
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Analytics (Queries) in Each App</title>
+      <single>
+        <search base="viewBase">
+          <query>
+| lookup dashboard_details id as id output details, mitre, usecase
+| fillnull value="TBD" usecase, mitre
+| rex field="id" "(?&lt;urlField&gt;[^\/]+)$"
+
+``` extract sourcetype, source, or eventtype field &amp; values; exclude negated matches ```
+| rex field=eai:data "(?&lt;!(?#Skip excluded sourcetypes)\bNOT\s)(?i)(?&lt;sourcetypes&gt;sourcetype(?:\s*(?:=|::)[\s\x22]*[-.:\w\x2a]+|\s+IN\s+\x28[-.:\w,\s]+\x29))" max_match=0
+| rex field=eai:data "(?&lt;!(?#Skip excluded sources)\bNOT\s)(?i)(?&lt;sources&gt;source(?:\s*(?:=|::)[\s\x22]*[-.:\w\x2a]+|\s+IN\s+\x28[-.:\w,\s]+\x29))" max_match=0
+| rex field=eai:data "(?&lt;!(?#Skip excluded eventtypes)\bNOT\s)(?i)(?&lt;eventtypes&gt;eventtype(?:\s*(?:=|::)[\s\x22]*[-.:\w\x2a]+|\s+IN\s+\x28[-.:\w,\s]+\x29))" max_match=0
+
+``` extract host and index field &amp; values; exclude negated matches ```
+| rex field=eai:data "(?#Skip excluded hosts)(?&lt;!\bNOT\s)(?i)(?&lt;hosts&gt;host(?:\s*(?:=|::)[\s\x22]*[-.:\w\x2a]+|\s+IN\s+\x28[-.:\w,\s]+\x29))" max_match=0
+| rex field=eai:data "(?#Skip excluded indexes)(?&lt;!\bNOT\s)(?i)(?&lt;indexes&gt;index(?:\s*(?:=|::)[\s\x22]*[-.:\w\x2a]+|\s+IN\s+\x28[-.:\w,\s]+\x29))" max_match=0
+
+``` extract Lookup, InputLookup, and OutputLookup commands &amp; values; must always be after a pipe character ```
+| rex field=eai:data "(?i)\x7c\s*(?&lt;lookups&gt;lookup\b[\s\x22]+[-.:\w]+)" max_match=0
+| rex field=eai:data "(?i)\x7c\s*(?&lt;inputlookups&gt;inputlookup\b[\s\x22]+[-.:\w]+)" max_match=0
+| rex field=eai:data "(?i)\x7c\s*(?&lt;outputlookups&gt;outputlookup\b[\s\x22]+[-.:\w]+)" max_match=0
+
+``` extract the whole query ```
+| rex field=eai:data "(?s)&lt;query&gt;(?&lt;queries&gt;.*?)&lt;\/query&gt;.*?" max_match=0
+
+``` Trim extraneous double quotes from captured fields ```
+| rex mode=sed field=sourcetypes "s/\x22//g"
+| rex mode=sed field=sources "s/\x22//g"
+| rex mode=sed field=eventtypes "s/\x22//g"
+| rex mode=sed field=hosts "s/\x22//g"
+| rex mode=sed field=indexes "s/\x22//g"
+| rex mode=sed field=lookups "s/\x22//g"
+| rex mode=sed field=inputlookups "s/\x22//g"
+| rex mode=sed field=outputlookups "s/\x22//g"
+
+| eval datasources=mvdedup(mvappend(sourcetypes, sources, eventtypes, indexes, hosts, lookups, inputlookups, outputlookups))
+| table queries, sources, sourcetypes, eventtypes, datasources, app.owner, urlField, eai:acl.app author, eai:acl.sharing details, mitre, usecase
+
+| rename eai:acl.app as myapp
+
+| appendcols
+
+  [ search index=summary source="dashboard_views"
+  | table myapp, file, method, status,  user
+  | stats dc(user) as dc_user count by myapp, file
+  | rename file as urlField
+  | table myapp, urlField, count, dc_user
+  ]
+| fillnull value="N/A" datasources
+| mvexpand queries
+| search queries!="|*" AND queries!="search*"
+| table queries urlField, , myapp  author,
+| stats count by myapp</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trellis.enabled">1</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Count of Queries on a Single Dashboard</title>
+      <table>
+        <search base="viewBase">
+          <query>
+| lookup dashboard_details id as id output details, mitre, usecase
+| fillnull value="TBD" usecase, mitre
+| rex field="id" "(?&lt;urlField&gt;[^\/]+)$"
+
+``` extract sourcetype, source, or eventtype field &amp; values; exclude negated matches ```
+| rex field=eai:data "(?&lt;!(?#Skip excluded sourcetypes)\bNOT\s)(?i)(?&lt;sourcetypes&gt;sourcetype(?:\s*(?:=|::)[\s\x22]*[-.:\w\x2a]+|\s+IN\s+\x28[-.:\w,\s]+\x29))" max_match=0
+| rex field=eai:data "(?&lt;!(?#Skip excluded sources)\bNOT\s)(?i)(?&lt;sources&gt;source(?:\s*(?:=|::)[\s\x22]*[-.:\w\x2a]+|\s+IN\s+\x28[-.:\w,\s]+\x29))" max_match=0
+| rex field=eai:data "(?&lt;!(?#Skip excluded eventtypes)\bNOT\s)(?i)(?&lt;eventtypes&gt;eventtype(?:\s*(?:=|::)[\s\x22]*[-.:\w\x2a]+|\s+IN\s+\x28[-.:\w,\s]+\x29))" max_match=0
+
+``` extract host and index field &amp; values; exclude negated matches ```
+| rex field=eai:data "(?#Skip excluded hosts)(?&lt;!\bNOT\s)(?i)(?&lt;hosts&gt;host(?:\s*(?:=|::)[\s\x22]*[-.:\w\x2a]+|\s+IN\s+\x28[-.:\w,\s]+\x29))" max_match=0
+| rex field=eai:data "(?#Skip excluded indexes)(?&lt;!\bNOT\s)(?i)(?&lt;indexes&gt;index(?:\s*(?:=|::)[\s\x22]*[-.:\w\x2a]+|\s+IN\s+\x28[-.:\w,\s]+\x29))" max_match=0
+
+``` extract Lookup, InputLookup, and OutputLookup commands &amp; values; must always be after a pipe character ```
+| rex field=eai:data "(?i)\x7c\s*(?&lt;lookups&gt;lookup\b[\s\x22]+[-.:\w]+)" max_match=0
+| rex field=eai:data "(?i)\x7c\s*(?&lt;inputlookups&gt;inputlookup\b[\s\x22]+[-.:\w]+)" max_match=0
+| rex field=eai:data "(?i)\x7c\s*(?&lt;outputlookups&gt;outputlookup\b[\s\x22]+[-.:\w]+)" max_match=0
+
+``` extract the whole query ```
+| rex field=eai:data "(?s)&lt;query&gt;(?&lt;queries&gt;.*?)&lt;\/query&gt;.*?" max_match=0
+
+``` Trim extraneous double quotes from captured fields ```
+| rex mode=sed field=sourcetypes "s/\x22//g"
+| rex mode=sed field=sources "s/\x22//g"
+| rex mode=sed field=eventtypes "s/\x22//g"
+| rex mode=sed field=hosts "s/\x22//g"
+| rex mode=sed field=indexes "s/\x22//g"
+| rex mode=sed field=lookups "s/\x22//g"
+| rex mode=sed field=inputlookups "s/\x22//g"
+| rex mode=sed field=outputlookups "s/\x22//g"
+
+| eval datasources=mvdedup(mvappend(sourcetypes, sources, eventtypes, indexes, hosts, lookups, inputlookups, outputlookups))
+| table queries, sources, sourcetypes, eventtypes, datasources, app.owner, urlField, eai:acl.app author, eai:acl.sharing details, mitre, usecase
+
+| rename eai:acl.app as myapp
+
+| appendcols
+
+  [ search index=summary source="dashboard_views"
+  | table myapp, file, method, status,  user
+  | stats dc(user) as dc_user count by myapp, file
+  | rename file as urlField
+  | table myapp, urlField, count, dc_user
+  ]
+| fillnull value="N/A" datasources
+| mvexpand queries
+| search queries!="|*" AND queries!="search*"
+| table queries urlField, , myapp  author,
+| stats dc(queries) as queries values(myapp) as myapp  values(author) as author by urlField
+| sort - queries</query>
+        
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>

@@ -1,0 +1,22 @@
+query,app,url,description
+| eventcount summarize=false index=* | stats index | fields index  ```Provide a list of all indexes```,L.A.M.E. Fads,,view all indexes
+| metadata index=* type=sourcetypes  ```Provide a list of all indexes```,L.A.M.E. Fads,,get all sourcetypes
+| metadata index=* type=sources  ```Provide a list of all indexes```,L.A.M.E. Fads,,get all sources
+| metadata index=* type=hosts  ```Provide a list of all indexes```,L.A.M.E. Fads,,get all hosts
+,L.A.M.E. Fads,,look for brute force authentication attempts
+,L.A.M.E. Fads,,use the collect command
+,L.A.M.E. Fads,,inventory creation
+,L.A.M.E. Fads,,potential data exfiltration
+,L.A.M.E. Fads,,new ports listening
+,L.A.M.E. Fads,,new process running
+,L.A.M.E. Fads,,new software running
+,L.A.M.E. Fads,,potential sql injection
+,L.A.M.E. Fads,,look for domain entropy
+,L.A.M.E. Fads,,look for spear phishing
+,L.A.M.E. Fads,,trasnspose command
+,L.A.M.E. Fads,,build a network topology map
+index=corelight sourcetype=corelight_conn  | timechart count span=1d ``` create a line chart of count of corelight conn events broken into spans of 1 day```  | timewrap 1week ``` timewrap stacks the lines of times on top of each other so you can see the anomalies,L.A.M.E. Fads,,time wrap
+,L.A.M.E. Fads,,see if a system is up or down
+,L.A.M.E. Fads,,using stats as a join
+,L.A.M.E. Fads,,mvexpand
+,L.A.M.E. Fads,,geoip commands

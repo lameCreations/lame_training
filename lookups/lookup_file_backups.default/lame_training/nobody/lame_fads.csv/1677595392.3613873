@@ -1,0 +1,41 @@
+query,app,url,description
+| eventcount summarize=false index=* | stats count by index | fields index  ```Provide a list of all indexes```,L.A.M.E. Fads,https://youtu.be/6c-uTI7-cLI,view all indexes
+| metadata index=* type=sourcetypes  ```Provide a list of all indexes```,L.A.M.E. Fads,https://youtu.be/icgvmkHAD6k,get all sourcetypes
+| metadata index=* type=sources  ```Provide a list of all indexes```,L.A.M.E. Fads,,get all sources
+| metadata index=* type=hosts  ```Provide a list of all indexes```,L.A.M.E. Fads,,get all hosts
+"| makeresults  | eval foo=""bar"" | eval other=""field""",L.A.M.E. Fads,https://youtu.be/Lfuy0vbOOKk,using makersults to create a custom log when you don't have a good one
+"| makeresults count=4 | streamstats count | eval foo=case(count=""1"", ""value a"", count=""2"", ""value b"", count=""3"", ""value c"", count=4, ""value d"") | collect index=lame_training source=""lame_makeresults""",L.A.M.E. Fads,https://youtu.be/ZruKXTAH9jM,increasing the ability of makeresults by leveraging the streamstats command
+"| makeresults count=4 | streamstats count | eval foo=case(count=""1"", ""value a"", count=""2"", ""value b"", count=""3"", ""value c"", count=4, ""value d"") | collect index=lame_training source=""lame_makeresults""",L.A.M.E. Fads,https://youtu.be/s3VcuQ5hl-U,how to write the results of an spl query to a splunk index so it can be searched at a later time.  
+,L.A.M.E. Fads,,look for brute force authentication attempts
+,L.A.M.E. Fads,,inventory creation
+,L.A.M.E. Fads,,potential data exfiltration
+,L.A.M.E. Fads,,new ports listening
+,L.A.M.E. Fads,,new process running
+,L.A.M.E. Fads,,new software running
+,L.A.M.E. Fads,,potential sql injection
+,L.A.M.E. Fads,,look for domain entropy
+,L.A.M.E. Fads,,look for spear phishing
+,L.A.M.E. Fads,,trasnspose command
+,L.A.M.E. Fads,,build a network topology map
+index=corelight sourcetype=corelight_conn  | timechart count span=1d ``` create a line chart of count of corelight conn events broken into spans of 1 day```  | timewrap 1week ``` timewrap stacks the lines of times on top of each other so you can see the anomalies,L.A.M.E. Fads,https://youtu.be/RS0iBsvKogE,time wrap
+index=_internal sourcetype=splunkd | stats count by host | append 	[| inputlookup lame_hosts_example.csv 	 | fields host ] | stats values(count) as filter by host | where isnull(filter),L.A.M.E. Fads,https://youtu.be/lo4_MIfTJzI,Check if a system in a lookup is still reporting to a sourcetype
+index=_internal sourcetype=splunkd | stats count by host | lookup lame_hosts_example.csv host as host output count as foo | where isnull(foo),L.A.M.E. Fads,https://youtu.be/BmB-TPxEfQU,Detect systems reporting to a sourcetype that are NOT on a lookup
+,L.A.M.E. Fads,,using stats as a join
+,L.A.M.E. Fads,,mvexpand
+"index=corelight sourcetype=corelight_conn  | iplocation prefix=dest_loc_ allfields=true dest_ip ```prefix creates a prefix to each field generated from iplocation command```  | iplocation prefix=src_loc_ allfields=true src_ip ```prefix creates a prefix to each field generated from iplocation command```  | table dest_*, src_* ```table command can use wildcards so you don't have to call out all ""dest"" or ""src"" fields``` ",L.A.M.E. Fads,https://youtu.be/kSEYA1sN0Cw,geoip commands
+index=corelight sourcetype=corelight_conn  | stats sum(bytes_out) by src_ip,L.A.M.E. Fads,,see the systems sending the most amount of data
+index=corelight sourcetype=corelight_conn    | iplocation prefix=dest_loc_ allfields=true dest_ip ```prefix creates a prefix to each field generated from iplocation command```    |  stats count by dest_loc_Country | geom geo_countries allFeatures=True featureIdField=dest_loc_Country ``` geom maps the coordinates of the countries so it can be applied to the visualization,L.A.M.E. Fads,https://youtu.be/Grqd9Dbic4s,geo ip command with the accompanying chloropleth visualization
+"index=corelight sourcetype=corelight_conn  src_ip=""10.2.0.2"" | timechart sum(bytes_out) by src_ip span=1d | timewrap 1week",L.A.M.E. Fads,,using timewrap to compare one week to another
+"index=corelight sourcetype=corelight_conn src_ip=""10.2.0.2"" NOT dest_ip IN (10.0.0.0/8) | chart sparkline count by dest_ip",L.A.M.E. Fads,,sparkline for heartbeat
+index=corelight sourcetype=corelight_dns | head 10000 |  | `ut_shannon(query)`,L.A.M.E. Fads,,shannon entropy
+"index=corelight sourcetype=corelight_dns | head 10000 | table ut* | eval company_domain=""google"" | `ut_levenshtein(query, company_domain) `",L.A.M.E. Fads,,levenstein
+index=corelight sourcetype=corelight_dns | head 10000 | table ut* | `ut_bayesian(ut_tld)`,L.A.M.E. Fads,,bayesian
+"index=corelight sourcetype=corelight_http   | eval user_agent = mvdedup(user_agent)   ```user_agent doubles up so I dedup the field``` | stats count by user_agent  ``` no reason to see the same useragent over and over again (think dedup but with stats) ``` | eval useragent_length = len(user_agent) ``` get the length of the user_agent``` | table user_agent, useragent_length",L.A.M.E. Fads,https://youtu.be/khCNEMi8vho,long and short useragents
+"index=corelight sourcetype=corelight_http  NOT user_agent IN (Mozilla*) | head 10000 | eval foo = len(user_agent) | table user_agent, foo | `ut_shannon(user_agent)`",L.A.M.E. Fads,,shannon entropy on useragent
+"index=corelight sourcetype=corelight_http  user_agent IN (*nessus*, *qualyis*) | head 10000 | eval foo = substr(user_agent,-10) | stats count by foo",L.A.M.E. Fads,,look for scanners
+index=central_summary source=Lookup_Generator_UserAccounts  ,L.A.M.E. Fads,,
+| stats first(_time) as first_time by username,,,
+| eval now_time = now() ,,,
+| eval time_evaluator = now_time - 166400,,,
+| where first_time > time_evaluator,,,
+"| table username, now_time, time_evaluator first_time",,,

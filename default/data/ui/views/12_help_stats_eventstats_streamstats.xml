@@ -1,0 +1,220 @@
+<form version="1.1">
+  <label>12. Help Stats EventStats StreamStats</label>
+  <fieldset submitButton="false">
+    <input type="time" token="field1">
+      <label></label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Stats on Source IP by Distinct Dest IP</title>
+      <table>
+        <search>
+          <query>index=corelight sourcetype=corelight_conn 
+| table src_ip, dest_ip 
+| stats dc(dest_ip) by src_ip</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <title>EventStatson Source IP by Distinct Dest IP</title>
+      <table>
+        <search>
+          <query>index=corelight sourcetype=corelight_conn 
+| table src_ip, dest_ip 
+| eventstats dc(dest_ip) by src_ip
+| sort src_ip</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <title>StreamStats on Source IP by Distinct Dest IP</title>
+      <table>
+        <search>
+          <query>index=corelight sourcetype=corelight_conn 
+| table src_ip, dest_ip 
+| sort src_ip
+| streamstats dc(dest_ip) by src_ip</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>StreamStats To Count Rows</title>
+      <table>
+        <search>
+          <query>index=corelight sourcetype=corelight_conn 
+| streamstats count as EventCount
+| table _time, EventCount</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <title>StreamStats with a Rolling 10 Event Window of Average Bytes Being Sent Out</title>
+      <table>
+        <search>
+          <query>index=corelight sourcetype=corelight_conn 
+| streamstats avg(bytes_out)  window=10
+| table avg(bytes_out), _time</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>DHCP Renewals Using StreamStats For Mac Address</title>
+      <table>
+        <search>
+          <query>index=corelight sourcetype=corelight_dhcp 
+| streamstats current=false last(src_ip) as new_dhcp_ip last(_time) as time_of_change by mac
+| where src_ip!=new_dhcp_ip 
+| convert ctime(time_of_change) as time_of_change 
+| rename src_ip as old_dhcp_ip 
+| table time_of_change, mac, old_dhcp_ip, new_dhcp_ip</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Successful Logins Followed by an Unsuccessful Login</title>
+      <table>
+        <search>
+          <query>index=os process=sshd (action=failure OR action=success) AND (Accepted OR Failed) user=troy
+| sort 0 src, dest, user, _time asc
+| streamstats count as contiguous_action by src, dest, user action current=true window=50 reset_on_change=true
+| where (action="success" AND contiguous_action&gt;3) OR (action="failure" AND contiguous_action=1)
+| sort - _time
+| transaction src, dest, user  maxevents=2 startswith=action="success" endswith=action=failure
+| rename contiguous_action as success_attempts
+
+| stats count values(dest) as distinct_dests sum(success_attempts) as "Total Successes" by user</query>
+          <earliest>0</earliest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Using InputLookup</title>
+      <table>
+        <search>
+          <query>| inputlookup Demo_SSH_Logs.csv
+| sort 0 src, dest, user, _time asc
+ | streamstats count as contiguous_action by src, dest, user action current=true window=50 reset_on_change=true
+| where (action="success" AND contiguous_action&gt;3) OR (action="failure" AND contiguous_action=1)
+| sort - _time
+| transaction src, dest, user  maxevents=2 startswith=action="success" endswith=action=failure
+| rename contiguous_action as success_attempts
+
+| stats count values(dest) as distinct_dests sum(success_attempts) as "Total Successes" by user</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>All Traffic To Destination IP Summed by Source IP and Dest IP</title>
+      <table>
+        <search>
+          <query>eventtype=bro_conn src_ip=10.89.11.* NOT (dest_ip=192.168.* OR dest_ip=10.* ) AND action!=dropped
+|  stats sum(bytes_out) as "sumOfBytesOut" by src_ip, dest_ip
+| eventstats sum(sumOfBytesOut) AS total_bytes_out by src_ip
+| table src_ip dest_ip sumOfBytesOut, total_bytes_out
+| sort src_ip - sumOfBytesOut</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">10</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Streamstats Where Majority Of Traffic is Heading to One IP</title>
+      <table>
+        <search>
+          <query>eventtype=bro_conn src_ip=10.89.11.* NOT (dest_ip=192.168.* OR dest_ip=10.* ) AND action!=dropped
+|  stats sum(bytes_out) as "sumOfBytesOut" by src_ip, dest_ip
+| eventstats sum(sumOfBytesOut) AS total_bytes_out by src_ip
+| eval percent_bytes_out = sumOfBytesOut/total_bytes_out * 100
+| table src_ip dest_ip total_bytes_out percent_bytes_out
+| where percent_bytes_out &gt; 51
+| sort - percent_bytes_out dest</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Outbound Traffic as a percentage of Total Traffic</title>
+      <chart>
+        <search>
+          <query>eventtype=bro_conn src_ip=10.89.11.* NOT (dest_ip=192.168.* OR dest_ip=10.* ) action!=dropped
+| sort _time
+| streamstats sum(bytes_out) as total_bytes_out by src_ip
+| table _time bytes_out total_bytes_out</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="charting.chart">area</option>
+        <option name="charting.drilldown">none</option>
+      </chart>
+    </panel>
+  </row>
+</form>
