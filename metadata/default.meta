@@ -1,5 +1,157 @@
+[app/ui]
+version = 9.0.3
+modtime = 1676008696.680972000
 
-# Application-level permissions
+[app/launcher]
+version = 9.0.3
+modtime = 1676008696.687671000
+
+[nav/default]
+version = 9.0.4
+modtime = 1679768103.506437000
+
+[views/log_analysis_made_easy_soc]
+access = read : [ * ], write : [ * ]
+export = none
+owner = admin
+version = 9.0.3
+modtime = 1676010831.803633000
+
+[views/community_id_generator]
+owner = admin
+version = 9.0.3
+modtime = 1676068739.961895000
+
+[views/visual_about_a_dashboard]
+owner = admin
+version = 9.0.3
+modtime = 1676252569.158484000
+
+[views/search_for_queries]
+owner = admin
+version = 9.0.3
+modtime = 1677125996.164543000
+
+[lookups/lame_fads.csv]
+owner = admin
+version = 9.0.3
+modtime = 1677595393.680974000
+
+[transforms/network_topology_lookup]
+access = read : [ * ], write : [ * ]
+export = system
+owner = admin
+version = 9.0.3
+modtime = 1676250709.142174000
+
+[views/soc_software_for_an_ip]
+version = 9.0.4
+modtime = 1679767958.639550000
+
+[eventtypes/network_communicate_data]
+version = 9.0.3
+modtime = 1676510623.716814000
+
+[tags/eventtype%3Dnetwork_communicate_data]
+version = 9.0.3
+modtime = 1676510623.919579000
+
+[indexes/ame_default]
+owner = admin
+version = 9.0.3
+modtime = 1676471473.455442000
+
+[eventtypes/network_pfsense]
+access = read : [ * ], write : [ * ]
+export = system
+owner = admin
+version = 9.0.3
+modtime = 1676510736.205621000
+
+[tags/eventtype%3Dnetwork_pfsense]
+access = read : [ * ], write : [ * ]
+export = system
+owner = admin
+version = 9.0.3
+modtime = 1676510736.273919000
+
+[views/12_help_stats_eventstats_streamstats]
+owner = admin
+version = 9.0.3
+modtime = 1676680398.259850000
+
+[lookups/mytest.csv]
+access = read : [ * ], write : [ * ]
+export = system
+owner = admin
+version = 9.0.3
+modtime = 1677254139.487104000
+
+[lookups/lame_subnets.csv]
+owner = admin
+version = 9.0.3
+modtime = 1677641881.087082000
+
+[transforms/lame_subnets]
+access = read : [ * ], write : [ * ]
+export = system
+owner = admin
+version = 9.0.3
+modtime = 1677642024.343524000
+
+[lookups/lame_youtube_channel.csv]
+version = 9.0.3
+modtime = 1677739764.014311000
+
+[views/enterprise_security_installation_guide]
+owner = admin
+version = 9.0.3
+modtime = 1677795440.758170000
+
+[views/useful_cli_commands]
+owner = admin
+version = 9.0.3
+modtime = 1679239114.966029000
+
+[collections/SourcetypeInfo]
+version = 9.0.3
+modtime = 1678468419.965252000
+
+[collections/Sourcetype_Analytics]
+version = 9.0.3
+modtime = 1678373875.391295000
+
+[collections/dashboard_details]
+version = 9.0.3
+modtime = 1678582426.713642000
+
+[views/searching_splunk_rest_apis]
+owner = admin
+version = 9.0.3
+modtime = 1679239997.999945000
+
+[eventtypes/network_monitoring_indexes]
+access = read : [ * ], write : [ * ]
+export = system
+owner = admin
+version = 9.0.4
+modtime = 1679767053.002196000
+
+[views/soc_realtime_network_analysis]
+version = 9.0.4
+modtime = 1679767893.594208000
+
+[views/soc_network_connections]
+version = 9.0.4
+modtime = 1679767945.148979000
+
+[views/soc_dns_traffic_for_an_ip]
+version = 9.0.4
+modtime = 1679767924.617713000
+
+[views/soc_account_logins]
+version = 9.0.4
+modtime = 1679768046.575714000
 
 []
 access = read : [ * ], write : [ admin, power ]
