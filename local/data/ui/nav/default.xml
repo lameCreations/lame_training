@@ -10,9 +10,18 @@
       <view name="installation_updating_and_migrating_splunk"/>
       <view name="useful_cli_commands"/>
       <view name="searching_splunk_rest_apis"/>
+      <view name="enterprise_security_installation_guide"/>
     </collection>
 	<collection label="Splunk User">
       <view name="search_for_queries"/>
+  	  <collection label="Dashboard Token Tutorials">
+        <view name="lame_channel_timebasetokens"/>
+        <view name="lame_channel_token_usage"/>
+      </collection>
+      <collection label="Dashboard Examples For Populating CSVs">
+        <view name="document_sourcetype_analytics"/>
+        <view name="document_sourcetype_fields"/>
+      </collection>
     </collection>
       
   </collection>
@@ -29,6 +38,7 @@
    <view name="9_data_models"/>
     <view name="10_dashboard_creation_guide"/>
     <view name="11_generate_documentation_of_splunk_objects"/>
+   <!--<view name="12_help_stats_eventstats_streamstats" /> -->
  </collection>
 
   <view name="search_lame_youtube" />
@@ -49,7 +59,7 @@
     <view name="help_document_sourcetype_analytics"/>
     <view name="help_document_datamodel_analytics" />
     <view name="analytics_and_knowledge_object_overview" />
-    <view name="community_id_generator" />
+    <!--<view name="community_id_generator" /> -->
   </collection>
 
   <collection label="Splunk">
