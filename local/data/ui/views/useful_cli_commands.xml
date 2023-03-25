@@ -1,0 +1,160 @@
+<dashboard version="1.1">
+  <label>Useful CLI Commands</label>
+  <row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+      <head>
+      <style>
+      #toc_container {
+      background: #f9f9f9 none repeat scroll 0 0;
+      border: 1px solid #aaa;
+      display: table;
+      font-size: 95%;
+      margin: auto;
+      padding: 20px;
+      width: auto;
+      }
+  
+      .toc_title {
+      font-weight: 700;
+      text-align: left;
+      color: #034f84;
+      }
+  
+      #toc_container li, #toc_container ul, #toc_container ul li{
+      list-style: outside none none !important;
+      }
+      
+      .mainDiv {
+      border: 1px solid lightblue;
+      text-align: justify;
+      margin: auto;
+      width: 75%;
+      padding: 20px;
+      }
+      
+      h1 {color: #034f84;}
+      h2 {color: #034f84;}
+      h3 {color: #034f84;}
+      </style>
+      </head>
+      <body>
+        <div class="mainDiv">
+        <a name="top"/>
+      <table>
+        <tr>
+          <td>
+            <div id="toc_container">
+              <p class="toc_title">Table of Contents</p>
+              <ul class="toc_list">
+                <li>
+                        <a href="#start">1 Start Splunk     </a>
+                      </li>
+               
+                <li>
+                        <a href="#restart">1.2 Restart Splunk </a>
+                      </li>
+                
+                 <li>
+                        <a href="#bootstart">1.3 Enable Bootstart </a>
+                      </li>
+                <li>
+                        <a href="#setup">2 Setup Splunk Services </a>
+                </li>   
+                <li>
+                        <a href="#deployment">2.1 Connect to Deployment Server </a>
+                      </li>
+                   <li>
+                        <a href="#listen">2.2 Setup Splunk to Listen on a Port </a>
+                      </li>
+                  <li>
+                        <a href="#forward">2.3 Setup Splunk to Send Logs to Another Location </a>
+                  </li> 
+                  <li>
+                        <a href="#test">2.4 Test Connection to Log Forwarding Server </a>
+                  </li>  
+                      
+                <li>
+                        <a href="#refresh">3 Refresh Web Configs</a>
+                      </li>
+               
+              </ul>
+              </div>
+          </td>
+        </tr>
+      </table>
+      
+      <h1 id="start">1 Start Splunk</h1>
+      <p>/opt/splunk/bin/splunk start</p>
+       <p>/opt/splunkforwarder/bin/splunk start</p>
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="restart">1.2 Restart Splunk </h1>
+<p>/opt/splunk/bin/splunk restart</p>
+<p>/opt/splunkforwarder/bin/splunk restart</p>
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="bootstart">1.3 Enable Bootstart </h1>
+<p>/opt/splunk/bin/splunk enable boot-start</p>
+<p>/opt/splunkforwarder/bin/splunk start</p>
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="setup">2 Setup Splunk Services  </h1>
+
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="deployment">2.1 Connect to Deployment Server </h1>
+<p>/opt/splunk/bin/splunk set deploy-poll 192.168.1.119:8089</p>
+<p>/opt/splunkforwarder/bin/splunk set deploy-poll 192.168.1.119:8089</p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="listen">2.2 Setup Splunk to Listen on a Port </h1>
+<p> /opt/splunk/bin/splunk enable listen 9997 </p>
+<p> /opt/splunkforwarder/bin/splunk enable listen 9997 </p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="forward">2.3 Setup Splunk to Send Logs to Another Location</h1>
+<p> /opt/splunk/bin/splunk add forward-server 192.168.1.119:9997</p>
+<p> /opt/splunkforwarder/bin/splunk add forward-server 192.168.1.119:9997</p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="test">2.4 Test Connection to Log Forwarding Server</h1>
+<p> /opt/splunkforwarder/bin/splunk add forward-server 192.168.1.119:9997</p>
+<p> /opt/splunk/bin/splunk add forward-server 192.168.1.119:9997</p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+<h1 id="refresh">3 Refresh Web Configs</h1>
+<p> http(s)://yoursplunkhost:8000/debug/refresh</p>
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+    </div>
+    </body>
+    </html>
+    </panel>
+  </row>
+</dashboard>

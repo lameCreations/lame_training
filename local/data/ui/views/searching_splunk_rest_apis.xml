@@ -1,0 +1,165 @@
+<dashboard version="1.1">
+  <label>Searching Splunk Rest APIs</label>
+  <description>Useful queries that help you pull back the Splunk .conf and other settings on Splunk</description>
+  <row>
+    <panel ref="helpBanner" app="lame_training"></panel>
+  </row>
+  
+  <row>
+    <panel>
+      <html>
+      <head>
+      <style>
+      #toc_container {
+      background: #f9f9f9 none repeat scroll 0 0;
+      border: 1px solid #aaa;
+      display: table;
+      font-size: 95%;
+      margin: auto;
+      padding: 20px;
+      width: auto;
+      }
+  
+      .toc_title {
+      font-weight: 700;
+      text-align: left;
+      color: #034f84;
+      }
+  
+      #toc_container li, #toc_container ul, #toc_container ul li{
+      list-style: outside none none !important;
+      }
+      
+      .mainDiv {
+      border: 1px solid lightblue;
+      text-align: justify;
+      margin: auto;
+      width: 75%;
+      padding: 20px;
+      }
+      
+      h1 {color: #034f84;}
+      h2 {color: #034f84;}
+      h3 {color: #034f84;}
+      </style>
+      </head>
+      <body>
+        <div class="mainDiv">
+        <a name="top"/>
+      <table>
+        <tr>
+          <td>
+            <div id="toc_container">
+              <p class="toc_title">Table of Contents</p>
+              <ul class="toc_list">
+                <li>
+                        <a href="#start">1.1 Splunk Indexes     </a>
+                      </li>
+               
+                <li>
+                        <a href="#restart">1.2 Splunk Apps </a>
+                      </li>
+                
+                 <li>
+                        <a href="#bootstart">1.3 Splunk Deployment Apps </a>
+                      </li>
+                <li>
+                        <a href="#restart">1.4 Splunk Dashboards </a>
+                </li>
+                <li>
+                        <a href="#setup">1.5 Splunk Saved Searches </a>
+                </li>   
+                <li>
+                        <a href="#deployment">1.6 Splunk Macros </a>
+                      </li>
+                   <li>
+                        <a href="#listen">1.7 Splunk Lookups </a>
+                      </li>
+                  <li>
+                        <a href="#forward">1.8 Datamodels  </a>
+                  </li> 
+                  <li>
+                        <a href="#test">2.4 Test Connection to Log Forwarding Server </a>
+                  </li>  
+                      
+                <li>
+                        <a href="#refresh">3 Refresh Web Configs</a>
+                      </li>
+               
+              </ul>
+              </div>
+          </td>
+        </tr>
+      </table>
+      
+      <h1 id="start">1.1 Splunk Indexes</h1>
+      <p>/opt/splunk/bin/splunk start</p>
+       <p>/opt/splunkforwarder/bin/splunk start</p>
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="restart">1.2 Splunk Apps</h1>
+<p>/opt/splunk/bin/splunk restart</p>
+<p>/opt/splunkforwarder/bin/splunk restart</p>
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="bootstart">1.3 Splunk Deployment Apps </h1>
+<p>/opt/splunk/bin/splunk enable boot-start</p>
+<p>/opt/splunkforwarder/bin/splunk start</p>
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="setup">1.4 Splunk Dashboards</h1>
+<p>| rest splunk_server=local /servicesNS/-/-/data/ui/views</p>
+<p>Splunk Dashboards are slightly confusing because the Splunk Web interface calls them dashboards, but the files on the Operating System call them views.  Just remember the views and dashboards are the same thing.</p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="deployment">1.5 Splunk Saved Searches </h1>
+<p>| rest /servicesNS/-/-/saved/searches splunk_server=local</p>
+<p>Use this rest call to see what saved searches are scheduled and what saved searches are creating summary indexes.</p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="listen">1.6 Splunk Macros </h1>
+<p> | rest splunk_server=local /servicesNS/-/-/admin/macros </p>
+<p> </p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="forward">1.7 Splunk Lookups</h1>
+<p> /opt/splunk/bin/splunk add forward-server 192.168.1.119:9997</p>
+<p> /opt/splunkforwarder/bin/splunk add forward-server 192.168.1.119:9997</p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+<h1 id="test">1.8 Splunk Eventtypes</h1>
+<p> | rest servicesNS/-/-/saved/eventtypes</p>
+<p> eventtypes are a quick way to "tag" data inside of Splunk as a type of data.  Datamodels rely upon the data being tagged as an eventtype before it can be seen in the appropriate data model.</p>
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+<h1 id="refresh">3 Refresh Web Configs</h1>
+<p> http(s)://yoursplunkhost:8000/debug/refresh</p>
+
+<p>
+              <a href="#top">Back to top of page</a>
+            </p>
+
+    </div>
+    </body>
+    </html>
+    </panel>
+  </row>
+</dashboard>
