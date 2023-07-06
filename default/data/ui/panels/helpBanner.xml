@@ -2,7 +2,7 @@
   <html>
     <table width="100%">
       <row>
-        <td><img src="/static/app/log_analysis_made_easy/QuestionMark.png" width="25" height="25"></img>
+        <td><img src="/static/app/lame_training/QuestionMark.png" width="25" height="25"></img>
         <a href="/app/lame_training/about_this_dashboard?form.id=$env:page$" target="_blank">About this page </a>
         </td>
         <td>
@@ -10,7 +10,7 @@
         </td>
         <td>
           <a href="/app/lame_training/visual_about_a_dashboard" target="_blank">Search for a Dashboard </a>
-          <img src="/static/app/log_analysis_made_easy/MagnifyingGlass.png" width="25" height="25"></img>
+          <img src="/static/app/lame_training/MagnifyingGlass.png" width="25" height="25"></img>
         </td>
         <td>
            <a href="https://discordapp.com/channels/1021948803558940723/1021948805404430449" target="_blank">  <img src="/static/app/lame_training/discord.png" width="100" height="35"></img> </a>
