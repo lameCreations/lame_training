@@ -50,3 +50,86 @@ https://youtu.be/Ru0_ChM5IgM,"How to Ingest, Parse, and Make Useful Dashboards f
 https://youtu.be/0jxBg05jvDI,How To Set up a Network to Learn Cyber Computer Security,This tutorial explains why I created the L.A.M.E. Channel and also explains how I set up my home network to simulate a production corporate network with nothing but FREE products.  My network utilizes Corporate grade software solutions that can be used for free in your home environment and I will continue to create videos that will demo how to use these products to develop the skill to be able to do log analysis for a profession.
 https://youtu.be/AWj-tr_p53Q,Splunk Tutorial For Beginners | Common Mistakes | Run Splunk as Root,"We are going to outline some of the common mistakes that we see occuring in Splunk environments.  We will cover SPL mistakes later in this video list, but the mistake of running splunk as root is the most dangerous.  Running splunk as root is asking for bad things to happen to your base OS and ultimately your computer network.  We will discuss how to detect if splunk is running as root on your system and how to remedy it if is does.  "
 https://youtu.be/nn3_ZbTZ4Xw,Splunk Tutorial For Beginners | Common Mistakes | Default Landing Page for all Splunk Users,"Splunk users will come to your environment with all levels of expertise.  The worst thing you can do is to just put the default search and reporting page in front of them.  This is page provides little to no information about your environment and can create a barrier to entry.  Instead we recommend making a landing page where you can ""train"" your users about the content that exists in your splunk environment and push them to stream lined processes where they can get help, discover the data that resides in splunk, and find the most commonly used dashboards for the system."
+https://youtu.be/6c-uTI7-cLI,Introduction to Splunk Free Analytics Daily Queries | Get All Indexes,"We are going to start rolling out a Free Analytic Daily Share (F.A.D.S).  We will be adding a video the the playlist each day with an analytic that will help you navigate Splunk better, use data models, or search for something from popular Splunk logs.  Please feel free to comment below for analytics that you may be interested in seeing.  "
+https://youtu.be/RS0iBsvKogE,Viewing Anomalies over time in Logs using the timewrap command,The timewrap command is a command that allows you to compare similart time periods to each other.  For example you can see the last 4 weeks of logs with each week stacked on top of each other so similar time logs are compared to each other.  
+https://youtu.be/7X6vNTlAuEo,Example 2 for how to get your logs CIM compliant,Getting your logs CIM compliant can be frustrating and daunting when you first begin but this video will help demystify some of the work in getting your logs cim compliant
+https://youtu.be/AIwQGC672Nw,Example 1 for how to get your logs CIM compliant,Getting your logs CIM compliant can be frustrating and daunting when you first begin but this video will help demystify some of the work in getting your logs cim compliant
+https://youtu.be/kSEYA1sN0Cw,iplocation - geographical mapping of ip addresses ,the iplocation command provides the ability to get the geographical country (and often closer) location of an IP address.  
+https://youtu.be/Grqd9Dbic4s,Iplocation – display maps for the geographical location of an IP address,the iplocation command provides the ability to get the geographical country (and often closer) location of an IP address.  We will now show how to visually display these geographical locations.
+https://youtu.be/icgvmkHAD6k,Metadata command sourcetypes,uses the metadata command to quickly return all sourcetypes of an index
+https://youtu.be/khCNEMi8vho,Using the Length Command to detect anomalies,the length command can be used to get the length of a field and this can then be leveraged to find large or small values for a field
+https://youtu.be/ABEAoAQqmLc,Find systems no longer sending logs to Splunk,Query to find systems no longer reporting to Splunk
+https://youtu.be/WDPENL7lb_s,Using Streamstats to find systems no longer reporting to Splunk,Stream stats query to find systems no longer reporting to Splunk
+https://youtu.be/lo4_MIfTJzI,Using a Lookup to find systems no longer reporting to Splunk,Query that uses lookups to find systems no longer reporting to Splunk
+https://youtu.be/BmB-TPxEfQU,Using a Lookup to find a new system in a sourcetype,Query to use a lookup to find a new system in a sourcetype
+https://youtu.be/Lfuy0vbOOKk,Makeresults command to create your own custom fields to troubleshoot SPL commands,The makeresults command will allow you to create data to work with even if an index doesn’t exist that contains the data.  
+https://youtu.be/ZruKXTAH9jM,Using the Collect command to save your results to a summary index,"If you want to store the results of your query to an index so that you can search it later, the collect command is the tool for you to use."
+https://youtu.be/Iol1CHyv23A,How to Set up a server for Splunk Enterprise Security,this tutorial will show you how to configure a splunk server for Enterprise Security
+https://youtu.be/QdM6JvnYu7g,How ti install the Enterprise Security App,this tutorial will show you how to setup and configure the Splunk Enterprise Security App
+https://youtu.be/OoGbJhTUU4I,Using Streamstats to improve makeresults command results,the streamstats command can be used to create signifcantly more data for the makeresults command.
+https://youtu.be/nTQRCtIrXXc,How to leverage data models to fill out the dashboards in Enterprise Security,We will explain how to use data models to populate the various dashboards in Enterprise Security
+https://youtu.be/4zssb06JrsQ,Multivalue fields and how to manipulate them,this tutorial will show the different ways you can manipulate multivalue fields
+https://youtu.be/Iwn0ZvXJtE8,How to use the Transpose command to view logs with lots of fields,When there are too many fields to display on the screen it can be difficult to see all the fields available to a log.  The transpose command flips the orientation of the log from horizontal to vertical.  
+https://youtu.be/RGhjXm18SyQ,How to generate inventory of IPs using multivalue fields,Demonstrates how to combine src and dest fields in a network connection into a multivalue field and then split them to create a list of inventory Ips
+https://youtu.be/IgdmrNeQXEU,Using a CSV lookup to refine a list of inventory,CSV files can be used to help refine a list of IPs for inventory.
+https://youtu.be/9IPtIOe8FG8,Saving results to a CSV,tutorial that demonstrates how to use the outputlookup command to save results to a csv or KV store
+https://youtu.be/mNAAZ3XGSng,How to save results to a summary index with the collect command,tutorial that demonstrates the use of the colllect command to save results to a summary index.
+https://youtu.be/HvBmfd0o-0c,How to search a list of all sources in an index quickly,Tutorial using the metadata field to search all sources quickly
+https://youtu.be/cqbzwmxlIOM,How to search a list of all hosts in an index quickly,Tutorial using the metadata field to search all hosts quickly
+https://youtu.be/Im-egqSaJWk,How to make a heartbeat monitor with a sparkline. ,The sparkline chart can be used to find “heartbeats” which are scripted connections to a remote device.
+https://youtu.be/BNo6FeqA7IE,Performing subsearches using a Lookup,Tutorial for using a lookup to create subsearch splunk queries
+https://youtu.be/BCgWc-k2ciU,Perform a join of metadata using the lookup command,Tutorial for using a csv / lookup file to add metadata into your query
+https://youtu.be/RZuFjBvBOGU,How to detect / search for ipv6 addresses in network logs,Tutorial for how to search for IPv6 addresses in network logs
+https://youtu.be/ktKKWM4lHHE,Finding potential Network Scanners in Splunk,Tutorial for how to identify network scanners in network traffic
+https://youtu.be/P84FlCraiDk,Using the stats range command to help fingerprint a network,Tutorial showing a real life example of how to use the range command to be able to fingerprint network devices
+https://youtu.be/xtB79DVogO4,Using the stats avg median and mode command to help fingerprint a network,"Tutorial showing a real life example of how to use the avg, median, mode command to be able to fingerprint network devices"
+https://youtu.be/VJDizpfg4Mw,"Using range, avg, median, and mode together to hep fingerprint a network","Using range, avg, median, and mode together to hep fingerprint a network"
+https://youtu.be/IHJ0Iy95RRE,Analyzing domain names for randomness (entropy),Using the entropy commands to detect randomness in Domain names
+https://youtu.be/-uZ3imNwbLE,Detecting potential spear phishing attempts,How to use machine learning algorithms to detect potential spear phishing attempts with the Levenstein algorithm
+https://youtu.be/HZKDnEiyfVk,debug/refresh config settings,Tutorial on using the debug/refresh command to reset the majority of .conf settings in Splunk without resetting the server
+https://youtu.be/6DbQEa_ylIM,How to set up a unviersal forwarder,Tutorial on how to set up a universal forwarder on a machine
+https://youtu.be/SiezFb0L9N0,How to use a deployment server to push out apps,"Tutorial on how to set up a deployment server, join the server, and push out apps to all machines that have joined the deployment server"
+https://youtu.be/XnCEZTKOm90,How to send syslog to Splunk,How to send syslog to Splunk
+https://youtu.be/phxiwtfFsEA,SOAR Phantom tutorial on how to set up the Search App,SOAR Phantom tutorial on how to set up the Search App
+https://youtu.be/36RjwmJ_Ee4,SOAR Phantom tutorial on how to send Splunk Alerts to SOAR Phantom,SOAR Phantom tutorial on how to send Splunk Alerts to SOAR Phantom
+https://youtu.be/olu5-aWgICw,SOAR Phantom tutorial on how to send Phantom logs to Splunk Indexers,SOAR Phantom tutorial on how to send Phantom logs to Splunk Indexers
+https://youtu.be/x4uNWAmVyrU,SOAR Phantom tutorial on how to use a Playbook to search Splunk Indexes,SOAR Phantom tutorial on how to use a Playbook to search Splunk Indexes
+https://youtu.be/gd5xDNGEsoU,SOAR Phantom tutorial on how to set up the SSH App,SOAR Phantom tutorial on how to set up the SSH App
+https://youtu.be/bPboX7qnsWU,SOAR Phantom tutorial Making HTTP and REST api calls in a playbook,SOAR Phantom tutorial Making HTTP and REST api calls in a playbook
+https://youtu.be/45nJ1yGgz0g,SOAR Phantom tutorial Automating Messages in a Playbook  ,"Tutorial on how to create a message in Splunk, send the message to Phantom, and then have Phantom send the message to all of the Search heads"
+https://youtu.be/JqhNPdLlB0M,How to convert Epoch Time to human readable time,How to convert Epoch Time to human readable time
+https://youtu.be/eVxqW9W8H5g,How to convert Epoch Time to human readable time part 2,How to convert Epoch Time to human readable time part 2
+https://youtu.be/yUgjdUXuD3w,Searching for Splunk Failed Logins,Searching for Splunk Failed Logins
+https://youtu.be/CzKIRNQAmIg,Viewing All Analysts Search History within Splunk,Viewing All Analysts Search History within Splunk
+https://youtu.be/aJMpRBhXmXs,Searching Splunk for dashboard views by users,Searching Splunk for dashboard views by users
+https://youtu.be/GlylYn1bj7c,StrpTime StrfTime Epoch Time Conversion ,We will discuss how to change time from human readable form to epoch and from epoch time to human readable. 
+https://youtu.be/R275B-plQLI,Common mistakes – using a deployment server to push out csv lookup files,"Tutorial on pitfalls to deploying lookup files with a deployment server.  If not careful, all changes to your lookups can be overwritten by the deployment server"
+https://youtu.be/a7Bvf44AjPY,Common mistakes – using a deployment server to push out KV lookup files,"Tutorial on the pitfalls of deploying KV store lookups out with a deployment server.  KV stores on a deployment server are just config files and do not actually push out data to the application, so the KV store is empty"
+https://youtu.be/uxSksSryQgc,Common mistakes – accidentally purging all of your KV store data when deploying from deployment server,"Tutorial on the pitfalls of deploying KV store lookups out with a deployment server.  If done in the wrong order, you can wipe out your KV store"
+https://youtu.be/OT9UT5Cidxw,How to install Splunk Phantom / SOAR application,How to install Splunk Phantom / SOAR application
+https://youtu.be/Uhv7p12n63A,Creating a basic eventgen app within Splunk,Creating a basic eventgen app within Splunk
+https://youtu.be/7KDRGprI9Iw,Creating a basic eventgen app within Splunk and replacing the timestamp field,Creating a basic eventgen app within Splunk and replacing the timestamp field
+https://youtu.be/hYvA6lwQozo,Stats vs Chart Command in Splunk,Discusses the differences between stats and the chart command and when each should be used
+https://youtu.be/DEvJPCGycQI,How to use Splunk in docker,How to use Splunk in docker
+https://youtu.be/MY6xxL5lEUg,How to use foreach queries in Splunk,Tutorial on how to use the foreach command in SPL
+https://youtu.be/GGw9oRE_bOQ,How to use foreach queries in Splunk example 2,Tutorial on how to use the foreach command in SPL
+https://youtu.be/-B0cceXSJGc,Stats vs EventStats vs Streamstats,Stats vs EventStats vs Streamstats
+https://youtu.be/oMmDkvTBxBo,Splunk Index Command Tutorial,This video will give a basic explanation on why Splunk uses multiple indexes and how to search the logs in one or more indexes on Splunk. 
+https://youtu.be/yO8kefdh7fY,Tutorial on using wildcards for searching indexes,Tutorial on using wildcards for searching indexes
+https://youtu.be/j_l86ePqJEk,Earliest and Latest Commands,This video will cover how to set the earliest and latest times for a splunk query in the actual query.
+https://youtu.be/8zIqfUrkaKg,How to restrict search by date,This video will focus on using a human readable time like April 1st 1999 as a date in your SPL query.  
+https://youtu.be/_QrfM0N60Cc,How to setup a large Splunk environment with ease,How to setup a large Splunk environment with ease
+https://youtu.be/ZiNCRsUE7LQ,How to setup a fully functioning indexer cluster in under 17 minutes using a LAME tool,How to setup a fully functioning indexer cluster in under 17 minutes using a LAME tool
+https://youtu.be/-v7hVZpAqrw,Introduction to Splunk Enterprise Security App,Introduction to Splunk Enterprise Security App
+https://youtu.be/rS7CyUgG4sI,Introduction to Splunk Enterprise Security App Correlation Searches,Introduction to Splunk Enterprise Security App Correlation Searches
+https://youtu.be/J5Dwae7jw-M,Introduction to Splunk Enterprise Security App Network Traffic CIM Compliance,Introduction to Splunk Enterprise Security App CIM Data Model Network Data
+https://youtu.be/c4mewe0rf-8,Introduction to Splunk Enterprise Security App Incident Review / Ticket Triage,Introduction to Splunk Enterprise Security App Incident Review / Ticket Triage
+https://youtu.be/nJp6c5YEjwA,Introduction to Splunk Enterprise Security App CIM Data Model Network Data,Introduction to Splunk Enterprise Security App CIM Data Model Network Data
+https://youtu.be/V1FLDnnED6I,Introduction to Splunk Enterprise Security App Data Model Example Web,Introduction to Splunk Enterprise Security App Data Model Example Web
+https://youtu.be/qeVs4p8R6R0,Introduction to Splunk Enterprise Security App Web Data CIM compliance,Introduction to Splunk Enterprise Security App Web Data CIM compliance
+https://youtu.be/a-xOcKPuf3o,Introduction to Splunk Enterprise Security App Risk Based Approach RBA Overview,Introduction to Splunk Enterprise Security App Risk Based Approach RBA Overview
+https://youtu.be/nWoTiVo5wyI,Introduction to Splunk Enterprise Security App Using Threat Intelligence,Introduction to Splunk Enterprise Security App Using Threat Intelligence
+https://youtu.be/zbYzcDBWGGs,Introduction to Splunk Enterprise Security App Integrating ES into SOAR,Introduction to Splunk Enterprise Security App Integrating ES into SOAR
+https://youtu.be/r11QGm1NbDc,Introduction to Splunk Enterprise Security App Inventory Integration,Introduction to Splunk Enterprise Security App Inventory Integration
+https://youtu.be/ELbX5KJFY_E,Enterprise Security vs Splunk Enterprise,Expalins the difference between Splunk Enterprise and Enterprise Security.  One is a security app and the other is the Splunk platform that apps are installed on.
+https://youtu.be/-qt6mL7tmVc,Introduction to Splunk Enterprise Security App Loading Threat Intel through Local CSVs,Introduction to Splunk Enterprise Security App Loading Threat Intel through Local CSVs
