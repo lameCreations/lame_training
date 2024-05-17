@@ -1,3 +1,14 @@
 [app/install/install_source_checksum]
 version = 9.1.0.1
 modtime = 1690155956.028342000
+
+[views/soc_network_connections]
+version = 9.1.0.2
+modtime = 1696984619.119339000
+
+[eventtypes/network_monitoring]
+access = read : [ * ], write : [ admin ]
+export = system
+owner = admin
+version = 9.1.0.2
+modtime = 1696984976.197550000

@@ -52,8 +52,6 @@
         </collection>
   </collection>
   
-   <view name="log_analysis_made_easy_soc"/>
-
   <collection label="Help">
     <view name="about_this_app"/>
     <view name="help_document_sourcetype_analytics"/>
